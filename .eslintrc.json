@@ -22,5 +22,8 @@
         "sourceType": "module"
     },
     "plugins": ["react", "@typescript-eslint", "prettier"],
-    "rules": {}
+    "rules": {
+        //disable the rule specifically for param properties
+        "no-param-reassign": [2, { "props": false }]
+    }
 }
