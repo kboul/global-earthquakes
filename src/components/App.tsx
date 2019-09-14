@@ -1,7 +1,8 @@
 import React from 'react';
+import Leaflet from './Leaflet';
 
 const App: React.FC = () => {
-    return <div>Hello World</div>;
+    return <Leaflet />;
 };
 
 export default App;
