@@ -1,4 +1,4 @@
-export const circleMarkerColor = (magnitude: number) => {
+export const circleMarkerColor = (magnitude: number): string => {
     return magnitude <= 1
         ? '#00b800'
         : magnitude > 1 && magnitude <= 2

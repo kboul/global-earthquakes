@@ -1,6 +1,6 @@
 import { circleMarkerColor } from './circleMarkerColor';
 
-export const geojsonMarkerOptions = (magnitude: number) => {
+export const geojsonMarkerOptions = (magnitude: number): Object => {
     return {
         radius: 2.5 * magnitude,
         fillColor: circleMarkerColor(magnitude),
