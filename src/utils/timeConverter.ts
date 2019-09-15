@@ -1,3 +1,4 @@
+// Convert Epoch time to human readable with specific timezone
 export const timeConverter = (time: number, offset: number): string => {
     const d = new Date(time);
     const utc = d.getTime() + d.getTimezoneOffset() * 60000; //This converts to UTC 00:00
