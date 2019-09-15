@@ -13,17 +13,18 @@ const Leaflet: React.SFC<LeafletProps> = () => {
     return (
         <Map center={position} zoom={3} style={{ height: '100vh' }}>
             <LayersControl position="topright">
-                {tilelayers.map(({ name, attribution, url }: ITilelayer) => {
-                    return (
+                {tilelayers.map(
+                    ({ name, attribution, url }: ITilelayer, id) => (
                         <LayersControl.BaseLayer
+                            key={id}
                             name={name}
                             checked={
                                 name === 'OpenStreetMap.Mapnik' ? true : false
                             }>
                             <TileLayer attribution={attribution} url={url} />
                         </LayersControl.BaseLayer>
-                    );
-                })}
+                    )
+                )}
             </LayersControl>
 
             <Earthquakes />
