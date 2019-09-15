@@ -7,5 +7,5 @@ export const circleMarkerColor = (magnitude: number) => {
         ? '#00ff91'
         : magnitude > 4 && magnitude <= 7
         ? '#ffc800'
-        : '#010101';
+        : '#ff0000';
 };
