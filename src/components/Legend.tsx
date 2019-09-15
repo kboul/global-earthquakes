@@ -16,7 +16,7 @@ const Legend: React.SFC<LegendProps> = ({ leaflet }) => {
     legend.onAdd = (map: any) => {
         console.log(map);
         let div = L.DomUtil.create('div', 'info legend'),
-            grades = [0, 1, 3, 4, 7],
+            grades = [0, 1, 2, 3, 5, 7],
             labels = [],
             from,
             to;
