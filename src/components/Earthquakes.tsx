@@ -19,10 +19,12 @@ const Earthquakes: React.SFC<EarthquakesProps> = ({ leaflet }) => {
         let popupContent = `
             <h3>${feature.properties.title}</h3>
             <b>Place</b>: ${feature.properties.place} <br>
+            <b>Time</b>: <br>
             <b>Lat</b>: ${feature.geometry.coordinates[1]}
-            <b>Lon</b>: ${feature.geometry.coordinates[0]}<br>
-            <b>Magnitude</b>: ${feature.properties.mag} Richter<br>
-            <b>Details</b>: <a href=${feature.properties.url}>click here to find more details</a>
+            <b>Lon</b>: ${feature.geometry.coordinates[0]} <br>
+            <b>Depth</b>: ${feature.geometry.coordinates[2]} km <br>
+            <b>Magnitude</b>: ${feature.properties.mag} Richter <br>
+            <b>Details</b>: <a href=${feature.properties.url}>click here to see more details</a>
         `;
 
         if (feature.properties) layer.bindPopup(popupContent);
