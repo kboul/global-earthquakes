@@ -10,6 +10,8 @@
 .info h4 {
     margin: 0px;
     color: black;
+    font-weight: bold;
+    font-size: 14px;
 }
 
 .legend {

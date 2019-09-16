@@ -18,7 +18,9 @@ const Earthquakes: React.SFC<EarthquakesProps> = ({ leaflet }) => {
 
     const onEachFeature = (feature: IFeature, layer: Layer) => {
         let popupContent = `
-            <h3>${feature.properties.title}</h3>
+            <h3 style="font-size: 1.17em; font-weight: bold">${
+                feature.properties.title
+            }</h3>
             <b>Place</b>: ${feature.properties.place} <br>
             <b>Time (GMC+3)</b>: ${timeConverter(
                 feature.properties.time,
