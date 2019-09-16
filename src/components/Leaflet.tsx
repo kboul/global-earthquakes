@@ -6,12 +6,11 @@ import tilelayers from '../constants/tilelayers';
 import { ITilelayer } from '../models/ITilelayer';
 import tectonicPlates from '../assets/PB2002_boundaries.json';
 import { tectonicPlatesStyle } from '../constants/tectonicPlatesStyle';
+import styles from '../styles/Leaflet.module.css';
 
-export interface LeafletProps {}
-
-const Leaflet: React.SFC<LeafletProps> = () => {
+const Leaflet: React.SFC = () => {
     return (
-        <Map center={[0, 0]} zoom={3} style={{ height: '100vh' }}>
+        <Map center={[0, 0]} zoom={3} className={styles.map}>
             <LayersControl position="topright">
                 {tilelayers.map(
                     ({ name, attribution, url }: ITilelayer, id) => (
