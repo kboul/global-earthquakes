@@ -8,10 +8,13 @@ export interface NavbarProps {
 
 const Navbar: React.SFC<NavbarProps> = ({ changeQuery }) => {
     const [query, setQuery] = useState('');
+    const indicator = query === '' ? <small>(last 3 days)</small> : '';
 
     return (
         <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-            <div className="navbar-brand mr-auto mr-lg-0">Earthquakes</div>
+            <div className="navbar-brand mr-auto mr-lg-0">
+                Earthquakes {indicator}
+            </div>
             <button
                 className="navbar-toggler p-0 border-0"
                 type="button"
