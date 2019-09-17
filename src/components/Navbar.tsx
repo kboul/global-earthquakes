@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { changeStarttime } from '../store/actions';
+import { changeStarttime, changeEndtime } from '../store/actions';
 
 export interface NavbarProps {
-    changeStarttime: (arg1: any) => void;
+    changeStarttime: (arg1: string) => void;
+    changeEndtime: (arg1: string) => void;
 }
 
-const Navbar: React.SFC<NavbarProps> = ({ changeStarttime }) => {
-    const [starttime, setstarttime] = useState('');
+const Navbar: React.SFC<NavbarProps> = ({ changeStarttime, changeEndtime }) => {
+    const [starttime, setStarttime] = useState('');
+    const [endtime, setEndtime] = useState('');
     const indicator = starttime === '' ? <small>(last 3 days)</small> : '';
 
     return (
@@ -28,6 +30,7 @@ const Navbar: React.SFC<NavbarProps> = ({ changeStarttime }) => {
                     className="form-inline my-2 my-lg-0"
                     onSubmit={e => {
                         changeStarttime(starttime);
+                        changeEndtime(endtime);
                         e.preventDefault();
                     }}>
                     <input
@@ -36,7 +39,15 @@ const Navbar: React.SFC<NavbarProps> = ({ changeStarttime }) => {
                         placeholder="Start time"
                         aria-label="Search"
                         value={starttime}
-                        onChange={e => setstarttime(e.target.value)}
+                        onChange={e => setStarttime(e.target.value)}
+                    />
+                    <input
+                        className="form-control mr-sm-2"
+                        type="text"
+                        placeholder="End time"
+                        aria-label="Search"
+                        value={endtime}
+                        onChange={e => setEndtime(e.target.value)}
                     />
                     <button
                         className="btn btn-outline-success my-2 my-sm-0"
@@ -49,7 +60,7 @@ const Navbar: React.SFC<NavbarProps> = ({ changeStarttime }) => {
     );
 };
 
-const mapDispatchToProps = { changeStarttime };
+const mapDispatchToProps = { changeStarttime, changeEndtime };
 
 export default connect(
     null,
