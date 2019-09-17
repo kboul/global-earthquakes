@@ -33,7 +33,7 @@ const Navbar: React.SFC<NavbarProps> = ({ changeStarttime }) => {
                     <input
                         className="form-control mr-sm-2"
                         type="text"
-                        placeholder="insert starttime..."
+                        placeholder="Start time"
                         aria-label="Search"
                         value={starttime}
                         onChange={e => setstarttime(e.target.value)}
