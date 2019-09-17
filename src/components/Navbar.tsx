@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { changeQuery } from '../store/actions';
+import { changeStarttime } from '../store/actions';
 
 export interface NavbarProps {
-    changeQuery: (arg1: any) => void;
+    changeStarttime: (arg1: any) => void;
 }
 
-const Navbar: React.SFC<NavbarProps> = ({ changeQuery }) => {
-    const [query, setQuery] = useState('');
-    const indicator = query === '' ? <small>(last 3 days)</small> : '';
+const Navbar: React.SFC<NavbarProps> = ({ changeStarttime }) => {
+    const [starttime, setstarttime] = useState('');
+    const indicator = starttime === '' ? <small>(last 3 days)</small> : '';
 
     return (
         <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
@@ -27,16 +27,16 @@ const Navbar: React.SFC<NavbarProps> = ({ changeQuery }) => {
                 <form
                     className="form-inline my-2 my-lg-0"
                     onSubmit={e => {
-                        changeQuery(query);
+                        changeStarttime(starttime);
                         e.preventDefault();
                     }}>
                     <input
                         className="form-control mr-sm-2"
                         type="text"
-                        placeholder="Search..."
+                        placeholder="insert starttime..."
                         aria-label="Search"
-                        value={query}
-                        onChange={e => setQuery(e.target.value)}
+                        value={starttime}
+                        onChange={e => setstarttime(e.target.value)}
                     />
                     <button
                         className="btn btn-outline-success my-2 my-sm-0"
@@ -49,7 +49,7 @@ const Navbar: React.SFC<NavbarProps> = ({ changeQuery }) => {
     );
 };
 
-const mapDispatchToProps = { changeQuery };
+const mapDispatchToProps = { changeStarttime };
 
 export default connect(
     null,

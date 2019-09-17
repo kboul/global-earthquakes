@@ -1,1 +1,1 @@
-export const CHANGE_QUERY = 'CHANGE_QUERY';
+export const CHANGE_STARTTIME = 'CHANGE_STARTTIME';

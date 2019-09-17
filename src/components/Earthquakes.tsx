@@ -11,13 +11,13 @@ export interface EarthquakesProps {
     leaflet: {
         map: any;
     };
-    query: string;
+    starttime: string;
 }
 
 let geojson: any;
 
-const Earthquakes: React.SFC<EarthquakesProps> = ({ leaflet, query }) => {
-    const earthquakes = useEarthquakes(query);
+const Earthquakes: React.SFC<EarthquakesProps> = ({ leaflet, starttime }) => {
+    const earthquakes = useEarthquakes(starttime);
 
     const onEachFeature = (feature: IFeature, layer: Layer) => {
         let popupContent = `
@@ -55,7 +55,7 @@ const Earthquakes: React.SFC<EarthquakesProps> = ({ leaflet, query }) => {
 };
 
 const mapStateToProps = (state: any) => ({
-    query: state.earthquakes.query
+    starttime: state.earthquakes.starttime
 });
 
 export default withLeaflet(connect(mapStateToProps)(Earthquakes));

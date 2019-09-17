@@ -1,6 +1,6 @@
-import { CHANGE_QUERY } from './types';
+import { CHANGE_STARTTIME } from './types';
 
-export const changeQuery = (query: string) => ({
-    type: CHANGE_QUERY,
-    query
+export const changeStarttime = (starttime: string) => ({
+    type: CHANGE_STARTTIME,
+    starttime
 });

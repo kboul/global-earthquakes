@@ -1,15 +1,15 @@
-import { CHANGE_QUERY } from '../actions/types';
+import { CHANGE_STARTTIME } from '../actions/types';
 
 const initialState = {
-    query: 'NOW - 3days'
+    starttime: 'NOW - 3days'
 };
 
 export default (state = initialState, action: any) => {
     switch (action.type) {
-        case CHANGE_QUERY:
+        case CHANGE_STARTTIME:
             return {
                 ...state,
-                query: action.query
+                starttime: action.starttime
             };
         default:
             return state;
