@@ -1,5 +1,11 @@
 import React from 'react';
-import { Map, TileLayer, LayersControl, GeoJSON } from 'react-leaflet';
+import {
+    Map,
+    TileLayer,
+    LayersControl,
+    GeoJSON,
+    ScaleControl
+} from 'react-leaflet';
 import Earthquakes from './Earthquakes';
 import Legend from './Legend';
 import tilelayers from '../constants/tilelayers';
@@ -33,6 +39,7 @@ const Leaflet: React.SFC = () => {
             </LayersControl>
 
             <Earthquakes />
+            <ScaleControl />
             <Legend />
         </Map>
     );
