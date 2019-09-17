@@ -1,7 +1,7 @@
 import { CHANGE_QUERY } from '../actions/types';
 
 const initialState = {
-    query: 'NOW - 10hours'
+    query: 'NOW - 3days'
 };
 
 export default (state = initialState, action: any) => {

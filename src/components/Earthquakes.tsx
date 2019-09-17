@@ -5,16 +5,19 @@ import { IFeature } from '../models/IFEature';
 import { timeConverter } from '../utils/timeConverter';
 import { geojsonMarkerOptions } from '../utils/geojsonMarkerOptions';
 import useEarthquakes from '../hooks/useEarthquakes';
+import { connect } from 'react-redux';
 
 export interface EarthquakesProps {
     leaflet: {
         map: any;
     };
+    query: string;
 }
 
-const Earthquakes: React.SFC<EarthquakesProps> = ({ leaflet }) => {
-    const [earthquakes]: any = useEarthquakes();
-    console.log(earthquakes);
+let geojson: any;
+
+const Earthquakes: React.SFC<EarthquakesProps> = ({ leaflet, query }) => {
+    const earthquakes = useEarthquakes(query);
 
     const onEachFeature = (feature: IFeature, layer: Layer) => {
         let popupContent = `
@@ -38,7 +41,9 @@ const Earthquakes: React.SFC<EarthquakesProps> = ({ leaflet }) => {
         if (feature.properties) layer.bindPopup(popupContent);
     };
 
-    L.geoJSON(earthquakes.features, {
+    if (leaflet.map.hasLayer(geojson)) leaflet.map.removeLayer(geojson);
+
+    geojson = L.geoJSON(earthquakes.features, {
         onEachFeature,
         pointToLayer: function(feature: IFeature, latlng: LatLng) {
             const magnitude = feature.properties.mag;
@@ -49,4 +54,8 @@ const Earthquakes: React.SFC<EarthquakesProps> = ({ leaflet }) => {
     return null;
 };
 
-export default withLeaflet(Earthquakes);
+const mapStateToProps = (state: any) => ({
+    query: state.earthquakes.query
+});
+
+export default withLeaflet(connect(mapStateToProps)(Earthquakes));

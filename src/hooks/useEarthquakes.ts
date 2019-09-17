@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { getEarthquakes } from '../services/getEarthquakes';
 
-const useEarthquakes: any = () => {
+const useEarthquakes: any = (query: string) => {
     const [earthquakes, setEarthquakes]: any = useState([]);
-    const [query, setQuery] = useState('NOW - 5days');
 
     useEffect(() => {
         (async () => {
@@ -12,7 +11,7 @@ const useEarthquakes: any = () => {
         })();
     }, [query]);
 
-    return [earthquakes, setQuery];
+    return earthquakes;
 };
 
 export default useEarthquakes;

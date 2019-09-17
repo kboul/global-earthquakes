@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { changeQuery } from '../store/actions';
 
-export interface NavbarProps {}
+export interface NavbarProps {
+    changeQuery: (arg1: any) => void;
+}
 
-const Navbar: React.SFC<NavbarProps> = () => {
+const Navbar: React.SFC<NavbarProps> = ({ changeQuery }) => {
+    const [query, setQuery] = useState('');
+
     return (
         <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
             <div className="navbar-brand mr-auto mr-lg-0">Earthquakes</div>
@@ -13,41 +19,21 @@ const Navbar: React.SFC<NavbarProps> = () => {
                 <span className="navbar-toggler-icon"></span>
             </button>
 
-            <div
-                className="navbar-collapse offcanvas-collapse"
-                id="navbarsExampleDefault">
-                <ul className="navbar-nav mr-auto mt-1">
-                    <li className="nav-item dropdown">
-                        <a
-                            className="nav-link dropdown-toggle"
-                            href="#"
-                            id="dropdown01"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false">
-                            Settings
-                        </a>
-                        <div
-                            className="dropdown-menu"
-                            aria-labelledby="dropdown01">
-                            <a className="dropdown-item" href="#">
-                                Action
-                            </a>
-                            <a className="dropdown-item" href="#">
-                                Another action
-                            </a>
-                            <a className="dropdown-item" href="#">
-                                Something else here
-                            </a>
-                        </div>
-                    </li>
-                </ul>
-                <form className="form-inline my-2 my-lg-0">
+            <div className="navbar-collapse offcanvas-collapse">
+                <ul className="navbar-nav mr-auto mt-1"></ul>
+                <form
+                    className="form-inline my-2 my-lg-0"
+                    onSubmit={e => {
+                        changeQuery(query);
+                        e.preventDefault();
+                    }}>
                     <input
                         className="form-control mr-sm-2"
                         type="text"
-                        placeholder="Search"
+                        placeholder="Search..."
                         aria-label="Search"
+                        value={query}
+                        onChange={e => setQuery(e.target.value)}
                     />
                     <button
                         className="btn btn-outline-success my-2 my-sm-0"
@@ -60,4 +46,9 @@ const Navbar: React.SFC<NavbarProps> = () => {
     );
 };
 
-export default Navbar;
+const mapDispatchToProps = { changeQuery };
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(Navbar);
