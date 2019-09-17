@@ -1,13 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
 export interface NavbarProps {}
 
 const Navbar: React.SFC<NavbarProps> = () => {
     return (
         <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-            <a className="navbar-brand mr-auto mr-lg-0" href="#">
-                Earthquakes
-            </a>
+            <div className="navbar-brand mr-auto mr-lg-0">Earthquakes</div>
             <button
                 className="navbar-toggler p-0 border-0"
                 type="button"
@@ -19,11 +17,6 @@ const Navbar: React.SFC<NavbarProps> = () => {
                 className="navbar-collapse offcanvas-collapse"
                 id="navbarsExampleDefault">
                 <ul className="navbar-nav mr-auto mt-1">
-                    <li className="nav-item">
-                        <a className="nav-link" href="#">
-                            Link
-                        </a>
-                    </li>
                     <li className="nav-item dropdown">
                         <a
                             className="nav-link dropdown-toggle"
