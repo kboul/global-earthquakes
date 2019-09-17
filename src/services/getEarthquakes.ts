@@ -1,9 +1,9 @@
 import httpService from './httpService';
 
-export const getEarthquakes = async () => {
+export const getEarthquakes = async (query: string) => {
     try {
         const response = await httpService.get(
-            '/fdsnws/event/1/query?format=geojson&starttime=NOW - 5days'
+            `/fdsnws/event/1/query?format=geojson&starttime=${query}`
         );
         const { data } = response;
         return data;

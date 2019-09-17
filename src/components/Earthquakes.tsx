@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import L, { LatLng, Layer } from 'leaflet';
 import { withLeaflet } from 'react-leaflet';
 import { IFeature } from '../models/IFEature';
-import { getEarthquakes } from '../services/getEarthquakes';
 import { timeConverter } from '../utils/timeConverter';
 import { geojsonMarkerOptions } from '../utils/geojsonMarkerOptions';
+import useEarthquakes from '../hooks/useEarthquakes';
 
 export interface EarthquakesProps {
     leaflet: {
@@ -13,7 +13,7 @@ export interface EarthquakesProps {
 }
 
 const Earthquakes: React.SFC<EarthquakesProps> = ({ leaflet }) => {
-    const [earthquakes, setEarthquakes]: any = useState([]);
+    const [earthquakes]: any = useEarthquakes();
     console.log(earthquakes);
 
     const onEachFeature = (feature: IFeature, layer: Layer) => {
@@ -45,13 +45,6 @@ const Earthquakes: React.SFC<EarthquakesProps> = ({ leaflet }) => {
             return L.circleMarker(latlng, geojsonMarkerOptions(magnitude));
         }
     }).addTo(leaflet.map);
-
-    useEffect(() => {
-        (async () => {
-            let earthquakes = await getEarthquakes();
-            setEarthquakes(earthquakes);
-        })();
-    }, []);
 
     return null;
 };
