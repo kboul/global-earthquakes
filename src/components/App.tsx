@@ -6,9 +6,7 @@ const App: React.FC = () => {
     return (
         <div>
             <Navbar />
-            <div style={{ marginTop: '56px' }}>
-                <Leaflet />
-            </div>
+            <Leaflet />
         </div>
     );
 };
