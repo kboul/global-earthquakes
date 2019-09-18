@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import ReactstrapDropdown from './ReactstrapDropdown';
 import { changeStarttime, changeEndtime } from '../store/actions';
 
 export interface NavbarProps {
@@ -25,7 +26,10 @@ const Navbar: React.SFC<NavbarProps> = ({ changeStarttime, changeEndtime }) => {
             </button>
 
             <div className="navbar-collapse offcanvas-collapse">
-                <ul className="navbar-nav mr-auto mt-1"></ul>
+                <ul className="navbar-nav ml-auto mr-2">
+                    <ReactstrapDropdown />
+                </ul>
+
                 <form
                     className="form-inline my-2 my-lg-0"
                     onSubmit={e => {
