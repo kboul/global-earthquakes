@@ -19,13 +19,11 @@ const Leaflet: React.SFC = () => {
         <Map center={[0, 0]} zoom={3} className={styles.map}>
             <LayersControl position="topright">
                 {tilelayers.map(
-                    ({ name, attribution, url }: ITilelayer, id) => (
+                    ({ name, attribution, url, checked }: ITilelayer, id) => (
                         <LayersControl.BaseLayer
                             key={id}
                             name={name}
-                            checked={
-                                name === 'OpenStreetMap.Mapnik' ? true : false
-                            }>
+                            checked={checked}>
                             <TileLayer attribution={attribution} url={url} />
                         </LayersControl.BaseLayer>
                     )
