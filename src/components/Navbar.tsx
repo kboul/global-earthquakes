@@ -20,7 +20,6 @@ const Navbar: React.SFC<NavbarProps> = ({
 }) => {
     const [starttime, setStarttime] = useState('');
     const [endtime, setEndtime] = useState('');
-    const indicator = starttime === '' ? <small>(last 3 days)</small> : '';
 
     const onSubmit = (e: any) => {
         changeDropdownValue('Select Period');
@@ -33,9 +32,7 @@ const Navbar: React.SFC<NavbarProps> = ({
 
     return (
         <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-            <div className="navbar-brand mr-auto mr-lg-0">
-                Earthquakes {indicator}
-            </div>
+            <div className="navbar-brand mr-auto mr-lg-0">Earthquakes</div>
             <button
                 className="navbar-toggler p-0 border-0"
                 type="button"
