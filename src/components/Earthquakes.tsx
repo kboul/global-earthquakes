@@ -1,11 +1,12 @@
 import React from 'react';
 import L, { LatLng, Layer } from 'leaflet';
 import { withLeaflet } from 'react-leaflet';
+import { connect } from 'react-redux';
+import Spinner from './Spinner';
 import { IFeature } from '../models/IFEature';
 import { timeConverter } from '../utils/timeConverter';
 import { geojsonMarkerOptions } from '../utils/geojsonMarkerOptions';
 import useEarthquakes from '../hooks/useEarthquakes';
-import { connect } from 'react-redux';
 
 export interface EarthquakesProps {
     leaflet: {
@@ -22,7 +23,7 @@ const Earthquakes: React.SFC<EarthquakesProps> = ({
     starttime,
     endtime
 }) => {
-    const earthquakes = useEarthquakes(starttime, endtime);
+    const [earthquakes, loading] = useEarthquakes(starttime, endtime);
 
     const onEachFeature = (feature: IFeature, layer: Layer) => {
         let popupContent = `
@@ -55,6 +56,8 @@ const Earthquakes: React.SFC<EarthquakesProps> = ({
             return L.circleMarker(latlng, geojsonMarkerOptions(magnitude));
         }
     }).addTo(leaflet.map);
+
+    if (loading) return <Spinner />;
 
     return null;
 };
