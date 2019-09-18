@@ -2,7 +2,6 @@ export const convertDropdownValue = (dropdownvalue: string): string => {
     let query = 'NOW - ';
     switch (dropdownvalue) {
         case '1 day':
-            console.log(`${query}1day`);
             return `${query}1day`;
         case '3 days':
             return `${query}3days`;
