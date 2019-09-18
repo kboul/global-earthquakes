@@ -5,13 +5,11 @@ import { connect } from 'react-redux';
 import Spinner from './Spinner';
 import useEarthquakes from '../hooks/useEarthquakes';
 import { IFeature } from '../models/IFEature';
+import { ILeaflet } from '../models/ILeaflet';
 import { geojsonMarkerOptions } from '../utils/geojsonMarkerOptions';
 import { onEachFeature } from '../utils/onEachFeature';
 
-export interface EarthquakesProps {
-    leaflet: {
-        map: any;
-    };
+export interface EarthquakesProps extends ILeaflet {
     starttime: string;
     endtime: string;
 }
