@@ -13,6 +13,14 @@ const Navbar: React.SFC<NavbarProps> = ({ changeStarttime, changeEndtime }) => {
     const [endtime, setEndtime] = useState('');
     const indicator = starttime === '' ? <small>(last 3 days)</small> : '';
 
+    const onSubmit = (e: any) => {
+        changeStarttime(starttime);
+        changeEndtime(endtime);
+        setStarttime('');
+        setEndtime('');
+        e.preventDefault();
+    };
+
     return (
         <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
             <div className="navbar-brand mr-auto mr-lg-0">
@@ -30,13 +38,7 @@ const Navbar: React.SFC<NavbarProps> = ({ changeStarttime, changeEndtime }) => {
                     <ReactstrapDropdown />
                 </ul>
 
-                <form
-                    className="form-inline my-2 my-lg-0"
-                    onSubmit={e => {
-                        changeStarttime(starttime);
-                        changeEndtime(endtime);
-                        e.preventDefault();
-                    }}>
+                <form className="form-inline my-2 my-lg-0" onSubmit={onSubmit}>
                     <input
                         className="form-control mr-sm-2"
                         type="text"
