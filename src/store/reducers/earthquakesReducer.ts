@@ -7,7 +7,7 @@ import {
 const initialState = {
     starttime: 'NOW - 3days',
     endtime: '',
-    dropdownValue: 'Select period'
+    dropdownValue: 'Select Period'
 };
 
 export default (state = initialState, action: any) => {

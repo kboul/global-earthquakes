@@ -1,19 +1,29 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import ReactstrapDropdown from './ReactstrapDropdown';
-import { changeStarttime, changeEndtime } from '../store/actions';
+import {
+    changeStarttime,
+    changeEndtime,
+    changeDropdownValue
+} from '../store/actions';
 
 export interface NavbarProps {
     changeStarttime: (arg1: string) => void;
     changeEndtime: (arg1: string) => void;
+    changeDropdownValue: (arg1: string) => void;
 }
 
-const Navbar: React.SFC<NavbarProps> = ({ changeStarttime, changeEndtime }) => {
+const Navbar: React.SFC<NavbarProps> = ({
+    changeStarttime,
+    changeEndtime,
+    changeDropdownValue
+}) => {
     const [starttime, setStarttime] = useState('');
     const [endtime, setEndtime] = useState('');
     const indicator = starttime === '' ? <small>(last 3 days)</small> : '';
 
     const onSubmit = (e: any) => {
+        changeDropdownValue('Select Period');
         changeStarttime(starttime);
         changeEndtime(endtime);
         setStarttime('');
@@ -66,7 +76,11 @@ const Navbar: React.SFC<NavbarProps> = ({ changeStarttime, changeEndtime }) => {
     );
 };
 
-const mapDispatchToProps = { changeStarttime, changeEndtime };
+const mapDispatchToProps = {
+    changeStarttime,
+    changeEndtime,
+    changeDropdownValue
+};
 
 export default connect(
     null,

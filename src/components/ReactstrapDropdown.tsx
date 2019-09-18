@@ -7,26 +7,29 @@ import {
     DropdownItem
 } from 'reactstrap';
 import { periods } from '../constants/periods';
-import { changeStarttime } from '../store/actions';
+import { changeStarttime, changeDropdownValue } from '../store/actions';
 import { convertDropdownValue } from '../utils/convertDropdownValue';
 
 export interface ReactstrapDropdownProps {
+    dropdownValue: string;
     changeStarttime: (arg1: string) => void;
+    changeDropdownValue: (arg1: string) => void;
 }
 
 const ReactstrapDropdown: React.SFC<ReactstrapDropdownProps> = ({
-    changeStarttime
+    dropdownValue,
+    changeStarttime,
+    changeDropdownValue
 }) => {
-    const [dropdownValue, setDropdownValue] = useState('Select period');
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
     const toggleDropdown = () => {
         dropdownOpen ? setDropdownOpen(false) : setDropdownOpen(true);
     };
 
-    const changeDropdownValue = (e: any) => {
+    const setDropdownValue = (e: any) => {
         const dropdownvalue = e.currentTarget.textContent;
-        setDropdownValue(dropdownvalue);
+        changeDropdownValue(dropdownvalue);
         changeStarttime(convertDropdownValue(dropdownvalue));
     };
 
@@ -38,7 +41,7 @@ const ReactstrapDropdown: React.SFC<ReactstrapDropdownProps> = ({
             <DropdownToggle caret>{dropdownValue}</DropdownToggle>
             <DropdownMenu>
                 {periods.map((period: string, id: number) => (
-                    <DropdownItem onClick={changeDropdownValue} key={id}>
+                    <DropdownItem onClick={setDropdownValue} key={id}>
                         {period}
                     </DropdownItem>
                 ))}
@@ -47,9 +50,13 @@ const ReactstrapDropdown: React.SFC<ReactstrapDropdownProps> = ({
     );
 };
 
-const mapDispatchToProps = { changeStarttime };
+const mapStateToProps = (state: any) => ({
+    dropdownValue: state.earthquakes.dropdownValue
+});
+
+const mapDispatchToProps = { changeStarttime, changeDropdownValue };
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(ReactstrapDropdown);
