@@ -10,7 +10,8 @@ export default (state = initialState, action: any) => {
         case CHANGE_STARTTIME:
             return {
                 ...state,
-                starttime: action.starttime
+                starttime: action.starttime,
+                endtime: ''
             };
         case CHANGE_ENDTIME:
             return {
