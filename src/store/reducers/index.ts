@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import earthquakesReducer from './earthquakesReducer';
 
-const reducers = combineReducers({
+const rootReducer = combineReducers({
     earthquakes: earthquakesReducer
 });
 
-export default reducers;
+export default rootReducer;

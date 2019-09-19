@@ -6,6 +6,7 @@ import Spinner from './Spinner';
 import useEarthquakes from '../hooks/useEarthquakes';
 import { IFeature } from '../models/IFEature';
 import { ILeaflet } from '../models/ILeaflet';
+import { AppState } from '../store';
 import { geojsonMarkerOptions } from '../utils/geojsonMarkerOptions';
 import { onEachFeature } from '../utils/onEachFeature';
 
@@ -38,7 +39,7 @@ const Earthquakes: FC<EarthquakesProps> = ({
     return null;
 };
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: AppState) => ({
     starttime: state.earthquakes.starttime,
     endtime: state.earthquakes.endtime
 });
