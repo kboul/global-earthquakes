@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import Leaflet from './Leaflet';
 import Navbar from './Navbar';
 
-const App: React.FC = () => {
+const App: FC = () => {
     return (
         <>
             <Navbar />
