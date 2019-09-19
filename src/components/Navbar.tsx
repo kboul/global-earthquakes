@@ -9,9 +9,9 @@ import {
 import InfoTip from './Infotip';
 
 export interface NavbarProps {
-    changeStarttime: (arg1: string) => void;
-    changeEndtime: (arg1: string) => void;
-    changeDropdownValue: (arg1: string) => void;
+    changeStarttime: (starttime: string) => void;
+    changeEndtime: (endtime: string) => void;
+    changeDropdownValue: (dropdownValue: string) => void;
 }
 
 const Navbar: SFC<NavbarProps> = ({

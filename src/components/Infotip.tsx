@@ -4,7 +4,7 @@ import { Tooltip } from 'reactstrap';
 export interface InfoTipProps {
     target: string;
     tooltipOpen: boolean;
-    setTooltipOpen: (arg1: boolean) => void;
+    setTooltipOpen: (tooltipOpen: boolean) => void;
 }
 
 const InfoTip: FC<InfoTipProps> = ({ target, tooltipOpen, setTooltipOpen }) => {

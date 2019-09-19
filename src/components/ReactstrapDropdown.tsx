@@ -12,8 +12,8 @@ import { convertDropdownValue } from '../utils/convertDropdownValue';
 
 export interface ReactstrapDropdownProps {
     dropdownValue: string;
-    changeStarttime: (arg1: string) => void;
-    changeDropdownValue: (arg1: string) => void;
+    changeStarttime: (starttime: string) => void;
+    changeDropdownValue: (endtime: string) => void;
 }
 
 const ReactstrapDropdown: FC<ReactstrapDropdownProps> = ({
