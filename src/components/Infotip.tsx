@@ -15,7 +15,8 @@ const InfoTip: FC<InfoTipProps> = ({ target, tooltipOpen, setTooltipOpen }) => {
             target={target}
             toggle={() => setTooltipOpen(!tooltipOpen)}>
             Please insert {target === 'starttime' ? 'start' : 'end'} date in the
-            form of YYYY-MM-DD
+            form of MM-DD-YYYY{' '}
+            {target === 'starttime' ? 'or  NOW - 3days or hours' : ''}
         </Tooltip>
     );
 };

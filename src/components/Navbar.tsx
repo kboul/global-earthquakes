@@ -23,6 +23,7 @@ const Navbar: SFC<NavbarProps> = ({
     const [endtime, setEndtime] = useState('');
     const [starttimeTooltipOpen, setStarttimeTooltipOpen] = useState(false);
     const [endtimeTooltipOpen, setEndtimeTooltipOpen] = useState(false);
+    const [toggleFontAwesome, setToggleFontAwesome] = useState(false);
 
     const onSubmit = (e: FormEvent<HTMLFormElement>): void => {
         // clear dropdown default value
@@ -52,15 +53,30 @@ const Navbar: SFC<NavbarProps> = ({
                 </ul>
 
                 <form className="form-inline my-2 my-lg-0" onSubmit={onSubmit}>
-                    <input
-                        className="form-control mr-sm-2"
-                        id="starttime"
-                        type="text"
-                        placeholder="Start time"
-                        aria-label="Search"
-                        value={starttime}
-                        onChange={e => setStarttime(e.target.value)}
-                    />
+                    <div className="input-group">
+                        <input
+                            className="form-control"
+                            id="starttime"
+                            type={toggleFontAwesome ? 'text' : 'date'}
+                            aria-label="Search"
+                            value={starttime}
+                            onChange={e => setStarttime(e.target.value)}
+                        />
+                        <div className="input-group-append mr-sm-2">
+                            <span className="input-group-text">
+                                <i
+                                    className={`fa fa-${
+                                        toggleFontAwesome
+                                            ? 'calendar'
+                                            : 'pencil'
+                                    }`}
+                                    style={{ cursor: 'pointer' }}
+                                    onClick={() =>
+                                        setToggleFontAwesome(!toggleFontAwesome)
+                                    }></i>
+                            </span>
+                        </div>
+                    </div>
                     <InfoTip
                         target={'starttime'}
                         tooltipOpen={starttimeTooltipOpen}
@@ -69,8 +85,8 @@ const Navbar: SFC<NavbarProps> = ({
                     <input
                         className="form-control mr-sm-2"
                         id="endtime"
-                        type="text"
-                        placeholder="End time"
+                        type="date"
+                        disabled={toggleFontAwesome ? true : false}
                         aria-label="Search"
                         value={endtime}
                         onChange={e => setEndtime(e.target.value)}
