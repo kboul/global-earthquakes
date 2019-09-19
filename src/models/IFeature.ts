@@ -1,4 +1,5 @@
 export interface IFeature {
+    geometry: any;
     properties: {
         mag: number;
         place: string;
@@ -6,5 +7,5 @@ export interface IFeature {
         url: string;
         title: string;
     };
-    geometry: any;
+    type: string;
 }
