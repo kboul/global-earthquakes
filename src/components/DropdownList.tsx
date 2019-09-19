@@ -10,13 +10,13 @@ import { periods } from '../constants/periods';
 import { changeStarttime, changeDropdownValue } from '../store/actions';
 import { convertDropdownValue } from '../utils/convertDropdownValue';
 
-export interface ReactstrapDropdownProps {
+export interface DropdownListProps {
     dropdownValue: string;
     changeStarttime: (starttime: string) => void;
     changeDropdownValue: (endtime: string) => void;
 }
 
-const ReactstrapDropdown: FC<ReactstrapDropdownProps> = ({
+const DropdownList: FC<DropdownListProps> = ({
     dropdownValue,
     changeStarttime,
     changeDropdownValue
@@ -59,4 +59,4 @@ const mapDispatchToProps = { changeStarttime, changeDropdownValue };
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(ReactstrapDropdown);
+)(DropdownList);
