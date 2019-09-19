@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { SFC, useState, FormEvent } from 'react';
 import { connect } from 'react-redux';
 import ReactstrapDropdown from './ReactstrapDropdown';
 import {
@@ -14,7 +14,7 @@ export interface NavbarProps {
     changeDropdownValue: (arg1: string) => void;
 }
 
-const Navbar: React.SFC<NavbarProps> = ({
+const Navbar: SFC<NavbarProps> = ({
     changeStarttime,
     changeEndtime,
     changeDropdownValue
@@ -24,7 +24,7 @@ const Navbar: React.SFC<NavbarProps> = ({
     const [starttimeTooltipOpen, setStarttimeTooltipOpen] = useState(false);
     const [endtimeTooltipOpen, setEndtimeTooltipOpen] = useState(false);
 
-    const onSubmit = (e: any) => {
+    const onSubmit = (e: FormEvent<HTMLFormElement>): void => {
         // clear dropdown default value
         changeDropdownValue('Select Period');
         // pass the query params to be able to perform query
