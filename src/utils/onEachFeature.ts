@@ -1,5 +1,5 @@
 import { timeConverter } from '../utils/timeConverter';
-import { IFeature } from '../models/IFEature';
+import { IFeature } from '../models/IFeature';
 import { Layer } from 'leaflet';
 
 export const onEachFeature = (feature: IFeature, layer: Layer) => {

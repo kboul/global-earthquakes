@@ -4,7 +4,7 @@ import { withLeaflet } from 'react-leaflet';
 import { connect } from 'react-redux';
 import Spinner from './Spinner';
 import useEarthquakes from '../hooks/useEarthquakes';
-import { IFeature } from '../models/IFEature';
+import { IFeature } from '../models/IFeature';
 import { ILeaflet } from '../models/ILeaflet';
 import { AppState } from '../store';
 import { geojsonMarkerOptions } from '../utils/geojsonMarkerOptions';
