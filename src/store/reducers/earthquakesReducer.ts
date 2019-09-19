@@ -3,8 +3,9 @@ import {
     CHANGE_ENDTIME,
     CHANGE_DROPDOWNVALUE
 } from '../actions/types';
+import { IEarthquakesReducer } from '../../models/IEarthquakesReducer';
 
-const initialState = {
+const initialState: IEarthquakesReducer = {
     starttime: 'NOW - 3days',
     endtime: '',
     dropdownValue: '3 days'

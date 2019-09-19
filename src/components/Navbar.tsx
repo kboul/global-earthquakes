@@ -1,12 +1,12 @@
 import React, { SFC, useState, FormEvent } from 'react';
 import { connect } from 'react-redux';
 import DropdownList from './DropdownList';
+import InfoTip from './Infotip';
 import {
     changeStarttime,
     changeEndtime,
     changeDropdownValue
 } from '../store/actions';
-import InfoTip from './Infotip';
 
 export interface NavbarProps {
     changeStarttime: (starttime: string) => void;
