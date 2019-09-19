@@ -1,11 +1,14 @@
 import React, { FC } from 'react';
 import Leaflet from './Leaflet';
+import NavbarForm from './NavbarForm';
 import Navbar from './Navbar';
 
 const App: FC = () => {
     return (
         <>
-            <Navbar />
+            <Navbar>
+                <NavbarForm />
+            </Navbar>
             <Leaflet />
         </>
     );
