@@ -7,6 +7,7 @@ import {
     DropdownItem
 } from 'reactstrap';
 import { periods } from '../constants/periods';
+import { AppState } from '../store';
 import { changeStarttime, changeDropdownValue } from '../store/actions';
 import { convertDropdownValue } from '../utils/convertDropdownValue';
 
@@ -50,7 +51,7 @@ const DropdownList: FC<DropdownListProps> = ({
     );
 };
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: AppState) => ({
     dropdownValue: state.earthquakes.dropdownValue
 });
 
