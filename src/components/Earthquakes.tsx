@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import L, { LatLng } from 'leaflet';
+import L, { LatLng, GeoJSON } from 'leaflet';
 import { withLeaflet } from 'react-leaflet';
 import { connect } from 'react-redux';
 import Spinner from './Spinner';
@@ -14,7 +14,7 @@ export interface EarthquakesProps extends ILeaflet {
     endtime: string;
 }
 
-let geojson: any;
+let geojson: GeoJSON;
 
 const Earthquakes: FC<EarthquakesProps> = ({
     leaflet: { map },
