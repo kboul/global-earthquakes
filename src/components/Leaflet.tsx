@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import {
     Map,
     TileLayer,
@@ -14,7 +14,7 @@ import tectonicPlates from '../assets/PB2002_boundaries.json';
 import { tectonicPlatesStyle } from '../constants/tectonicPlatesStyle';
 import styles from '../styles/Leaflet.module.css';
 
-const Leaflet: React.SFC = () => {
+const Leaflet: FC = () => {
     return (
         <Map center={[0, 0]} zoom={3} className={styles.map}>
             <LayersControl position="topright">

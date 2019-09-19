@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import L from 'leaflet';
 import { withLeaflet } from 'react-leaflet';
 import { ILeaflet } from '../models/ILeaflet';
@@ -7,10 +7,10 @@ import '../styles/Legend.css';
 
 export interface LegendProps extends ILeaflet {}
 
-const Legend: React.SFC<LegendProps> = ({ leaflet }) => {
+const Legend: FC<LegendProps> = ({ leaflet }) => {
     const legend = new L.Control({ position: 'bottomright' });
 
-    legend.onAdd = (map: any) => {
+    legend.onAdd = () => {
         let div = L.DomUtil.create('div', 'info legend'),
             grades = [0, 1, 2, 3, 5, 7],
             labels = [],

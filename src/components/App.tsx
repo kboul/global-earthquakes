@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Leaflet from './Leaflet';
 import Navbar from './Navbar';
 

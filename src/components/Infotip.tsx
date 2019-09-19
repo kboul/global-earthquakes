@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Tooltip } from 'reactstrap';
 
 export interface InfoTipProps {
@@ -7,11 +7,7 @@ export interface InfoTipProps {
     setTooltipOpen: (arg1: boolean) => void;
 }
 
-const InfoTip: React.SFC<InfoTipProps> = ({
-    target,
-    tooltipOpen,
-    setTooltipOpen
-}) => {
+const InfoTip: FC<InfoTipProps> = ({ target, tooltipOpen, setTooltipOpen }) => {
     return (
         <Tooltip
             placement="bottom"

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import L, { LatLng } from 'leaflet';
 import { withLeaflet } from 'react-leaflet';
 import { connect } from 'react-redux';
@@ -16,7 +16,7 @@ export interface EarthquakesProps extends ILeaflet {
 
 let geojson: any;
 
-const Earthquakes: React.SFC<EarthquakesProps> = ({
+const Earthquakes: FC<EarthquakesProps> = ({
     leaflet: { map },
     starttime,
     endtime

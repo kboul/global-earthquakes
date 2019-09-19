@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 import { connect } from 'react-redux';
 import {
     Dropdown,
@@ -16,7 +16,7 @@ export interface ReactstrapDropdownProps {
     changeDropdownValue: (arg1: string) => void;
 }
 
-const ReactstrapDropdown: React.SFC<ReactstrapDropdownProps> = ({
+const ReactstrapDropdown: FC<ReactstrapDropdownProps> = ({
     dropdownValue,
     changeStarttime,
     changeDropdownValue
@@ -27,7 +27,7 @@ const ReactstrapDropdown: React.SFC<ReactstrapDropdownProps> = ({
         dropdownOpen ? setDropdownOpen(false) : setDropdownOpen(true);
     };
 
-    const setDropdownValue = (e: any) => {
+    const setDropdownValue = (e: any): void => {
         const dropdownvalue = e.currentTarget.textContent;
         changeDropdownValue(dropdownvalue);
         changeStarttime(convertDropdownValue(dropdownvalue));
