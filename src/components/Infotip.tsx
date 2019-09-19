@@ -13,9 +13,7 @@ const InfoTip: FC<InfoTipProps> = ({ target, tooltipOpen, setTooltipOpen }) => {
             placement="bottom"
             isOpen={tooltipOpen}
             target={target}
-            toggle={() =>
-                tooltipOpen ? setTooltipOpen(false) : setTooltipOpen(true)
-            }>
+            toggle={() => setTooltipOpen(!tooltipOpen)}>
             Please insert {target === 'starttime' ? 'start' : 'end'} date in the
             form of YYYY-MM-DD
         </Tooltip>
