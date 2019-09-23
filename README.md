@@ -1,17 +1,21 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Earthquake monitoring app
 
-## Available Scripts
+A react app to visualize worldwide earthquakes on a map in different time periods, using filtering capabilities, and provide metadata for each earthquake.
 
-In the project directory, you can run:
+## Run the project
 
-### `npm start`
+clone the project
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+select master branch
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Navigate to the root folder:
 
-### `npm test`
+```
+npm install
+```
 
-Launches the test runner in the interactive watch mode.
+```
+npm start
+```
+
+browser listens to [http://localhost:3000](http://localhost:3000) as default port
