@@ -1,18 +1,3 @@
 .map {
-    margin-top: 56px;
     height: calc(100vh - 56px);
-}
-
-@media only screen and (max-width: 990px) {
-    .map {
-        margin-top: 148px;
-        height: calc(100vh - 148px);
-    }
-}
-
-@media only screen and (max-width: 580px) {
-    .map {
-        margin-top: 240px;
-        height: calc(100vh - 240px);
-    }
 }

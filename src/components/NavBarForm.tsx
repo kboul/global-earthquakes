@@ -6,14 +6,15 @@ import {
     changeEndtime,
     changeDropdownValue
 } from '../store/actions';
+import styles from '../styles/NavBarForm.module.css';
 
-export interface NavbarFormProps {
+export interface NavBarFormProps {
     changeStarttime: (starttime: string) => void;
     changeEndtime: (endtime: string) => void;
     changeDropdownValue: (dropdownValue: string) => void;
 }
 
-const NavbarForm: SFC<NavbarFormProps> = ({
+const NavBarForm: SFC<NavBarFormProps> = ({
     changeStarttime,
     changeEndtime,
     changeDropdownValue
@@ -37,7 +38,9 @@ const NavbarForm: SFC<NavbarFormProps> = ({
     };
 
     return (
-        <form className="form-inline my-2 my-lg-0" onSubmit={onSubmit}>
+        <form
+            className={`form-inline my-lg-0 ${styles.form}`}
+            onSubmit={onSubmit}>
             <div className="input-group">
                 <input
                     className="form-control"
@@ -97,4 +100,4 @@ const mapDispatchToProps = {
 export default connect(
     null,
     mapDispatchToProps
-)(NavbarForm);
+)(NavBarForm);
