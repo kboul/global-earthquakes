@@ -41,7 +41,7 @@ const NavBarForm: SFC<NavBarFormProps> = ({
         <form
             className={`form-inline my-lg-0 ${styles.form}`}
             onSubmit={onSubmit}>
-            <div className="input-group">
+            <div className={`input-group ${styles.starttime}`}>
                 <input
                     className="form-control"
                     id="starttime"
