@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import L, { LatLng, GeoJSON } from 'leaflet';
 import { withLeaflet } from 'react-leaflet';
 import { connect } from 'react-redux';
@@ -24,15 +24,19 @@ const Earthquakes: FC<EarthquakesProps> = ({
 }) => {
     const [earthquakes, loading] = useEarthquakes(starttime, endtime);
 
-    if (map.hasLayer(geojson)) map.removeLayer(geojson);
+    useEffect(() => {
+        console.log(earthquakes);
 
-    geojson = L.geoJSON(earthquakes.features, {
-        onEachFeature,
-        pointToLayer: (feature: IFeature, latlng: LatLng) => {
-            const magnitude = feature.properties.mag;
-            return L.circleMarker(latlng, geojsonMarkerOptions(magnitude));
-        }
-    }).addTo(map);
+        if (map.hasLayer(geojson)) map.removeLayer(geojson);
+
+        geojson = L.geoJSON(earthquakes.features, {
+            onEachFeature,
+            pointToLayer: (feature: IFeature, latlng: LatLng) => {
+                const magnitude = feature.properties.mag;
+                return L.circleMarker(latlng, geojsonMarkerOptions(magnitude));
+            }
+        }).addTo(map);
+    }, [earthquakes, map]);
 
     if (loading) return <Spinner />;
 
