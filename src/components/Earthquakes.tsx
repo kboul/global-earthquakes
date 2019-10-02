@@ -3,7 +3,7 @@ import L, { LatLng, GeoJSON } from 'leaflet';
 import { withLeaflet } from 'react-leaflet';
 import { connect } from 'react-redux';
 import Spinner from './Spinner';
-import useEarthquakes from '../hooks/useEarthquakes';
+import useEarthquakesFetcher from '../hooks/useEarthquakesFetcher';
 import { IFeature } from '../models/IFeature';
 import { ILeaflet } from '../models/ILeaflet';
 import { AppState } from '../store';
@@ -22,7 +22,7 @@ const Earthquakes: FC<EarthquakesProps> = ({
     starttime,
     endtime
 }) => {
-    const [earthquakes, loading] = useEarthquakes(starttime, endtime);
+    const [earthquakes, loading] = useEarthquakesFetcher(starttime, endtime);
 
     useEffect(() => {
         console.log(earthquakes);
