@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { getEarthquakes } from '../services/getEarthquakes';
 
 const useEarthquakes: any = (starttime: string, endtime: string) => {
-    const [earthquakes, setEarthquakes] = useState([]);
+    const [earthquakes, setEarthquakes] = useState({});
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
