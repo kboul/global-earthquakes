@@ -6,7 +6,7 @@ import {
     changeEndtime,
     changeDropdownValue
 } from '../actions';
-import styles from './index.module.css';
+import styles from './index.module.sass';
 
 export interface NavBarFormProps {
     changeStarttime: (starttime: string) => void;
@@ -97,7 +97,4 @@ const mapDispatchToProps = {
     changeDropdownValue
 };
 
-export default connect(
-    null,
-    mapDispatchToProps
-)(NavBarForm);
+export default connect(null, mapDispatchToProps)(NavBarForm);

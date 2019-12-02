@@ -7,7 +7,7 @@ import store from './store';
 import 'leaflet/dist/leaflet.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
-import './index.css';
+import './index.sass';
 
 import App from './App';
 

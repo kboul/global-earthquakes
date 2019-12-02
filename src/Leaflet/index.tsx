@@ -11,7 +11,7 @@ import Legend from './Legend';
 import { ITilelayer } from './models';
 import tectonicPlates from './PB2002_boundaries.json';
 import { tectonicPlatesStyle, tilelayers } from './constants';
-import styles from './index.module.css';
+import styles from './index.module.sass';
 
 const Leaflet: FC = () => {
     return (

@@ -3,7 +3,7 @@ import L from 'leaflet';
 import { withLeaflet } from 'react-leaflet';
 import { ILeaflet } from '../models';
 import { circleMarkerColor } from '../utils';
-import './index.css';
+import './index.sass';
 
 export interface LegendProps extends ILeaflet {}
 
