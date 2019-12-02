@@ -6,10 +6,10 @@ import {
     DropdownMenu,
     DropdownItem
 } from 'reactstrap';
-import { periods } from '../constants/periods';
-import { AppState } from '../store';
-import { changeStarttime, changeDropdownValue } from '../store/actions';
-import { convertDropdownValue } from '../utils/convertDropdownValue';
+import { periods } from './constants';
+import { AppState } from '../../store';
+import { changeStarttime, changeDropdownValue } from '../actions';
+import { convertDropdownValue } from './utils';
 
 export interface DropdownListProps {
     dropdownValue: string;
@@ -25,7 +25,7 @@ const DropdownList: FC<DropdownListProps> = ({
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
     const toggleDropdown = () => {
-        dropdownOpen ? setDropdownOpen(false) : setDropdownOpen(true);
+        setDropdownOpen(prevState => (prevState ? false : true));
     };
 
     const setDropdownValue = (e: any): void => {
@@ -51,8 +51,8 @@ const DropdownList: FC<DropdownListProps> = ({
     );
 };
 
-const mapStateToProps = (state: AppState) => ({
-    dropdownValue: state.earthquakes.dropdownValue
+const mapStateToProps = ({ state }: AppState) => ({
+    dropdownValue: state.dropdownValue
 });
 
 const mapDispatchToProps = { changeStarttime, changeDropdownValue };

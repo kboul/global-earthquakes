@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav } from 'reactstrap';
 import DropdownList from './DropdownList';
-import NavBarForm from './NavBarForm';
+import NavBarForm from './NavbarForm';
 
 const brandStyle = { color: '#ffffff' };
 

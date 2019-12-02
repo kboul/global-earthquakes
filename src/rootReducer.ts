@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import earthquakesReducer from './earthquakesReducer';
+import navbarReducer from './Navbar/navbarReducer';
 
 const rootReducer = combineReducers({
-    earthquakes: earthquakesReducer
+    state: navbarReducer
 });
 
 export default rootReducer;

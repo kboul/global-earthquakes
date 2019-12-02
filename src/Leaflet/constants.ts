@@ -1,4 +1,4 @@
-const tilelayers = [
+export const tilelayers = [
     {
         name: 'OpenStreetMap.BlackAndWhite',
         attribution:
@@ -27,4 +27,7 @@ const tilelayers = [
     }
 ];
 
-export default tilelayers;
+export const tectonicPlatesStyle = {
+    color: 'orange',
+    weight: 2
+};

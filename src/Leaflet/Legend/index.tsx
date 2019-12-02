@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import L from 'leaflet';
 import { withLeaflet } from 'react-leaflet';
-import { ILeaflet } from '../models/ILeaflet';
-import { circleMarkerColor } from '../utils/circleMarkerColor';
-import '../styles/Legend.css';
+import { ILeaflet } from '../models';
+import { circleMarkerColor } from '../utils';
+import './index.css';
 
 export interface LegendProps extends ILeaflet {}
 

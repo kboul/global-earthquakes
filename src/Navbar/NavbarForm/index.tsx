@@ -5,8 +5,8 @@ import {
     changeStarttime,
     changeEndtime,
     changeDropdownValue
-} from '../store/actions';
-import styles from '../styles/NavBarForm.module.css';
+} from '../actions';
+import styles from './index.module.css';
 
 export interface NavBarFormProps {
     changeStarttime: (starttime: string) => void;

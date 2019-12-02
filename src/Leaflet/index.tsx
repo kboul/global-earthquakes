@@ -8,11 +8,10 @@ import {
 } from 'react-leaflet';
 import Earthquakes from './Earthquakes';
 import Legend from './Legend';
-import tilelayers from '../constants/tilelayers';
-import { ITilelayer } from '../models/ITilelayer';
-import tectonicPlates from '../assets/PB2002_boundaries.json';
-import { tectonicPlatesStyle } from '../constants/tectonicPlatesStyle';
-import styles from '../styles/Leaflet.module.css';
+import { ITilelayer } from './models';
+import tectonicPlates from './PB2002_boundaries.json';
+import { tectonicPlatesStyle, tilelayers } from './constants';
+import styles from './index.module.css';
 
 const Leaflet: FC = () => {
     return (
