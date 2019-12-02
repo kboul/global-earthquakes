@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import navbarReducer from './Navbar/navbarReducer';
+import navbarReducer from './Navbar/reducer';
 
 const rootReducer = combineReducers({
     state: navbarReducer
