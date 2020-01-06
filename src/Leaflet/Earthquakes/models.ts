@@ -1,3 +1,10 @@
+import { ILeaflet } from '../models';
+
+export interface EarthquakesProps extends ILeaflet {
+    starttime: string;
+    endtime: string;
+}
+
 export interface IFeature {
     geometry: any;
     properties: {

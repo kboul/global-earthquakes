@@ -4,16 +4,10 @@ import { withLeaflet } from 'react-leaflet';
 import { connect } from 'react-redux';
 import Spinner from '../../Spinner';
 import useEarthquakesFetcher from './hooks';
-import { IFeature } from './models';
-import { ILeaflet } from '../models';
+import { IFeature, EarthquakesProps } from './models';
 import { onEachFeature } from './utils';
 import { geojsonMarkerOptions } from '../utils';
 import { AppState } from '../../store';
-
-export interface EarthquakesProps extends ILeaflet {
-    starttime: string;
-    endtime: string;
-}
 
 let geojson: GeoJSON;
 
@@ -21,7 +15,7 @@ const Earthquakes: FC<EarthquakesProps> = ({
     leaflet: { map },
     starttime,
     endtime
-}) => {
+}: EarthquakesProps) => {
     const [earthquakes, loading] = useEarthquakesFetcher(starttime, endtime);
 
     useEffect(() => {

@@ -1,4 +1,4 @@
-import React, { SFC, useState, FormEvent } from 'react';
+import React, { FC, useState, FormEvent } from 'react';
 import { connect } from 'react-redux';
 import InfoTip from './Infotip';
 import {
@@ -7,18 +7,13 @@ import {
     changeDropdownValue
 } from '../actions';
 import styles from './index.module.sass';
+import { NavBarFormProps } from './models';
 
-export interface NavBarFormProps {
-    changeStarttime: (starttime: string) => void;
-    changeEndtime: (endtime: string) => void;
-    changeDropdownValue: (dropdownValue: string) => void;
-}
-
-const NavBarForm: SFC<NavBarFormProps> = ({
+const NavBarForm: FC<NavBarFormProps> = ({
     changeStarttime,
     changeEndtime,
     changeDropdownValue
-}) => {
+}: NavBarFormProps) => {
     const [starttime, setStarttime] = useState('');
     const [endtime, setEndtime] = useState('');
     const [starttimeTooltipOpen, setStarttimeTooltipOpen] = useState(false);
@@ -37,6 +32,8 @@ const NavBarForm: SFC<NavBarFormProps> = ({
         e.preventDefault();
     };
 
+    const iconClick = (): void => setToggleFontAwesome(!toggleFontAwesome);
+
     return (
         <form
             className={`form-inline my-lg-0 ${styles.form}`}
@@ -53,18 +50,20 @@ const NavBarForm: SFC<NavBarFormProps> = ({
                 <div className="input-group-append mr-sm-2">
                     <span className="input-group-text">
                         <i
-                            className={`fa fa-${
+                            className={`${styles.fa} fa fa-${
                                 toggleFontAwesome ? 'calendar' : 'pencil'
                             }`}
-                            style={{ cursor: 'pointer' }}
-                            onClick={() =>
-                                setToggleFontAwesome(!toggleFontAwesome)
-                            }></i>
+                            tabIndex={0}
+                            aria-label="Mute volume"
+                            role="button"
+                            onClick={iconClick}
+                            onKeyDown={() => {}}
+                        />
                     </span>
                 </div>
             </div>
             <InfoTip
-                target={'starttime'}
+                target="starttime"
                 tooltipOpen={starttimeTooltipOpen}
                 setTooltipOpen={setStarttimeTooltipOpen}
             />
@@ -78,7 +77,7 @@ const NavBarForm: SFC<NavBarFormProps> = ({
                 onChange={e => setEndtime(e.target.value)}
             />
             <InfoTip
-                target={'endtime'}
+                target="endtime"
                 tooltipOpen={endtimeTooltipOpen}
                 setTooltipOpen={setEndtimeTooltipOpen}
             />

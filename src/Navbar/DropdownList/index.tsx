@@ -10,18 +10,14 @@ import { periods } from './constants';
 import { AppState } from '../../store';
 import { changeStarttime, changeDropdownValue } from '../actions';
 import { convertDropdownValue } from './utils';
-
-export interface DropdownListProps {
-    dropdownValue: string;
-    changeStarttime: (starttime: string) => void;
-    changeDropdownValue: (endtime: string) => void;
-}
+import { idGenerator } from '../../shared/utils';
+import { DropdownListProps } from './models';
 
 const DropdownList: FC<DropdownListProps> = ({
     dropdownValue,
     changeStarttime,
     changeDropdownValue
-}) => {
+}: DropdownListProps) => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
     const toggleDropdown = () => {
@@ -41,8 +37,10 @@ const DropdownList: FC<DropdownListProps> = ({
             direction={dropdownOpen ? 'up' : 'down'}>
             <DropdownToggle caret>{dropdownValue}</DropdownToggle>
             <DropdownMenu>
-                {periods.map((period: string, id: number) => (
-                    <DropdownItem onClick={setDropdownValue} key={id}>
+                {periods.map((period: string) => (
+                    <DropdownItem
+                        onClick={setDropdownValue}
+                        key={idGenerator()}>
                         {period}
                     </DropdownItem>
                 ))}
@@ -57,7 +55,4 @@ const mapStateToProps = ({ state }: AppState) => ({
 
 const mapDispatchToProps = { changeStarttime, changeDropdownValue };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(DropdownList);
+export default connect(mapStateToProps, mapDispatchToProps)(DropdownList);

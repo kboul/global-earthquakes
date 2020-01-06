@@ -22,12 +22,11 @@ const Legend: FC<LegendProps> = ({ leaflet }) => {
             labels.push(
                 `<i style="background:${circleMarkerColor(
                     from + 1
-                )}"></i> ${from}${to ? `&ndash;${to}` : '+'}`
+                )}"></i>${from}${to ? `&ndash;${to}` : '+'}`
             );
         });
 
         div.innerHTML = labels.join('<br>');
-        console.log(div);
         return div;
     };
 

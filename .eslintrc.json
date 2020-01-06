@@ -42,6 +42,19 @@
                 "tsx": "never",
                 "mjs": "never"
             }
+        ],
+        "react/jsx-closing-bracket-location": "off",
+        "no-unneeded-ternary": "off",
+        // Avoid no-shadow eslint error with mapDispatchToProps
+        "no-shadow": [
+            "error",
+            {
+                "allow": [
+                    "changeStarttime",
+                    "changeEndtime",
+                    "changeDropdownValue"
+                ]
+            }
         ]
     },
     "overrides": [

@@ -11,6 +11,7 @@ import Legend from './Legend';
 import { ITilelayer } from './models';
 import tectonicPlates from './PB2002_boundaries.json';
 import { tectonicPlatesStyle, tilelayers } from './constants';
+import { idGenerator } from '../shared/utils';
 import styles from './index.module.sass';
 
 const Leaflet: FC = () => {
@@ -18,9 +19,9 @@ const Leaflet: FC = () => {
         <Map center={[0, 0]} zoom={3} className={styles.map}>
             <LayersControl position="topright">
                 {tilelayers.map(
-                    ({ name, attribution, url, checked }: ITilelayer, id) => (
+                    ({ name, attribution, url, checked }: ITilelayer) => (
                         <LayersControl.BaseLayer
-                            key={id}
+                            key={idGenerator()}
                             name={name}
                             checked={checked}>
                             <TileLayer attribution={attribution} url={url} />
