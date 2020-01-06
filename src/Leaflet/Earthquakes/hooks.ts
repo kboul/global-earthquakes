@@ -12,8 +12,8 @@ const useEarthquakesFetcher: any = (starttime: string, endtime: string) => {
 
         const fetchEarthquakes = async () => {
             try {
-                let earthquakes = await getEarthquakes(starttime, endtime);
-                setEarthquakes(earthquakes);
+                const data = await getEarthquakes(starttime, endtime);
+                setEarthquakes(data);
             } catch (err) {
                 setError(true);
             }

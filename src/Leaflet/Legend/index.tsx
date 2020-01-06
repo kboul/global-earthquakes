@@ -11,28 +11,23 @@ const Legend: FC<LegendProps> = ({ leaflet }) => {
     const legend = new L.Control({ position: 'bottomright' });
 
     legend.onAdd = () => {
-        let div = L.DomUtil.create('div', 'info legend'),
-            grades = [0, 1, 2, 3, 5, 7],
-            labels = [],
-            from,
-            to;
+        const div = L.DomUtil.create('div', 'info legend');
+        const grades = [0, 1, 2, 3, 5, 7];
+        const labels = [];
 
         labels.push('<h4>Magnitude</h4>');
 
-        for (let i = 0; i < grades.length; i++) {
-            from = grades[i];
-            to = grades[i + 1];
-
+        grades.forEach((from, index) => {
+            const to = grades[index + 1];
             labels.push(
-                '<i style="background:' +
-                    circleMarkerColor(from + 1) +
-                    '"></i> ' +
-                    from +
-                    (to ? '&ndash;' + to : '+')
+                `<i style="background:${circleMarkerColor(
+                    from + 1
+                )}"></i> ${from}${to ? `&ndash;${to}` : '+'}`
             );
-        }
+        });
 
         div.innerHTML = labels.join('<br>');
+        console.log(div);
         return div;
     };
 

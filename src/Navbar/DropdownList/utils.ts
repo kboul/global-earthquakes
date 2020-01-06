@@ -1,5 +1,5 @@
 export const convertDropdownValue = (dropdownvalue: string): string => {
-    let query = 'NOW - ';
+    const query = 'NOW - ';
     switch (dropdownvalue) {
         case '1 day':
             return `${query}1day`;

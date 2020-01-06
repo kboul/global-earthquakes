@@ -5,9 +5,11 @@
     },
     "extends": [
         "eslint:recommended",
+        "plugin:react/recommended",
         "plugin:@typescript-eslint/eslint-recommended",
         "airbnb",
-        "prettier"
+        "prettier",
+        "plugin:import/typescript"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -24,6 +26,38 @@
     "plugins": ["react", "@typescript-eslint", "prettier"],
     "rules": {
         //disable the rule specifically for param properties
-        "no-param-reassign": [2, { "props": false }]
-    }
+        "no-param-reassign": [2, { "props": false }],
+        "react/jsx-indent": "off",
+        "react/jsx-indent-props": "off",
+        "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
+        "no-console": "off",
+        "import/prefer-default-export": "off",
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+                "js": "never",
+                "jsx": "never",
+                "ts": "never",
+                "tsx": "never",
+                "mjs": "never"
+            }
+        ]
+    },
+    "overrides": [
+        {
+            "files": ["serviceWorker.ts", "react-app-env.d.ts"],
+            "rules": {
+                "no-use-before-define": "off",
+                "spaced-comment": "off"
+            }
+        },
+        // interface is defined but never used
+        {
+            "files": ["*.ts", "*.tsx"],
+            "rules": {
+                "@typescript-eslint/no-unused-vars": [2, { "args": "none" }]
+            }
+        }
+    ]
 }

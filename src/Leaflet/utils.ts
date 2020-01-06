@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 export const circleMarkerColor = (magnitude: number): string => {
     return magnitude <= 1
         ? '#00b800'
