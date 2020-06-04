@@ -1,20 +1,25 @@
-import {
-    CHANGE_STARTTIME,
-    CHANGE_ENDTIME,
-    CHANGE_DROPDOWNVALUE
-} from './types';
+import types from './types';
+import { IAction } from '../store/models';
 
-export const changeStarttime = (starttime: string) => ({
-    type: CHANGE_STARTTIME,
-    starttime
+const changeStartTime = (startTime: string): IAction => ({
+    type: types.startTimeChanged,
+    payload: {
+        startTime
+    }
 });
 
-export const changeEndtime = (endtime: string) => ({
-    type: CHANGE_ENDTIME,
-    endtime
+const changeEndTime = (endTime: string): IAction => ({
+    type: types.endTimeChanged,
+    payload: {
+        endTime
+    }
 });
 
-export const changeDropdownValue = (dropdownValue: string) => ({
-    type: CHANGE_DROPDOWNVALUE,
-    dropdownValue
+const changeNumOfDays = (numOfDays: string): IAction => ({
+    type: types.numOfDaysChanged,
+    payload: {
+        numOfDays
+    }
 });
+
+export { changeStartTime, changeEndTime, changeNumOfDays };

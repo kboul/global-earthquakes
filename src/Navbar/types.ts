@@ -1,3 +1,7 @@
-export const CHANGE_STARTTIME = 'CHANGE_STARTTIME';
-export const CHANGE_ENDTIME = 'CHANGE_ENDTIME';
-export const CHANGE_DROPDOWNVALUE = 'CHANGE_DROPDOWNVALUE';
+const prefix = 'navbar';
+
+export default {
+    startTimeChanged: `${prefix}/startTimeChanged`,
+    endTimeChanged: `${prefix}/endTimeChanged`,
+    numOfDaysChanged: `${prefix}/numOfDaysChanged`
+};

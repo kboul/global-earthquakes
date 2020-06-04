@@ -1,38 +1,35 @@
-import {
-    CHANGE_STARTTIME,
-    CHANGE_ENDTIME,
-    CHANGE_DROPDOWNVALUE
-} from './types';
+import { IAction } from '../store/models';
+import types from './types';
 
 interface IEarthquakesReducer {
-    starttime: string;
-    endtime: string;
-    dropdownValue: string;
+    startTime: string;
+    endTime: string;
+    numOfDays: string;
 }
 
 const initialState: IEarthquakesReducer = {
-    starttime: 'NOW - 3days',
-    endtime: '',
-    dropdownValue: '3 days'
+    startTime: 'NOW - 3days',
+    endTime: '',
+    numOfDays: '3 days'
 };
 
-export default (state = initialState, action: any) => {
+export default (state = initialState, action: IAction) => {
     switch (action.type) {
-        case CHANGE_STARTTIME:
+        case types.startTimeChanged:
             return {
                 ...state,
-                starttime: action.starttime,
-                endtime: ''
+                startTime: action.payload.startTime,
+                endTime: ''
             };
-        case CHANGE_ENDTIME:
+        case types.endTimeChanged:
             return {
                 ...state,
-                endtime: action.endtime
+                endTime: action.payload.endTime
             };
-        case CHANGE_DROPDOWNVALUE:
+        case types.numOfDaysChanged:
             return {
                 ...state,
-                dropdownValue: action.dropdownValue
+                numOfDays: action.payload.numOfDays
             };
         default:
             return state;

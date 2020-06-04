@@ -4,9 +4,7 @@ import { useLeaflet } from 'react-leaflet';
 import { circleMarkerColor } from '../utils';
 import './index.sass';
 
-export interface LegendProps {}
-
-const Legend: FC<LegendProps> = () => {
+const Legend: FC = () => {
     const { map } = useLeaflet();
     const legend = new L.Control({ position: 'bottomright' });
 

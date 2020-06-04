@@ -1,17 +1,19 @@
-export const convertDropdownValue = (dropdownvalue: string): string => {
-    const query = 'NOW - ';
+const convertDropdownValue = (dropdownvalue: string): string => {
+    const now = 'NOW - ';
     switch (dropdownvalue) {
         case '1 day':
-            return `${query}1day`;
+            return `${now}1day`;
         case '3 days':
-            return `${query}3days`;
+            return `${now}3days`;
         case '10 days':
-            return `${query}10days`;
+            return `${now}10days`;
         case '20 days':
-            return `${query}20days`;
+            return `${now}20days`;
         case '30 days':
-            return `${query}30days`;
+            return `${now}30days`;
         default:
-            return 'NOW -3days';
+            return `${now}3days`;
     }
 };
+
+export default convertDropdownValue;

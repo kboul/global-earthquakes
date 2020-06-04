@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-export const circleMarkerColor = (magnitude: number): string => {
+const circleMarkerColor = (magnitude: number): string => {
     return magnitude <= 1
         ? '#00b800'
         : magnitude > 1 && magnitude <= 2
@@ -13,7 +13,7 @@ export const circleMarkerColor = (magnitude: number): string => {
         : '#ff0000';
 };
 
-export const geojsonMarkerOptions = (magnitude: number): Object => {
+const geojsonMarkerOptions = (magnitude: number): Object => {
     return {
         radius: 2.5 * magnitude,
         fillColor: circleMarkerColor(magnitude),
@@ -23,3 +23,5 @@ export const geojsonMarkerOptions = (magnitude: number): Object => {
         fillOpacity: 0.8
     };
 };
+
+export { circleMarkerColor, geojsonMarkerOptions };

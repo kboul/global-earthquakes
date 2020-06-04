@@ -1,27 +1,28 @@
 import React, { FC } from 'react';
 import { Tooltip } from 'reactstrap';
 
-export interface InfoTipProps {
+interface IInfoTip {
     target: string;
     tooltipOpen: boolean;
     setTooltipOpen: (tooltipOpen: boolean) => void;
 }
 
-const InfoTip: FC<InfoTipProps> = ({
+const InfoTip: FC<IInfoTip> = ({
     target,
     tooltipOpen,
     setTooltipOpen
-}: InfoTipProps) => {
+}: IInfoTip) => {
+    const openTooltip = () => setTooltipOpen(!tooltipOpen);
     return (
         <Tooltip
             placement="bottom"
             isOpen={tooltipOpen}
             target={target}
-            toggle={() => setTooltipOpen(!tooltipOpen)}>
+            toggle={openTooltip}>
             Please insert
-            <span>{target === 'starttime' ? ' start ' : ' end '}</span>
+            <span>{target === 'startTime' ? ' start ' : ' end '}</span>
             date in the form of MM-DD-YYYY
-            {target === 'starttime' ? ' or  NOW - 3days or hours' : ''}
+            {target === 'startTime' ? ' or  NOW - 3days or hours' : ''}
         </Tooltip>
     );
 };

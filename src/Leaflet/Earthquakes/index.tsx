@@ -1,22 +1,21 @@
 import React, { FC, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import L, { LatLng, GeoJSON } from 'leaflet';
 import { useLeaflet } from 'react-leaflet';
-import { connect } from 'react-redux';
 import Spinner from '../../Spinner';
 import useEarthquakesFetcher from './hooks';
-import { IFeature, IEarthquakes } from './models';
+import { RooState } from '../../store';
 import { onEachFeature } from './utils';
 import { geojsonMarkerOptions } from '../utils';
-import { IState } from '../../store';
+import { IFeature } from './models';
 
 let geojson: GeoJSON;
 
-const Earthquakes: FC<IEarthquakes> = ({
-    starttime,
-    endtime
-}: IEarthquakes) => {
-    const [earthquakes, loading] = useEarthquakesFetcher(starttime, endtime);
-    console.log(earthquakes);
+const Earthquakes: FC = () => {
+    const { startTime, endTime } = useSelector(
+        ({ navbar }: RooState) => navbar
+    );
+    const [earthquakes, loading] = useEarthquakesFetcher(startTime, endTime);
     const { map } = useLeaflet();
 
     useEffect(() => {
@@ -31,17 +30,11 @@ const Earthquakes: FC<IEarthquakes> = ({
         });
 
         if (map) geojson.addTo(map);
-        // eslint-disable-next-line
-    }, [earthquakes]);
+    }, [earthquakes, map]);
 
     if (loading) return <Spinner />;
 
     return null;
 };
 
-const mapStateToProps = ({ state }: IState) => ({
-    starttime: state.starttime,
-    endtime: state.endtime
-});
-
-export default connect(mapStateToProps)(Earthquakes);
+export default Earthquakes;

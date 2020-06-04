@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { getEarthquakes } from './services';
+import getEarthquakes from './services';
 
-const useEarthquakesFetcher: any = (starttime: string, endtime: string) => {
+const useEarthquakesFetcher: any = (startTime: string, endTime: string) => {
     const [earthquakes, setEarthquakes] = useState({});
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
@@ -12,7 +12,7 @@ const useEarthquakesFetcher: any = (starttime: string, endtime: string) => {
 
         const fetchEarthquakes = async () => {
             try {
-                const data = await getEarthquakes(starttime, endtime);
+                const data = await getEarthquakes(startTime, endTime);
                 setEarthquakes(data);
             } catch (err) {
                 setError(true);
@@ -20,9 +20,8 @@ const useEarthquakesFetcher: any = (starttime: string, endtime: string) => {
             setLoading(false);
         };
 
-        if (!loading) fetchEarthquakes();
-        // eslint-disable-next-line
-    }, [starttime, endtime]);
+        fetchEarthquakes();
+    }, [startTime, endTime]);
 
     return [earthquakes, loading, error];
 };

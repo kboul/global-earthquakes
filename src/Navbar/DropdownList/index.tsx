@@ -1,5 +1,5 @@
 import React, { useState, FC } from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
     Dropdown,
     DropdownToggle,
@@ -7,41 +7,37 @@ import {
     DropdownItem
 } from 'reactstrap';
 import { periods } from './constants';
-import { IState } from '../../store';
-import { changeStarttime, changeDropdownValue } from '../actions';
-import { convertDropdownValue } from './utils';
-import { idGenerator } from '../../shared/utils';
-import { DropdownListProps } from './models';
+import { RooState } from '../../store';
+import { changeStartTime, changeNumOfDays } from '../actions';
+import convertDropdownValue from './utils';
 
-const DropdownList: FC<DropdownListProps> = ({
-    dropdownValue,
-    changeStarttime,
-    changeDropdownValue
-}: DropdownListProps) => {
+const DropdownList: FC = () => {
+    const numOfDays = useSelector(({ navbar }: RooState) => navbar.numOfDays);
+    const dispatch = useDispatch();
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
-    const toggleDropdown = () => {
+    const changeDropdownIcon = () => {
         setDropdownOpen(prevState => (prevState ? false : true));
     };
 
-    const setDropdownValue = (e: React.FormEvent<HTMLInputElement>): void => {
-        const dropdownvalue = e.currentTarget.value;
-        changeDropdownValue(dropdownvalue);
-        changeStarttime(convertDropdownValue(dropdownvalue));
+    const selectNumOfDays = (e: React.MouseEvent<HTMLElement>): void => {
+        const dropdownvalue = e.currentTarget.textContent;
+        if (dropdownvalue) {
+            dispatch(changeNumOfDays(dropdownvalue));
+            dispatch(changeStartTime(convertDropdownValue(dropdownvalue)));
+        }
     };
 
     return (
         <Dropdown
             isOpen={dropdownOpen}
-            toggle={toggleDropdown}
+            toggle={changeDropdownIcon}
             direction={dropdownOpen ? 'up' : 'down'}>
-            <DropdownToggle caret>{dropdownValue}</DropdownToggle>
+            <DropdownToggle caret>{numOfDays}</DropdownToggle>
             <DropdownMenu>
-                {periods.map((period: string) => (
-                    <DropdownItem
-                        onClick={setDropdownValue}
-                        key={idGenerator()}>
-                        {period}
+                {periods.map(({ id, name }) => (
+                    <DropdownItem key={id} onClick={selectNumOfDays}>
+                        {name}
                     </DropdownItem>
                 ))}
             </DropdownMenu>
@@ -49,10 +45,4 @@ const DropdownList: FC<DropdownListProps> = ({
     );
 };
 
-const mapStateToProps = ({ state }: IState) => ({
-    dropdownValue: state.dropdownValue
-});
-
-const mapDispatchToProps = { changeStarttime, changeDropdownValue };
-
-export default connect(mapStateToProps, mapDispatchToProps)(DropdownList);
+export default DropdownList;

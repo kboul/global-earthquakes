@@ -1,5 +1,4 @@
-export interface DropdownListProps {
-    dropdownValue: string;
-    changeStarttime: (starttime: string) => void;
-    changeDropdownValue: (endtime: string) => void;
+export interface IPeriod {
+    id: number;
+    name: string;
 }

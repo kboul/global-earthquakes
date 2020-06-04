@@ -6,6 +6,6 @@ const composeEnhancers =
 
 const store = createStore(rootReducer, composeEnhancers());
 
-export type IState = ReturnType<typeof rootReducer>;
+export type RooState = ReturnType<typeof rootReducer>;
 
 export default store;

@@ -2,14 +2,14 @@ import { Layer } from 'leaflet';
 import { IFeature } from './models';
 
 // Convert Epoch time to human readable with specific timezone
-export const timeConverter = (time: number, offset: number): string => {
+const timeConverter = (time: number, offset: number): string => {
     const d = new Date(time);
     const utc = d.getTime() + d.getTimezoneOffset() * 60000; // This converts to UTC 00:00
     const nd = new Date(utc + 3600000 * offset);
     return nd.toLocaleString();
 };
 
-export const onEachFeature = (feature: IFeature, layer: Layer) => {
+const onEachFeature = (feature: IFeature, layer: Layer) => {
     const {
         properties: { title, place, time, mag, url },
         geometry: { coordinates }
@@ -28,3 +28,5 @@ export const onEachFeature = (feature: IFeature, layer: Layer) => {
 
     layer.bindPopup(popupContent);
 };
+
+export { timeConverter, onEachFeature };

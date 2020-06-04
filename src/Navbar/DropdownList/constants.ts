@@ -1,7 +1,11 @@
-export const periods: Array<string> = [
-    '1 day',
-    '3 days',
-    '10 days',
-    '20 days',
-    '30 days'
+import { IPeriod } from './models';
+
+const periods: IPeriod[] = [
+    { id: 1, name: '1 day' },
+    { id: 2, name: '3 days' },
+    { id: 3, name: '10 days' },
+    { id: 4, name: '20 days' },
+    { id: 5, name: '30 days' }
 ];
+
+export { periods };

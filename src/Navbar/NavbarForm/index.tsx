@@ -1,85 +1,87 @@
 import React, { FC, useState, FormEvent } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import InfoTip from './Infotip';
-import {
-    changeStarttime,
-    changeEndtime,
-    changeDropdownValue
-} from '../actions';
+import { changeStartTime, changeEndTime, changeNumOfDays } from '../actions';
 import styles from './index.module.sass';
-import { NavBarFormProps } from './models';
 
-const NavBarForm: FC<NavBarFormProps> = ({
-    changeStarttime,
-    changeEndtime,
-    changeDropdownValue
-}: NavBarFormProps) => {
-    const [starttime, setStarttime] = useState('');
-    const [endtime, setEndtime] = useState('');
-    const [starttimeTooltipOpen, setStarttimeTooltipOpen] = useState(false);
-    const [endtimeTooltipOpen, setEndtimeTooltipOpen] = useState(false);
-    const [toggleFontAwesome, setToggleFontAwesome] = useState(false);
+const NavBarForm: FC = () => {
+    const dispatch = useDispatch();
+    const [startTime, setStartTime] = useState('');
+    const [endTime, setEndTime] = useState('');
+    const [startTimeTooltipOpen, setStartTimeTooltipOpen] = useState(false);
+    const [endTimeTooltipOpen, setEndTimeTooltipOpen] = useState(false);
+    const [toggleIcon, setToggleIcon] = useState(false);
 
     const onSubmit = (e: FormEvent<HTMLFormElement>): void => {
-        // clear dropdown default value
-        changeDropdownValue('Select Period');
-        // pass the query params to be able to perform query
-        changeStarttime(starttime);
-        changeEndtime(endtime);
-        // clear start end input values
-        setStarttime('');
-        setEndtime('');
         e.preventDefault();
+        // clear dropdown default value
+        dispatch(changeNumOfDays('Select Period'));
+        // pass the query params to be able to perform query
+        dispatch(changeStartTime(startTime));
+        dispatch(changeEndTime(endTime));
+        // clear start end input values
+        setStartTime('');
+        setEndTime('');
     };
 
-    const iconClick = (): void => setToggleFontAwesome(!toggleFontAwesome);
+    const changeIcon = (): void => setToggleIcon(!toggleIcon);
+
+    const onStartTimeChange = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ): void => {
+        setStartTime(e.target.value);
+    };
+
+    const onEndTimeChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+        setEndTime(e.target.value);
+    };
 
     return (
         <form
             className={`form-inline my-lg-0 ${styles.form}`}
             onSubmit={onSubmit}>
-            <div className={`input-group ${styles.starttime}`}>
+            <div className={`input-group ${styles.startTime}`}>
                 <input
                     className="form-control"
-                    id="starttime"
-                    type={toggleFontAwesome ? 'text' : 'date'}
+                    id="startTime"
+                    type={toggleIcon ? 'text' : 'date'}
                     aria-label="Search"
-                    value={starttime}
-                    onChange={e => setStarttime(e.target.value)}
+                    value={startTime}
+                    onChange={onStartTimeChange}
                 />
                 <div className="input-group-append mr-sm-2">
                     <span className="input-group-text">
                         <i
                             className={`${styles.fa} fa fa-${
-                                toggleFontAwesome ? 'calendar' : 'pencil'
+                                toggleIcon ? 'calendar' : 'pencil'
                             }`}
                             tabIndex={0}
                             aria-label="Mute volume"
                             role="button"
-                            onClick={iconClick}
+                            onClick={changeIcon}
                             onKeyDown={() => {}}
                         />
                     </span>
                 </div>
             </div>
             <InfoTip
-                target="starttime"
-                tooltipOpen={starttimeTooltipOpen}
-                setTooltipOpen={setStarttimeTooltipOpen}
+                target="startTime"
+                tooltipOpen={startTimeTooltipOpen}
+                setTooltipOpen={setStartTimeTooltipOpen}
             />
             <input
                 className="form-control mr-sm-2"
-                id="endtime"
+                id="endTime"
                 type="date"
-                disabled={toggleFontAwesome ? true : false}
+                disabled={toggleIcon ? true : false}
                 aria-label="Search"
-                value={endtime}
-                onChange={e => setEndtime(e.target.value)}
+                value={endTime}
+                onChange={onEndTimeChange}
             />
             <InfoTip
-                target="endtime"
-                tooltipOpen={endtimeTooltipOpen}
-                setTooltipOpen={setEndtimeTooltipOpen}
+                target="endTime"
+                tooltipOpen={endTimeTooltipOpen}
+                setTooltipOpen={setEndTimeTooltipOpen}
             />
             <button
                 className="btn btn-outline-success my-2 my-sm-0"
@@ -90,10 +92,4 @@ const NavBarForm: FC<NavBarFormProps> = ({
     );
 };
 
-const mapDispatchToProps = {
-    changeStarttime,
-    changeEndtime,
-    changeDropdownValue
-};
-
-export default connect(null, mapDispatchToProps)(NavBarForm);
+export default NavBarForm;

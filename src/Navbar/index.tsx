@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav } from 'reactstrap';
 import DropdownList from './DropdownList';
 import NavBarForm from './NavbarForm';
 
 const brandStyle = { color: '#ffffff' };
 
-const NavBar: React.SFC = () => {
+const NavBar: FC = () => {
     const [isOpen, setIsOpen] = useState(false);
-
+    const toggleNavbar = () => setIsOpen(!isOpen);
     return (
         <>
             <Navbar color="dark" dark expand="md">
                 <NavbarBrand style={brandStyle}>Earthquakes</NavbarBrand>
-                <NavbarToggler onClick={() => setIsOpen(!isOpen)} />
+                <NavbarToggler onClick={toggleNavbar} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="ml-auto" navbar>
                         <DropdownList />

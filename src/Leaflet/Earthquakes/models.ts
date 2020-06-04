@@ -1,8 +1,3 @@
-export interface IEarthquakes {
-    starttime: string;
-    endtime: string;
-}
-
 export interface IFeature {
     geometry: any;
     properties: {
