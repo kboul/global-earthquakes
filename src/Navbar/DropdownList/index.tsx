@@ -1,4 +1,4 @@
-import React, { useState, FC } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
     Dropdown,
@@ -6,12 +6,13 @@ import {
     DropdownMenu,
     DropdownItem
 } from 'reactstrap';
-import { periods } from './constants';
+
 import { RooState } from '../../store';
 import { changeStartTime, changeNumOfDays } from '../actions';
 import convertDropdownValue from './utils';
+import { periods } from './constants';
 
-const DropdownList: FC = () => {
+export default function DropdownList() {
     const numOfDays = useSelector(({ navbar }: RooState) => navbar.numOfDays);
     const dispatch = useDispatch();
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -43,6 +44,4 @@ const DropdownList: FC = () => {
             </DropdownMenu>
         </Dropdown>
     );
-};
-
-export default DropdownList;
+}

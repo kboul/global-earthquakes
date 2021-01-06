@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
 import getEarthquakes from './services';
 
-const useEarthquakesFetcher: any = (startTime: string, endTime: string) => {
+export default function useEarthquakesFetcher(
+    startTime: string,
+    endTime: string
+): any[] {
     const [earthquakes, setEarthquakes] = useState({});
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
@@ -24,6 +27,4 @@ const useEarthquakesFetcher: any = (startTime: string, endTime: string) => {
     }, [startTime, endTime]);
 
     return [earthquakes, loading, error];
-};
-
-export default useEarthquakesFetcher;
+}

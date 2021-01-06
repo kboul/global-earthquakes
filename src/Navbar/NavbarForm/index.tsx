@@ -1,10 +1,10 @@
-import React, { FC, useState, FormEvent } from 'react';
+import React, { useState, FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import InfoTip from './Infotip';
 import { changeStartTime, changeEndTime, changeNumOfDays } from '../actions';
 import styles from './index.module.sass';
 
-const NavBarForm: FC = () => {
+export default function NavBarForm() {
     const dispatch = useDispatch();
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
@@ -90,6 +90,4 @@ const NavBarForm: FC = () => {
             </button>
         </form>
     );
-};
-
-export default NavBarForm;
+}

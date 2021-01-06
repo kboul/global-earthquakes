@@ -2,6 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import L, { LatLng, GeoJSON } from 'leaflet';
 import { useLeaflet } from 'react-leaflet';
+
 import Spinner from '../../Spinner';
 import useEarthquakesFetcher from './hooks';
 import { RooState } from '../../store';

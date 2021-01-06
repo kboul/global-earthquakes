@@ -1,17 +1,17 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Tooltip } from 'reactstrap';
 
 interface IInfoTip {
+    setTooltipOpen: (tooltipOpen: boolean) => void;
     target: string;
     tooltipOpen: boolean;
-    setTooltipOpen: (tooltipOpen: boolean) => void;
 }
 
-const InfoTip: FC<IInfoTip> = ({
+export default function InfoTip({
+    setTooltipOpen,
     target,
-    tooltipOpen,
-    setTooltipOpen
-}: IInfoTip) => {
+    tooltipOpen
+}: IInfoTip) {
     const openTooltip = () => setTooltipOpen(!tooltipOpen);
     return (
         <Tooltip
@@ -25,6 +25,4 @@ const InfoTip: FC<IInfoTip> = ({
             {target === 'startTime' ? ' or  NOW - 3days or hours' : ''}
         </Tooltip>
     );
-};
-
-export default InfoTip;
+}

@@ -6,6 +6,7 @@ import {
     GeoJSON,
     ScaleControl
 } from 'react-leaflet';
+
 import Earthquakes from './Earthquakes';
 import Legend from './Legend';
 import tectonicPlates from './PB2002_boundaries.json';
