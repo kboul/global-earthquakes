@@ -9,12 +9,11 @@ import {
 import Earthquakes from './Earthquakes';
 import Legend from './Legend';
 import tectonicPlates from './PB2002_boundaries.json';
-import { tectonicPlatesStyle, tileLayers } from './constants';
-import styles from './index.module.sass';
+import { mapHeight, tectonicPlatesStyle, tileLayers } from './constants';
 
 export default function Leaflet() {
     return (
-        <Map center={[0, 0]} zoom={3} className={styles.map}>
+        <Map center={[0, 0]} zoom={3} style={mapHeight}>
             <LayersControl position="topright">
                 {tileLayers.map(({ id, name, attribution, url, checked }) => (
                     <LayersControl.BaseLayer
