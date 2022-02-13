@@ -7,6 +7,7 @@ import {
     DropdownItem
 } from 'reactstrap';
 
+import { Container } from './styles';
 import { RooState } from '../../store';
 import { changeStartTime, changeNumOfDays } from '../actions';
 import convertDropdownValue from './utils';
@@ -30,18 +31,20 @@ export default function DropdownList() {
     };
 
     return (
-        <Dropdown
-            isOpen={dropdownOpen}
-            toggle={changeDropdownIcon}
-            direction={dropdownOpen ? 'up' : 'down'}>
-            <DropdownToggle caret>{numOfDays}</DropdownToggle>
-            <DropdownMenu>
-                {periods.map(({ id, name }) => (
-                    <DropdownItem key={id} onClick={selectNumOfDays}>
-                        {name}
-                    </DropdownItem>
-                ))}
-            </DropdownMenu>
-        </Dropdown>
+        <Container>
+            <Dropdown
+                isOpen={dropdownOpen}
+                toggle={changeDropdownIcon}
+                direction={dropdownOpen ? 'up' : 'down'}>
+                <DropdownToggle caret>{numOfDays}</DropdownToggle>
+                <DropdownMenu>
+                    {periods.map(({ id, name }) => (
+                        <DropdownItem key={id} onClick={selectNumOfDays}>
+                            {name}
+                        </DropdownItem>
+                    ))}
+                </DropdownMenu>
+            </Dropdown>
+        </Container>
     );
 }

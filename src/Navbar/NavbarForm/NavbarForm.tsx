@@ -1,8 +1,9 @@
 import React, { useState, FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
+
+import { EndTimeInput, Icon } from './styles';
 import InfoTip from './Infotip';
 import { changeStartTime, changeEndTime, changeNumOfDays } from '../actions';
-import styles from './index.module.sass';
 
 export default function NavBarForm() {
     const dispatch = useDispatch();
@@ -24,39 +25,33 @@ export default function NavBarForm() {
         setEndTime('');
     };
 
-    const changeIcon = (): void => setToggleIcon(!toggleIcon);
+    const changeIcon = () => setToggleIcon(!toggleIcon);
 
-    const onStartTimeChange = (
-        e: React.ChangeEvent<HTMLInputElement>
-    ): void => {
+    const handleStartTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setStartTime(e.target.value);
     };
 
-    const onEndTimeChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const handleEndTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEndTime(e.target.value);
     };
 
     return (
-        <form
-            className={`form-inline my-lg-0 ${styles.form}`}
-            onSubmit={onSubmit}>
-            <div className={`input-group ${styles.startTime}`}>
+        <form className="form-inline my-lg-0" onSubmit={onSubmit}>
+            <div className="input-group">
                 <input
                     className="form-control"
                     id="startTime"
                     type={toggleIcon ? 'text' : 'date'}
-                    aria-label="Search"
                     value={startTime}
-                    onChange={onStartTimeChange}
+                    onChange={handleStartTimeChange}
                 />
                 <div className="input-group-append mr-sm-2">
                     <span className="input-group-text">
-                        <i
-                            className={`${styles.fa} fa fa-${
+                        <Icon
+                            className={`fa fa-${
                                 toggleIcon ? 'calendar' : 'pencil'
                             }`}
                             tabIndex={0}
-                            aria-label="Mute volume"
                             role="button"
                             onClick={changeIcon}
                             onKeyDown={() => {}}
@@ -69,14 +64,13 @@ export default function NavBarForm() {
                 tooltipOpen={startTimeTooltipOpen}
                 setTooltipOpen={setStartTimeTooltipOpen}
             />
-            <input
+            <EndTimeInput
                 className="form-control mr-sm-2"
                 id="endTime"
                 type="date"
                 disabled={toggleIcon ? true : false}
-                aria-label="Search"
                 value={endTime}
-                onChange={onEndTimeChange}
+                onChange={handleEndTimeChange}
             />
             <InfoTip
                 target="endTime"
