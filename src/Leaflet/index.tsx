@@ -1,4 +1,3 @@
-import React, { FC } from 'react';
 import {
     Map,
     TileLayer,
@@ -13,7 +12,7 @@ import tectonicPlates from './PB2002_boundaries.json';
 import { tectonicPlatesStyle, tileLayers } from './constants';
 import styles from './index.module.sass';
 
-const Leaflet: FC = () => {
+export default function Leaflet() {
     return (
         <Map center={[0, 0]} zoom={3} className={styles.map}>
             <LayersControl position="topright">
@@ -38,6 +37,4 @@ const Leaflet: FC = () => {
             <Legend />
         </Map>
     );
-};
-
-export default Leaflet;
+}
