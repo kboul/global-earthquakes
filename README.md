@@ -1,6 +1,6 @@
-# Earthquake monitoring app
+# Global earthquakes
 
-A react app to visualize worldwide earthquakes on a map in different time periods, using filtering capabilities, and provide metadata for each earthquake.
+A react app to visualize global earthquakes on a map in different time periods, using filtering capabilities, and provide metadata for each earthquake.
 
 ## Run the project
 
