@@ -1,34 +1,40 @@
-import L from 'leaflet';
+import { useEffect } from 'react';
+import { Control, DomUtil } from 'leaflet';
 import { useLeaflet } from 'react-leaflet';
 
 import { circleMarkerColor } from '../utils';
-import './index.sass';
+import './index.css';
 
 export default function Legend() {
     const { map } = useLeaflet();
-    const legend = new L.Control({ position: 'bottomright' });
 
-    legend.onAdd = () => {
-        const div = L.DomUtil.create('div', 'info legend');
-        const grades = [0, 1, 2, 3, 5, 7];
-        const labels = [];
+    useEffect(() => {
+        if (!map) return;
 
-        labels.push('<h4>Magnitude</h4>');
+        const legend = new Control({ position: 'bottomright' });
 
-        grades.forEach((from, index) => {
-            const to = grades[index + 1];
-            labels.push(
-                `<i style="background:${circleMarkerColor(
-                    from + 1
-                )}"></i>${from}${to ? `&ndash;${to}` : '+'}`
-            );
-        });
+        legend.onAdd = () => {
+            const div = DomUtil.create('div', 'info legend');
+            const grades = [0, 1, 2, 3, 5, 7];
+            const labels = [];
 
-        div.innerHTML = labels.join('<br>');
-        return div;
-    };
+            labels.push('<h4>Magnitude</h4>');
 
-    if (map) legend.addTo(map);
+            grades.forEach((from, index) => {
+                const to = grades[index + 1];
+                labels.push(
+                    `<i style="background:${circleMarkerColor(
+                        from + 1
+                    )}"></i>${from}${to ? `&ndash;${to}` : '+'}`
+                );
+            });
+
+            div.innerHTML = labels.join('<br>');
+            return div;
+        };
+
+        legend.addTo(map);
+    }, [map]);
 
     return null;
 }
