@@ -46,7 +46,9 @@
             }
         ],
         "react/jsx-closing-bracket-location": "off",
-        "no-unneeded-ternary": "off"
+        "no-unneeded-ternary": "off",
+        "react/react-in-jsx-scope": "off",
+        "no-restricted-exports": "off"
     },
     "overrides": [
         {
