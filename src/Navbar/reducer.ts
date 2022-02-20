@@ -13,6 +13,7 @@ const initialState: IEarthquakesReducer = {
     numOfDays: '3 days'
 };
 
+// eslint-disable-next-line default-param-last
 export default (state = initialState, action: IAction) => {
     switch (action.type) {
         case types.startTimeChanged:

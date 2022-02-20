@@ -1,3 +1,5 @@
+const mapHeight = { height: 'calc(100vh - 56px)' };
+
 const tileLayers = [
     {
         id: 1,
@@ -36,4 +38,4 @@ const tectonicPlatesStyle = {
     weight: 2
 };
 
-export { tileLayers, tectonicPlatesStyle };
+export { mapHeight, tileLayers, tectonicPlatesStyle };

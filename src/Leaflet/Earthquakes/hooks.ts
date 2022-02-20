@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+
 import getEarthquakes from './services';
 
 export default function useEarthquakesFetcher(
