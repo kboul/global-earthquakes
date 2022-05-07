@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { Control, DomUtil } from 'leaflet';
-import { useLeaflet } from 'react-leaflet';
+import { useMap } from 'react-leaflet';
 
 import { circleMarkerColor } from '../utils';
 import './index.css';
 
 export default function Legend() {
-  const { map } = useLeaflet();
+  const map = useMap();
 
   useEffect(() => {
     if (!map) return;

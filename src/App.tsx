@@ -7,11 +7,13 @@ import store from './store';
 
 export default function App() {
   return (
-    <Provider store={store}>
+    <>
       <GlobalStyle />
-      <NavBar />
-      <Leaflet />
-    </Provider>
+      <Provider store={store}>
+        <NavBar />
+        <Leaflet />
+      </Provider>
+    </>
   );
 }
 

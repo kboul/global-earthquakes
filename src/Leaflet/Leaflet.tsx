@@ -1,5 +1,5 @@
 import {
-  Map,
+  MapContainer,
   TileLayer,
   LayersControl,
   GeoJSON,
@@ -13,7 +13,7 @@ import { mapHeight, tectonicPlatesStyle, tileLayers } from './constants';
 
 export default function Leaflet() {
   return (
-    <Map center={[0, 0]} zoom={3} style={mapHeight}>
+    <MapContainer center={[0, 0]} zoom={3} style={mapHeight}>
       <LayersControl position="topright">
         {tileLayers.map(({ id, name, attribution, url, checked }) => (
           <LayersControl.BaseLayer key={id} name={name} checked={checked}>
@@ -31,6 +31,6 @@ export default function Leaflet() {
       <Earthquakes />
       <ScaleControl />
       <Legend />
-    </Map>
+    </MapContainer>
   );
 }
