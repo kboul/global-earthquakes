@@ -7,20 +7,20 @@ import NavBarForm from './NavbarForm';
 const brandStyle = { color: '#ffffff' };
 
 export default function NavBar() {
-    const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-    const toggleNavbar = () => setIsOpen(!isOpen);
+  const toggleNavbar = () => setIsOpen(!isOpen);
 
-    return (
-        <Navbar color="dark" dark expand="md">
-            <NavbarBrand style={brandStyle}>Earthquakes</NavbarBrand>
-            <NavbarToggler onClick={toggleNavbar} />
-            <Collapse isOpen={isOpen} navbar>
-                <Nav className="ml-auto" navbar>
-                    <DropdownList />
-                    <NavBarForm />
-                </Nav>
-            </Collapse>
-        </Navbar>
-    );
+  return (
+    <Navbar color="dark" dark expand="md">
+      <NavbarBrand style={brandStyle}>Earthquakes</NavbarBrand>
+      <NavbarToggler onClick={toggleNavbar} />
+      <Collapse isOpen={isOpen} navbar>
+        <Nav className="ml-auto" navbar>
+          <DropdownList />
+          <NavBarForm />
+        </Nav>
+      </Collapse>
+    </Navbar>
+  );
 }
