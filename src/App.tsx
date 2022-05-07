@@ -6,13 +6,13 @@ import NavBar from './Navbar';
 import store from './store';
 
 export default function App() {
-    return (
-        <Provider store={store}>
-            <GlobalStyle />
-            <NavBar />
-            <Leaflet />
-        </Provider>
-    );
+  return (
+    <Provider store={store}>
+      <GlobalStyle />
+      <NavBar />
+      <Leaflet />
+    </Provider>
+  );
 }
 
 const GlobalStyle = createGlobalStyle`

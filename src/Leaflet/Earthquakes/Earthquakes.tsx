@@ -13,27 +13,25 @@ import { IFeature } from './models';
 let geojson: GeoJSON;
 
 export default function Earthquakes() {
-    const { startTime, endTime } = useSelector(
-        ({ navbar }: RooState) => navbar
-    );
-    const [earthquakes, loading] = useEarthquakesFetcher(startTime, endTime);
-    const { map } = useLeaflet();
+  const { startTime, endTime } = useSelector(({ navbar }: RooState) => navbar);
+  const [earthquakes, loading] = useEarthquakesFetcher(startTime, endTime);
+  const { map } = useLeaflet();
 
-    useEffect(() => {
-        if (map && map.hasLayer(geojson)) map.removeLayer(geojson);
+  useEffect(() => {
+    if (map && map.hasLayer(geojson)) map.removeLayer(geojson);
 
-        geojson = L.geoJSON(earthquakes.features, {
-            onEachFeature,
-            pointToLayer: (feature: IFeature, latlng: LatLng) => {
-                const magnitude = feature.properties.mag;
-                return L.circleMarker(latlng, geojsonMarkerOptions(magnitude));
-            }
-        });
+    geojson = L.geoJSON(earthquakes.features, {
+      onEachFeature,
+      pointToLayer: (feature: IFeature, latlng: LatLng) => {
+        const magnitude = feature.properties.mag;
+        return L.circleMarker(latlng, geojsonMarkerOptions(magnitude));
+      }
+    });
 
-        if (map) geojson.addTo(map);
-    }, [earthquakes, map]);
+    if (map) geojson.addTo(map);
+  }, [earthquakes, map]);
 
-    if (loading) return <Spinner />;
+  if (loading) return <Spinner />;
 
-    return null;
+  return null;
 }
