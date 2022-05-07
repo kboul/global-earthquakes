@@ -15,10 +15,10 @@ let geojson: GeoJSON;
 export default function Earthquakes() {
   const { startTime, endTime } = useSelector(({ navbar }: RooState) => navbar);
   const [earthquakes, loading] = useEarthquakesFetcher(startTime, endTime);
-  const map = useMap();
 
+  const map = useMap();
   useEffect(() => {
-    if (map && map.hasLayer(geojson)) map.removeLayer(geojson);
+    if (map && geojson && map.hasLayer(geojson)) map.removeLayer(geojson);
 
     geojson = L.geoJSON(earthquakes.features, {
       onEachFeature,
