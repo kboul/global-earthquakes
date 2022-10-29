@@ -1,17 +1,27 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createGlobalStyle } from 'styled-components';
 import { Provider } from 'react-redux';
 
-import Leaflet from './Leaflet';
-import NavBar from './Navbar';
+import { Map, Navbar } from './components';
 import store from './store';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false
+    }
+  }
+});
 
 export default function App() {
   return (
     <>
       <GlobalStyle />
       <Provider store={store}>
-        <NavBar />
-        <Leaflet />
+        <QueryClientProvider client={queryClient}>
+          <Navbar />
+          <Map />
+        </QueryClientProvider>
       </Provider>
     </>
   );

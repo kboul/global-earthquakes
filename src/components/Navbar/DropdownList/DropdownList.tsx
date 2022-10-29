@@ -8,7 +8,7 @@ import {
 } from 'reactstrap';
 
 import { Container } from './styles';
-import { RooState } from '../../store';
+import { RooState } from '../../../store';
 import { changeStartTime, changeNumOfDays } from '../actions';
 import convertDropdownValue from './utils';
 import { periods } from './constants';
