@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import {
   Dropdown,
   DropdownToggle,
@@ -8,14 +7,12 @@ import {
 } from 'reactstrap';
 
 import { Container } from './styles';
-import { RooState } from '../../../store';
-import { changeStartTime, changeNumOfDays } from '../actions';
 import convertDropdownValue from './utils';
 import { periods } from './constants';
+import { changeState, types, useAppContext } from '../../../context';
 
 export default function DropdownList() {
-  const numOfDays = useSelector(({ navbar }: RooState) => navbar.numOfDays);
-  const dispatch = useDispatch();
+  const { state, dispatch } = useAppContext();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const changeDropdownIcon = () => {
@@ -25,8 +22,14 @@ export default function DropdownList() {
   const selectNumOfDays = (e: React.MouseEvent<HTMLElement>): void => {
     const dropdownvalue = e.currentTarget.textContent;
     if (dropdownvalue) {
-      dispatch(changeNumOfDays(dropdownvalue));
-      dispatch(changeStartTime(convertDropdownValue(dropdownvalue)));
+      dispatch(
+        changeState(types.numOfDaysChanged, { numOfDays: dropdownvalue })
+      );
+      dispatch(
+        changeState(types.startTimeChanged, {
+          startTime: convertDropdownValue(dropdownvalue)
+        })
+      );
     }
   };
 
@@ -36,7 +39,7 @@ export default function DropdownList() {
         isOpen={dropdownOpen}
         toggle={changeDropdownIcon}
         direction={dropdownOpen ? 'up' : 'down'}>
-        <DropdownToggle caret>{numOfDays}</DropdownToggle>
+        <DropdownToggle caret>{state.numOfDays}</DropdownToggle>
         <DropdownMenu>
           {periods.map(({ id, name }) => (
             <DropdownItem key={id} onClick={selectNumOfDays}>

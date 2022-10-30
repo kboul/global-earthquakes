@@ -1,25 +1,27 @@
-import React, { useState, FormEvent } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState, FormEvent, ChangeEvent } from 'react';
 
 import { EndTimeInput, Icon } from './styles';
 import InfoTip from './Infotip';
-import { changeStartTime, changeEndTime, changeNumOfDays } from '../actions';
+import { changeState, types, useAppContext } from '../../../context';
 
 export default function NavBarForm() {
-  const dispatch = useDispatch();
+  const { dispatch } = useAppContext();
+
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
   const [startTimeTooltipOpen, setStartTimeTooltipOpen] = useState(false);
   const [endTimeTooltipOpen, setEndTimeTooltipOpen] = useState(false);
   const [toggleIcon, setToggleIcon] = useState(false);
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     // clear dropdown default value
-    dispatch(changeNumOfDays('Select Period'));
+    dispatch(
+      changeState(types.numOfDaysChanged, { numOfDays: 'Select Period' })
+    );
     // pass the query params to be able to perform query
-    dispatch(changeStartTime(startTime));
-    dispatch(changeEndTime(endTime));
+    dispatch(changeState(types.startTimeChanged, { startTime }));
+    dispatch(changeState(types.endTimeChanged, { endTime }));
     // clear start end input values
     setStartTime('');
     setEndTime('');
@@ -27,16 +29,16 @@ export default function NavBarForm() {
 
   const changeIcon = () => setToggleIcon(!toggleIcon);
 
-  const handleStartTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleStartTimeChange = (e: ChangeEvent<HTMLInputElement>) => {
     setStartTime(e.target.value);
   };
 
-  const handleEndTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleEndTimeChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEndTime(e.target.value);
   };
 
   return (
-    <form className="form-inline my-lg-0" onSubmit={onSubmit}>
+    <form className="form-inline my-lg-0" onSubmit={handleSubmit}>
       <div className="input-group">
         <input
           className="form-control"

@@ -1,9 +1,8 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createGlobalStyle } from 'styled-components';
-import { Provider } from 'react-redux';
 
+import { Provider } from './context';
 import { Map, Navbar } from './components';
-import store from './store';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -17,7 +16,7 @@ export default function App() {
   return (
     <>
       <GlobalStyle />
-      <Provider store={store}>
+      <Provider>
         <QueryClientProvider client={queryClient}>
           <Navbar />
           <Map />
