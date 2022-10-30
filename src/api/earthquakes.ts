@@ -1,4 +1,4 @@
-import httpService from '../../api/httpService';
+import httpService from './httpService';
 
 const getEarthquakes = async (starttime: string, endtime: string) => {
   try {
@@ -13,4 +13,4 @@ const getEarthquakes = async (starttime: string, endtime: string) => {
   }
 };
 
-export default getEarthquakes;
+export { getEarthquakes };

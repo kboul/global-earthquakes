@@ -11,7 +11,7 @@ import Legend from './Legend';
 import tectonicPlates from './PB2002_boundaries.json';
 import { mapHeight, tectonicPlatesStyle, tileLayers } from './constants';
 
-export default function Leaflet() {
+export default function Map() {
   return (
     <MapContainer center={[0, 0]} zoom={3} style={mapHeight}>
       <LayersControl position="topright">

@@ -1,4 +1,4 @@
-import { IAction } from '../store/models';
+import { IAction } from '../../store/models';
 import types from './types';
 
 interface IEarthquakesReducer {
