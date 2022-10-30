@@ -1,4 +1,4 @@
-export interface IPeriod {
+export interface Period {
   id: number;
   name: string;
 }

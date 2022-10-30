@@ -1,4 +1,5 @@
 import { Layer } from 'leaflet';
+
 import { FeatureProps } from './models';
 
 // Convert Epoch time to human readable with specific timezone
@@ -17,7 +18,7 @@ const onEachFeature = (feature: FeatureProps, layer: Layer) => {
 
   const popupContent = `
     <h3 style="font-size: 1.17em; font-weight: bold">${title}</h3>
-    <b>Place</b>: ${place} <br>
+    <b>Place</b>: ${place ?? 'Unknown'} <br>
     <b>Time (GMC+3)</b>: ${timeConverter(time, 3)} <br>
     <b>Lat</b>: ${coordinates[1]}
     <b>Lon</b>: ${coordinates[0]} <br>

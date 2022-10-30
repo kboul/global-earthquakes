@@ -1,6 +1,6 @@
-import { IPeriod } from './models';
+import { Period } from './models';
 
-const periods: IPeriod[] = [
+const periods: Period[] = [
   { id: 1, name: '1 day' },
   { id: 2, name: '3 days' },
   { id: 3, name: '10 days' },
