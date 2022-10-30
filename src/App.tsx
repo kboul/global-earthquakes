@@ -16,12 +16,12 @@ export default function App() {
   return (
     <>
       <GlobalStyle />
-      <Provider>
-        <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClient}>
+        <Provider>
           <Navbar />
           <Map />
-        </QueryClientProvider>
-      </Provider>
+        </Provider>
+      </QueryClientProvider>
     </>
   );
 }
