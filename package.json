@@ -1,10 +1,10 @@
 {
   "name": "global-earthquakes",
-  "version": "1.5.0",
+  "version": "3.1.0",
   "private": true,
   "homepage": "https://kboul.github.io/global-earthquakes",
   "dependencies": {
-    "@tanstack/react-query": "^4.13.4",
+    "@tanstack/react-query": "4.13.4",
     "@types/leaflet": "1.9.0",
     "@types/node": "18.11.7",
     "@types/react-dom": "18.0.8",
@@ -22,7 +22,8 @@
     "react-scripts": "5.0.1",
     "reactstrap": "9.0.2",
     "styled-components": "5.3.6",
-    "typescript": "4.8.4"
+    "typescript": "4.8.4",
+    "zustand": "4.1.4"
   },
   "scripts": {
     "predeploy": "npm run build",
