@@ -8,13 +8,13 @@ import { onEachFeature } from './utils';
 import { geojsonMarkerOptions } from '../utils';
 import { getEarthquakes } from '../../../api/earthquakes';
 import { FeatureProps } from './models';
-import { useAppContext } from '../../../context';
+import { useStore } from '../../../hooks';
 
 let geojson: GeoJSON;
 
 export default function Earthquakes() {
-  const { state } = useAppContext();
-  const { startTime, endTime } = state;
+  const startTime = useStore((state) => state.startTime);
+  const endTime = useStore((state) => state.endTime);
 
   const { data: earthquakes, isLoading } = useQuery(
     ['earthquakes', startTime, endTime],

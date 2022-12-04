@@ -1,15 +1,10 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createGlobalStyle } from 'styled-components';
 
-import { Provider } from './context';
 import { Map, Navbar } from './components';
 
 const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false
-    }
-  }
+  defaultOptions: { queries: { refetchOnWindowFocus: false } }
 });
 
 export default function App() {
@@ -17,10 +12,8 @@ export default function App() {
     <>
       <GlobalStyle />
       <QueryClientProvider client={queryClient}>
-        <Provider>
-          <Navbar />
-          <Map />
-        </Provider>
+        <Navbar />
+        <Map />
       </QueryClientProvider>
     </>
   );
