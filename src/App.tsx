@@ -1,11 +1,8 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { createGlobalStyle } from 'styled-components';
 
 import { Map, Navbar } from './components';
-
-const queryClient = new QueryClient({
-  defaultOptions: { queries: { refetchOnWindowFocus: false } }
-});
+import queryClient from './queryClient';
 
 export default function App() {
   return (
