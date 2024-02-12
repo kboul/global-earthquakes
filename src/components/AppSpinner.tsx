@@ -11,10 +11,10 @@ const sizes: Record<Size, string> = {
 
 export default function AppSpinner({ size = "lg" }: AppSpinnerProps) {
   return (
-    <div className="h-full flex justify-center items-center z-[999999]">
+    <div className="absolute top-[50%] left-[50%] z-[999999]">
       <svg
         aria-hidden="true"
-        className={`${sizes[size]} text-gray-200 animate-spin fill-blue-600`}
+        className={`${sizes[size]} text-gray-200 animate-spin fill-blue-600 dark:text-gray-600`}
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg">

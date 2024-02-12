@@ -1,4 +1,4 @@
-import httpService from './httpService';
+import httpService from "./httpService";
 
 const getEarthquakes = async (starttime: string, endtime: string) => {
   try {
@@ -8,7 +8,7 @@ const getEarthquakes = async (starttime: string, endtime: string) => {
     const { data } = response;
     return data;
   } catch (error) {
-    console.log('There was an error while getting the earthquakes', error);
+    console.log("There was an error while getting the earthquakes", error);
     return false;
   }
 };
