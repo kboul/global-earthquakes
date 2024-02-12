@@ -30,6 +30,7 @@
     "react/jsx-indent": "off",
     "react/jsx-indent-props": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
+    "react/require-default-props": "off",
     "no-console": "off",
     "import/prefer-default-export": "off",
     "no-use-before-define": "off",
