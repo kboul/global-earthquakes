@@ -11,7 +11,7 @@ const sizes: Record<Size, string> = {
 
 export default function AppSpinner({ size = "lg" }: AppSpinnerProps) {
   return (
-    <div className="absolute top-[40%] left-[50%] z-[999999]" role="status">
+    <div className="h-full flex justify-center items-center z-[999999]">
       <svg
         aria-hidden="true"
         className={`${sizes[size]} text-gray-200 animate-spin dark:text-gray-600 fill-blue-600`}
