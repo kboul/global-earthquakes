@@ -1,13 +1,15 @@
-import { QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider } from "@tanstack/react-query";
 
-import { Map, Navbar } from './components';
-import queryClient from './queryClient';
-import './index.css';
+import { Map } from "./components";
+import queryClient from "./queryClient";
+import "./index.css";
+import AppNavbar from "./components/AppNavbar";
 
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Navbar />
+      <AppNavbar />
+      {/* <Navbar /> */}
       <Map />
     </QueryClientProvider>
   );
