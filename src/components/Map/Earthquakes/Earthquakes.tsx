@@ -13,6 +13,8 @@ import { useStore } from "../../../hooks";
 let geojson: GeoJSON;
 
 export default function Earthquakes() {
+  const map = useMap();
+
   const startTime = useStore((state) => state.startTime);
   const endTime = useStore((state) => state.endTime);
 
@@ -21,7 +23,6 @@ export default function Earthquakes() {
     () => getEarthquakes(startTime, endTime)
   );
 
-  const map = useMap();
   useEffect(() => {
     if (!earthquakes) return;
 

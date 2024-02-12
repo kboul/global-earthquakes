@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Dropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem
-} from 'reactstrap';
+} from "reactstrap";
 
-import { Container } from './styles';
-import { useStore } from '../../../hooks';
-import convertDropdownValue from './utils';
-import { periods } from './constants';
+import { Container } from "./styles";
+import { useStore } from "../../hooks";
+import convertDropdownValue from "./utils";
+import { periods } from "./constants";
 
 export default function DropdownList() {
   const numOfDays = useStore((state) => state.numOfDays);
@@ -35,7 +35,7 @@ export default function DropdownList() {
       <Dropdown
         isOpen={dropdownOpen}
         toggle={changeDropdownIcon}
-        direction={dropdownOpen ? 'up' : 'down'}>
+        direction={dropdownOpen ? "up" : "down"}>
         <DropdownToggle caret>{numOfDays}</DropdownToggle>
         <DropdownMenu>
           {periods.map(({ id, name }) => (

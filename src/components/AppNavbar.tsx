@@ -1,14 +1,24 @@
-import { FaGear } from "react-icons/fa6";
+import { Cog6ToothIcon } from "@heroicons/react/24/solid";
+import { useSearchParams } from "react-router-dom";
+
+import { setSearchParam } from "../utils";
 
 export default function Navbar() {
+  const [, setSearchParams] = useSearchParams();
+
   return (
-    <nav className="bg-white border-gray-200 dark:bg-[#3d5e80]">
+    <nav className="bg-[#3d5e80] border-gray-200">
       <div className="flex flex-wrap items-center justify-between p-2">
-        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+        <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
           Global Earthquakes
         </span>
 
-        <FaGear className="dark:text-white cursor-pointer" size="20" />
+        <Cog6ToothIcon
+          className="w-7 h-7 cursor-pointer text-white"
+          onClick={() =>
+            setSearchParams(setSearchParam("settings", String(true)))
+          }
+        />
       </div>
     </nav>
   );

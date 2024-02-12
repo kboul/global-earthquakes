@@ -1,12 +1,12 @@
-import { useState, FormEvent, ChangeEvent } from 'react';
+import { useState, FormEvent, ChangeEvent } from "react";
 
-import { EndTimeInput, Icon } from './styles';
-import InfoTip from './Infotip';
-import { useStore } from '../../../hooks';
+import { EndTimeInput, Icon } from "./styles";
+import InfoTip from "./Infotip";
+import { useStore } from "../../hooks";
 
 export default function NavBarForm() {
-  const [startTime, setStartTime] = useState('');
-  const [endTime, setEndTime] = useState('');
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
 
   const setNumOfDays = useStore((state) => state.setNumOfDays);
   const setGlobalStartTime = useStore((state) => state.setStartTime);
@@ -19,13 +19,13 @@ export default function NavBarForm() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     // clear dropdown default value
-    setNumOfDays('Select Period');
+    setNumOfDays("Select Period");
     // pass the query params to be able to perform query
     setGlobalStartTime(startTime);
     setGlobalEndTime(endTime);
     // clear start end input values
-    setStartTime('');
-    setEndTime('');
+    setStartTime("");
+    setEndTime("");
   };
 
   const changeIcon = () => setToggleIcon(!toggleIcon);
@@ -44,14 +44,14 @@ export default function NavBarForm() {
         <input
           className="form-control"
           id="startTime"
-          type={toggleIcon ? 'text' : 'date'}
+          type={toggleIcon ? "text" : "date"}
           value={startTime}
           onChange={handleStartTimeChange}
         />
         <div className="input-group-append mr-sm-2">
           <span className="input-group-text">
             <Icon
-              className={`fa fa-${toggleIcon ? 'calendar' : 'pencil'}`}
+              className={`fa fa-${toggleIcon ? "calendar" : "pencil"}`}
               tabIndex={0}
               role="button"
               onClick={changeIcon}
