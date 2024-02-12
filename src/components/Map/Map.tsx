@@ -4,12 +4,12 @@ import {
   LayersControl,
   GeoJSON,
   ScaleControl
-} from 'react-leaflet';
+} from "react-leaflet";
 
-import Earthquakes from './Earthquakes';
-import Legend from './Legend';
-import tectonicPlates from './PB2002_boundaries.json';
-import { mapHeight, tectonicPlatesStyle, tileLayers } from './constants';
+import Earthquakes from "./Earthquakes";
+import Legend from "./Legend";
+import tectonicPlates from "./PB2002_boundaries.json";
+import { mapHeight, tectonicPlatesStyle, tileLayers } from "./constants";
 
 export default function Map() {
   return (
