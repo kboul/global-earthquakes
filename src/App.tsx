@@ -1,23 +1,14 @@
-import { QueryClientProvider } from '@tanstack/react-query';
-import { createGlobalStyle } from 'styled-components';
+import { QueryClientProvider } from "@tanstack/react-query";
+import { RouterProvider } from "react-router-dom";
 
-import { Map, Navbar } from './components';
-import queryClient from './queryClient';
+import router from "./routes";
+import queryClient from "./queryClient";
+import "./index.css";
 
 export default function App() {
   return (
-    <>
-      <GlobalStyle />
-      <QueryClientProvider client={queryClient}>
-        <Navbar />
-        <Map />
-      </QueryClientProvider>
-    </>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   );
 }
-
-const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-  }
-`;

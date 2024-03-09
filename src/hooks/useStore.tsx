@@ -1,5 +1,7 @@
-import create from 'zustand';
-import { devtools } from 'zustand/middleware';
+import create from "zustand";
+import { devtools } from "zustand/middleware";
+
+import { initialNumOfDays, initialStartTime } from "../constants";
 
 interface Store {
   startTime: string;
@@ -12,9 +14,9 @@ interface Store {
 
 const useStore = create<Store>()(
   devtools((set) => ({
-    startTime: 'NOW - 3days',
-    endTime: '',
-    numOfDays: '3 days',
+    startTime: initialStartTime,
+    endTime: "",
+    numOfDays: initialNumOfDays,
     setStartTime: (startTime) => set((state) => ({ ...state, startTime })),
     setEndTime: (endTime) => set((state) => ({ ...state, endTime })),
     setNumOfDays: (numOfDays) => set((state) => ({ ...state, numOfDays }))
