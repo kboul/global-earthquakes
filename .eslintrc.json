@@ -50,7 +50,23 @@
     "react/jsx-closing-bracket-location": "off",
     "no-unneeded-ternary": "off",
     "react/react-in-jsx-scope": "off",
-    "no-restricted-exports": "off"
+    "no-restricted-exports": "off",
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
+        "required": {
+          "some": ["nesting", "id"]
+        }
+      }
+    ],
+    "jsx-a11y/label-has-for": [
+      "error",
+      {
+        "required": {
+          "some": ["nesting", "id"]
+        }
+      }
+    ]
   },
   "overrides": [
     {

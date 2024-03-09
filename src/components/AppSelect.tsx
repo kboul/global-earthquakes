@@ -14,7 +14,7 @@ export default function AppSelect({
     <>
       {label && (
         <label
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          className="block  text-sm font-medium text-gray-900 dark:text-white"
           htmlFor={label}>
           {label}
         </label>

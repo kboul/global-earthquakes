@@ -7,7 +7,7 @@ const circleMarkerColor = (magnitude: number): string => {
   return "#ff0000";
 };
 
-const geojsonMarkerOptions = (magnitude: number): Object => ({
+const geojsonMarkerOptions = (magnitude: number) => ({
   radius: 2.5 * magnitude,
   fillColor: circleMarkerColor(magnitude),
   color: "grey",
