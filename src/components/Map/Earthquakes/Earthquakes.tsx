@@ -18,10 +18,10 @@ export default function Earthquakes() {
   const startTime = useStore((state) => state.startTime);
   const endTime = useStore((state) => state.endTime);
 
-  const { data: earthquakes, isLoading } = useQuery(
-    ["earthquakes", startTime, endTime],
-    () => getEarthquakes(startTime, endTime)
-  );
+  const { data: earthquakes, isLoading } = useQuery({
+    queryKey: ["earthquakes", startTime, endTime],
+    queryFn: () => getEarthquakes(startTime, endTime)
+  });
 
   useEffect(() => {
     if (!earthquakes) return;
