@@ -10,7 +10,12 @@ interface ModalProps {
   title: string;
 }
 
-const sizes = { sm: "md", def: "lg", lg: "4xl", xxl: "7xl" };
+const sizes = {
+  sm: "max-w-md",
+  def: "max-w-lg",
+  lg: "max-w-4xl",
+  xxl: "max-w-7xl"
+};
 
 export default function Modal({
   children,
@@ -21,7 +26,7 @@ export default function Modal({
   return (
     <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-[1000] outline-none focus:outline-none">
       {/* Modal content */}
-      <div className={`relative w-full max-w-${sizes[size]} max-h-full`}>
+      <div className={`relative w-full ${sizes[size]} max-h-full`}>
         <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none dark:bg-gray-700">
           {/* Modal header */}
           <div className="flex items-start justify-between p-4 border-b border-solid border-slate-200 rounded-t dark:border-gray-600">
