@@ -1,5 +1,5 @@
 import React from "react";
-import { useSearchParams } from "react-router-dom";
+import { useShallow } from "zustand/react/shallow";
 
 import {
   AppInput,
@@ -8,20 +8,32 @@ import {
   DateSelections,
   Map
 } from "../components";
-import { useSearchParam, useStore } from "../hooks";
+import { useStore } from "../hooks";
 import { days, initialNumOfDays, initialStartTime } from "../constants";
 import { convertDropdownValue } from "../utils";
 
 export default function HomePage() {
-  const [, setSearchParams] = useSearchParams();
-  const [settings] = useSearchParam("settings");
-
-  const numOfDays = useStore((state) => state.numOfDays);
-  const setNumOfDays = useStore((state) => state.setNumOfDays);
-  const startTime = useStore((state) => state.startTime);
-  const setStartTime = useStore((state) => state.setStartTime);
-  const endTime = useStore((state) => state.endTime);
-  const setEndTime = useStore((state) => state.setEndTime);
+  const {
+    settingsOpen,
+    numOfDays,
+    setNumOfDays,
+    startTime,
+    setStartTime,
+    endTime,
+    setEndTime,
+    setStore
+  } = useStore(
+    useShallow((state) => ({
+      settingsOpen: state.settingsOpen,
+      numOfDays: state.numOfDays,
+      setNumOfDays: state.setNumOfDays,
+      startTime: state.startTime,
+      setStartTime: state.setStartTime,
+      endTime: state.endTime,
+      setEndTime: state.setEndTime,
+      setStore: state.setStore
+    }))
+  );
 
   const [selectedRadio, setSelectedRadio] = React.useState("days");
 
@@ -49,8 +61,10 @@ export default function HomePage() {
 
   return (
     <>
-      {settings && (
-        <AppModal onClose={() => setSearchParams()} title="Search by date">
+      {settingsOpen && (
+        <AppModal
+          onClose={() => setStore({ settingsOpen: false })}
+          title="Search by date">
           <div className="flex flex-col gap-y-4">
             <DateSelections
               selectedRadio={selectedRadio}
