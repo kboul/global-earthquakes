@@ -22,15 +22,9 @@ browser listens to [http://localhost:3000](http://localhost:3000) as default por
 
 ### The engine "node" is incompatible with this module
 
-If using yarn fix it by globally defining
-
-```
-yarn config set ignore-engines true
-```
-
-[Source](https://stackoverflow.com/questions/56617209/the-engine-node-is-incompatible-with-this-module)
-
 ## Run the dockerized app
+
+Without app refreshing on dev changes
 
 1. Build the app using the app name and the current version, f.i
 
@@ -50,4 +44,19 @@ returns the id of the running container
 
 ```
 docker stop container_id
+```
+
+With app refreshing on dev changes
+
+1. Get the app running, on root folder run
+
+```
+docker compose up
+```
+
+2. Stop the app from running
+
+```
+docker compose down
+
 ```
