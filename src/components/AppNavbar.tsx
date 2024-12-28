@@ -1,11 +1,9 @@
 import { Cog6ToothIcon } from "@heroicons/react/24/solid";
-import { useSearchParams } from "react-router-dom";
 
-import { setSearchParam } from "../utils";
+import { useStore } from "../hooks";
 
 export default function Navbar() {
-  const [, setSearchParams] = useSearchParams();
-
+  const setStore = useStore((state) => state.setStore);
   return (
     <nav className="bg-[#3d5e80] border-gray-200">
       <div className="flex flex-wrap items-center justify-between p-2">
@@ -15,9 +13,7 @@ export default function Navbar() {
 
         <Cog6ToothIcon
           className="w-7 h-7 cursor-pointer text-white"
-          onClick={() =>
-            setSearchParams(setSearchParam("settings", String(true)))
-          }
+          onClick={() => setStore({ settingsOpen: true })}
         />
       </div>
     </nav>
