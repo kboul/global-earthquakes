@@ -20,14 +20,51 @@ export default function PopupContent({
   const { time, title, mag, place, url } = properties;
   return (
     <div>
-      <h3 style={{ fontSize: "1.17em", fontWeight: "bold" }}>{title}</h3>
-      <b>Place</b>: {place ?? "Unknown"} <br />
-      <b>Time (GMC+3)</b>: {timeConverter(time, 3)} <br />
-      <b>Lat</b>: {coordinates[1]} <br />
-      <b>Lon</b>: {coordinates[0]} <br />
-      <b>Depth</b>: {coordinates[2]} km <br />
-      <b>Magnitude</b>: {mag} Richter <br />
-      <b>Details</b>: <a href={url}>click here to see more details</a>
+      <h3 className="text-sm font-bold text-gray-800 mb-2">{title}</h3>
+      <hr />
+
+      <table className="w-full table-fixed border-collapse">
+        <tbody>
+          <tr className="border-b border-gray-200">
+            <td className="py-2 px-2 font-semibold text-gray-700">Place</td>
+            <td className="py-2 px-2 text-gray-700">{place ?? "Unknown"}</td>
+          </tr>
+          <tr className="border-b border-gray-200">
+            <td className="py-2 px-2 font-semibold text-gray-700">
+              Time (GMC+3)
+            </td>
+            <td className="py-2 px-2 text-gray-700">
+              {timeConverter(time, 3)}
+            </td>
+          </tr>
+          <tr className="border-b border-gray-200">
+            <td className="py-2 px-2 font-semibold text-gray-700">Latitude</td>
+            <td className="py-2 px-2 text-gray-700">{coordinates[1]}</td>
+          </tr>
+          <tr className="border-b border-gray-200">
+            <td className="py-2 px-2 font-semibold text-gray-700">Longitude</td>
+            <td className="py-2 px-2 text-gray-700">{coordinates[0]}</td>
+          </tr>
+          <tr className="border-b border-gray-200">
+            <td className="py-2 px-2 font-semibold text-gray-700">Depth</td>
+            <td className="py-2 px-2 text-gray-700">{coordinates[2]} km</td>
+          </tr>
+          <tr className="border-b border-gray-200">
+            <td className="py-2 px-2 font-semibold text-gray-700">Magnitude</td>
+            <td className="py-2 px-2 text-gray-700">{mag} Richter</td>
+          </tr>
+          <tr>
+            <td className="py-2 px-2 font-semibold text-gray-700">Details</td>
+            <td className="py-2 px-2">
+              <a
+                href={url}
+                className="text-blue-500 hover:text-blue-700 underline">
+                Click here to see more
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 }
