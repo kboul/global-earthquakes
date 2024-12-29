@@ -20,7 +20,8 @@ export default function Earthquakes() {
 
   const { data: earthquakes, isLoading } = useQuery({
     queryKey: ["earthquakes", startTime, endTime],
-    queryFn: () => getEarthquakes(startTime, endTime)
+    queryFn: () => getEarthquakes(startTime, endTime),
+    staleTime: 120000 // 2min
   });
 
   useEffect(() => {
