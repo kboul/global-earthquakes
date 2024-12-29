@@ -1,3 +1,4 @@
+import { circleMarkerColor } from "../utils";
 import { FeatureProps } from "./models";
 
 // Convert Epoch time to human readable with specific timezone
@@ -51,7 +52,13 @@ export default function PopupContent({
           </tr>
           <tr className="border-b border-gray-200">
             <td className="py-2 px-2 font-semibold text-gray-700">Magnitude</td>
-            <td className="py-2 px-2 text-gray-700">{mag} Richter</td>
+            <td className="py-2 px-2 text-gray-700">
+              <span
+                className="text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded"
+                style={{ backgroundColor: circleMarkerColor(mag) }}>
+                {mag} Richter
+              </span>
+            </td>
           </tr>
           <tr>
             <td className="py-2 px-2 font-semibold text-gray-700">Details</td>
