@@ -60,3 +60,9 @@ docker compose up
 docker compose down
 
 ```
+
+## Deploy on github pages
+
+```
+npm run deploy
+```
