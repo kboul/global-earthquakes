@@ -3,7 +3,7 @@ import L, { LatLng, GeoJSON } from "leaflet";
 import { useMap } from "react-leaflet";
 import { useQuery } from "@tanstack/react-query";
 
-import AppSpinner from "../../AppSpinner";
+import AppSpinner from "../../ui/AppSpinner";
 import { onEachFeature } from "./utils";
 import { geojsonMarkerOptions } from "../utils";
 import { getEarthquakes } from "../../../api/earthquakes";
