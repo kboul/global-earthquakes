@@ -1,10 +1,11 @@
 import { useEffect } from "react";
-import L, { LatLng, GeoJSON } from "leaflet";
+import { createRoot } from "react-dom/client";
+import L, { LatLng, GeoJSON, Layer } from "leaflet";
 import { useMap } from "react-leaflet";
 import { useQuery } from "@tanstack/react-query";
 
 import AppSpinner from "../../ui/AppSpinner";
-import { onEachFeature } from "./utils";
+import PopupContent from "./PopupContent";
 import { geojsonMarkerOptions } from "../utils";
 import { getEarthquakes } from "../../../api/earthquakes";
 import { FeatureProps } from "./models";
@@ -30,7 +31,20 @@ export default function Earthquakes() {
     if (map && geojson && map.hasLayer(geojson)) map.removeLayer(geojson);
 
     geojson = L.geoJSON(earthquakes.features, {
-      onEachFeature,
+      onEachFeature: (feature: FeatureProps, layer: Layer) => {
+        const {
+          properties,
+          geometry: { coordinates }
+        } = feature;
+
+        const popupContainer = document.createElement("div");
+
+        createRoot(popupContainer).render(
+          <PopupContent properties={properties} coordinates={coordinates} />
+        );
+
+        layer.bindPopup(popupContainer);
+      },
       pointToLayer: (feature: FeatureProps, latlng: LatLng) => {
         const magnitude = feature.properties.mag;
         return L.circleMarker(latlng, geojsonMarkerOptions(magnitude));
