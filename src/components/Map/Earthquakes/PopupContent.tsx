@@ -65,8 +65,8 @@ export default function PopupContent({
             <td className="py-2 px-2">
               <a
                 href={url}
-                className="text-blue-500 hover:text-blue-700 underline">
-                Click here to see more
+                className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                Read more
               </a>
             </td>
           </tr>
