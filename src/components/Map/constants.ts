@@ -3,10 +3,10 @@ const mapHeight = { height: "calc(100vh - 50px)" };
 const tileLayers = [
   {
     id: 1,
-    name: "OpenStreetMap.BlackAndWhite",
+    name: "CartoDB.Positron",
     attribution:
-      '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-    url: "https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png",
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    url: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
     checked: false
   },
   {
