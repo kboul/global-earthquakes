@@ -10,4 +10,5 @@ const days = [
   { value: "30 days", label: "30 days" }
 ];
 
-export { days, initialNumOfDays, initialStartTime };
+export { initialNumOfDays, initialStartTime, days };
+export * from "./tileLayers";

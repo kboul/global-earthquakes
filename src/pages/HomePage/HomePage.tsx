@@ -7,11 +7,11 @@ import {
   AppSelect,
   DateSelections,
   Map
-} from "../components";
-import TileLayers from "../components/TileLayers";
-import { useStore } from "../hooks";
-import { days, initialNumOfDays, initialStartTime } from "../constants";
-import { convertDropdownValue } from "../utils";
+} from "../../components";
+import TileLayers from "./TileLayers";
+import { useStore } from "../../hooks";
+import { convertDropdownValue } from "../../utils";
+import { days, initialNumOfDays, initialStartTime } from "../../constants";
 
 export default function HomePage() {
   const {
