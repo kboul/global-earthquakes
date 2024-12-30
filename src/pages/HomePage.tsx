@@ -8,6 +8,7 @@ import {
   DateSelections,
   Map
 } from "../components";
+import TileLayers from "../components/TileLayers";
 import { useStore } from "../hooks";
 import { days, initialNumOfDays, initialStartTime } from "../constants";
 import { convertDropdownValue } from "../utils";
@@ -103,6 +104,7 @@ export default function HomePage() {
       )}
 
       <Map />
+      <TileLayers />
     </>
   );
 }

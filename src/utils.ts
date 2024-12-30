@@ -1,10 +1,11 @@
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
 import { initialNumOfDays } from "./constants";
 
-const setSearchParam =
-  (name: string, value: string) => (params: URLSearchParams) => {
-    params.set(name, value);
-    return params;
-  };
+function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
 
 const convertDropdownValue = (dropdownValue: string): string => {
   const now = "NOW - ";
@@ -24,4 +25,4 @@ const convertDropdownValue = (dropdownValue: string): string => {
   }
 };
 
-export { convertDropdownValue, setSearchParam };
+export { convertDropdownValue, cn };
