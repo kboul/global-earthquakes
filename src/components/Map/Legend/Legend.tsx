@@ -34,6 +34,10 @@ export default function Legend() {
     };
 
     legend.addTo(map);
+
+    return () => {
+      map.removeControl(legend);
+    };
   }, [map]);
 
   return null;

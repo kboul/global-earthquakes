@@ -1,32 +1,28 @@
-import {
-  MapContainer,
-  TileLayer,
-  LayersControl,
-  GeoJSON,
-  ScaleControl
-} from "react-leaflet";
+import { MapContainer, TileLayer, GeoJSON, ScaleControl } from "react-leaflet";
 
 import Earthquakes from "./Earthquakes";
 import Legend from "./Legend";
 import tectonicPlates from "./PB2002_boundaries.json";
-import { mapHeight, tectonicPlatesStyle, tileLayers } from "./constants";
+import { useStore } from "../../hooks";
+import { mapHeight, tectonicPlatesStyle } from "./constants";
+import { tileLayers } from "../../constants";
 
 export default function Map() {
+  const tectonicPlatesOn = useStore((state) => state.tectonicPlatesOn);
+  const selectedTileLayer = useStore((state) => state.selectedTileLayer);
+
+  const layer = tileLayers.find((layer) => layer.name === selectedTileLayer);
+
   return (
     <MapContainer center={[0, 0]} zoom={3} style={mapHeight}>
-      <LayersControl position="topright">
-        {tileLayers.map(({ id, name, attribution, url, checked }) => (
-          <LayersControl.BaseLayer key={id} name={name} checked={checked}>
-            <TileLayer attribution={attribution} url={url} />
-          </LayersControl.BaseLayer>
-        ))}
-        <LayersControl.Overlay name="Tectonic Plates">
-          <GeoJSON
-            data={tectonicPlates as GeoJSON.GeoJsonObject}
-            style={tectonicPlatesStyle}
-          />
-        </LayersControl.Overlay>
-      </LayersControl>
+      {layer && <TileLayer attribution={layer.attribution} url={layer.url} />}
+
+      {tectonicPlatesOn && (
+        <GeoJSON
+          data={tectonicPlates as GeoJSON.GeoJsonObject}
+          style={tectonicPlatesStyle}
+        />
+      )}
 
       <Earthquakes />
       <ScaleControl />
