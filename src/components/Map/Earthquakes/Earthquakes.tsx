@@ -4,8 +4,8 @@ import L, { LatLng, GeoJSON, Layer } from "leaflet";
 import { useMap } from "react-leaflet";
 import { useQuery } from "@tanstack/react-query";
 
-import AppSpinner from "../../ui/AppSpinner";
 import PopupContent from "./PopupContent";
+import { Spinner } from "../../../components/ui/Spinner";
 import { geojsonMarkerOptions } from "../utils";
 import { getEarthquakes } from "../../../api/earthquakes";
 import { FeatureProps } from "./models";
@@ -54,7 +54,7 @@ export default function Earthquakes() {
     if (map) geojson.addTo(map);
   }, [earthquakes, map]);
 
-  if (isLoading) return <AppSpinner />;
+  if (isLoading) return <Spinner size="large" />;
 
   return null;
 }
