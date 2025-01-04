@@ -7,7 +7,7 @@ import {
   PopoverContent,
   PopoverTrigger
 } from "../../components/ui/popover";
-import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group";
+import { RadioGroup } from "../../components/ui/RadioGroup";
 import { Checkbox } from "../../components/ui/checkbox";
 import { Label } from "../../components/ui/label";
 import { useStore } from "../../hooks";
@@ -37,15 +37,13 @@ export default function TileLayers() {
         onMouseEnter={() => setIsOpen(true)}
         onMouseLeave={() => setIsOpen(false)}>
         <RadioGroup
-          defaultValue={selectedTileLayer}
-          onValueChange={(value) => setStore({ selectedTileLayer: value })}>
-          {tileLayers.map(({ id, name }) => (
-            <div className="flex items-center space-x-2" key={id}>
-              <RadioGroupItem value={name} id={name} />
-              <Label htmlFor={name}>{name}</Label>
-            </div>
-          ))}
-        </RadioGroup>
+          value={selectedTileLayer}
+          onValueChange={(value) => setStore({ selectedTileLayer: value })}
+          options={tileLayers.map((layer) => ({
+            value: layer.name,
+            label: layer.name
+          }))}
+        />
 
         <hr className="my-4" />
 

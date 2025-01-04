@@ -3,9 +3,9 @@ import { useShallow } from "zustand/react/shallow";
 import { Cog6ToothIcon } from "@heroicons/react/24/solid";
 
 import { ResponsiveDialog } from "./ui/ResponsiveDialog";
-import DateSelections from "./DateSelections";
 import { Select } from "./ui/Select";
 import AppInput from "./ui/AppInput";
+import { RadioGroup } from "./ui/RadioGroup";
 import { useStore } from "../hooks";
 import { convertDropdownValue } from "../utils";
 import { days, initialNumOfDays, initialStartTime } from "../constants";
@@ -40,10 +40,7 @@ export default function Navbar() {
     setStartTime(convertDropdownValue(value));
   };
 
-  const handleDateSelectionsChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const { value } = e.target;
+  const handleDateSelectionsChange = (value: string) => {
     setSelectedRadio(value);
     if (value === "days") {
       setNumOfDays(initialNumOfDays);
@@ -71,9 +68,14 @@ export default function Navbar() {
             <Cog6ToothIcon className="w-7 h-7 cursor-pointer text-white" />
           }>
           <div className="flex flex-col gap-y-4">
-            <DateSelections
-              selectedRadio={selectedRadio}
-              onChange={handleDateSelectionsChange}
+            <RadioGroup
+              className="flex flex-row space-x-4"
+              value={selectedRadio}
+              onValueChange={handleDateSelectionsChange}
+              options={[
+                { value: "days", label: "Days" },
+                { value: "timePeriod", label: "Time period" }
+              ]}
             />
 
             <label
