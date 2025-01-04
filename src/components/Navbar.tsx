@@ -4,7 +4,7 @@ import { Cog6ToothIcon } from "@heroicons/react/24/solid";
 
 import { ResponsiveDialog } from "./ui/ResponsiveDialog";
 import DateSelections from "./DateSelections";
-import AppSelect from "./ui/AppSelect";
+import { Select } from "./ui/Select";
 import AppInput from "./ui/AppInput";
 import { useStore } from "../hooks";
 import { convertDropdownValue } from "../utils";
@@ -35,10 +35,9 @@ export default function Navbar() {
 
   const [selectedRadio, setSelectedRadio] = useState("days");
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const dropdownValue = e.target.value;
-    setNumOfDays(dropdownValue);
-    setStartTime(convertDropdownValue(dropdownValue));
+  const handleChange = (value: string) => {
+    setNumOfDays(value);
+    setStartTime(convertDropdownValue(value));
   };
 
   const handleDateSelectionsChange = (
@@ -77,11 +76,16 @@ export default function Navbar() {
               onChange={handleDateSelectionsChange}
             />
 
-            <AppSelect
+            <label
+              className="block text-sm font-medium text-gray-900 dark:text-white"
+              htmlFor="numberOfDays">
+              Number of days
+            </label>
+            <Select
               disabled={selectedRadio === "timePeriod"}
-              label="Days"
-              onChange={handleChange}
+              onValueChange={handleChange}
               options={days}
+              placeholder="Days"
               value={numOfDays}
             />
 
