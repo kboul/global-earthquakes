@@ -66,14 +66,14 @@ if you make any changes to dockerfile
 Rebuild
 
 ```
-docker-compose build --no-cache
+docker compose build --no-cache
 
 ```
 
 and then again
 
 ```
-docker-compose up -d
+docker compose up -d
 
 ```
 

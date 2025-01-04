@@ -1,6 +1,6 @@
 import { useRouteError, isRouteErrorResponse } from "react-router-dom";
 
-import { AppNavbar } from "../components";
+import Navbar from "../components/Navbar";
 
 export default function ErrorPage() {
   const error = useRouteError();
@@ -11,7 +11,7 @@ export default function ErrorPage() {
 
   return (
     <>
-      <AppNavbar />
+      <Navbar />
       <div className="p-5">
         <h1>Oops</h1>
         {errorText}
