@@ -65,6 +65,8 @@ export default function Navbar() {
         </span>
 
         <ResponsiveDialog
+          open={settingsOpen}
+          onOpenChange={(open) => setStore({ settingsOpen: open })}
           title="Search by date"
           Trigger={
             <Cog6ToothIcon className="w-7 h-7 cursor-pointer text-white" />
