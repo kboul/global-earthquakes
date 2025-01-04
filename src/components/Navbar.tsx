@@ -7,8 +7,9 @@ import { Select } from "./ui/Select";
 import AppInput from "./ui/AppInput";
 import { RadioGroup } from "./ui/RadioGroup";
 import { useStore } from "../hooks";
-import { convertDropdownValue } from "../utils";
+import { cn, convertDropdownValue } from "../utils";
 import { days, initialNumOfDays, initialStartTime } from "../constants";
+import { Tooltip } from "./ui/Tooltip";
 
 export default function Navbar() {
   const {
@@ -65,7 +66,13 @@ export default function Navbar() {
           onOpenChange={(open) => setStore({ settingsOpen: open })}
           title="Search by date"
           Trigger={
-            <Cog6ToothIcon className="w-7 h-7 cursor-pointer text-white" />
+            <Cog6ToothIcon
+              className={cn(
+                "h-6 w-6 text-white cursor-pointer",
+                settingsOpen && "fill-[#0ff]"
+              )}
+              title="Settings"
+            />
           }>
           <div className="flex flex-col gap-y-4">
             <RadioGroup
