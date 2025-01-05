@@ -7,7 +7,7 @@ import { useStore } from "../../hooks";
 import { mapHeight, tectonicPlatesStyle } from "./constants";
 import { tileLayers } from "../../constants";
 
-export default function Map() {
+export function Map() {
   const tectonicPlatesOn = useStore((state) => state.tectonicPlatesOn);
   const selectedTileLayer = useStore((state) => state.selectedTileLayer);
 

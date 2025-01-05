@@ -5,7 +5,7 @@ import { GlobeAltIcon } from "@heroicons/react/24/outline";
 
 import { ResponsiveDialog } from "./ui/ResponsiveDialog";
 import { Select } from "./ui/Select";
-import AppInput from "./ui/AppInput";
+import { Input } from "./ui/Input";
 import { RadioGroup } from "./ui/RadioGroup";
 import { useStore } from "../hooks";
 import { cn, convertDropdownValue } from "../utils";
@@ -108,13 +108,13 @@ export default function Navbar() {
                 Time period
               </label>
               <div className="flex gap-x-4">
-                <AppInput
+                <Input
                   disabled={selectedRadio === "days"}
                   type="date"
                   onChange={(e) => setStartTime(e.target.value)}
                   value={startTime}
                 />
-                <AppInput
+                <Input
                   disabled={selectedRadio === "days"}
                   type="date"
                   onChange={(e) => setEndTime(e.target.value)}
