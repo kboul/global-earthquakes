@@ -1,3 +1,4 @@
+import { Badge } from "../../ui/Badge";
 import { Table, TableBody, TableRow, TableCell } from "../../ui/Table";
 import { circleMarkerColor } from "../utils";
 import { FeatureProps } from "./models";
@@ -57,11 +58,11 @@ export default function PopupContent({
           <TableRow>
             <TableCell>Magnitude</TableCell>
             <TableCell>
-              <span
-                className="text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded"
+              <Badge
+                className="text-blue-800"
                 style={{ backgroundColor: circleMarkerColor(mag) }}>
                 {mag} Richter
-              </span>
+              </Badge>
             </TableCell>
           </TableRow>
         </TableBody>
