@@ -18,21 +18,21 @@ export default function DateInput({ label = "", ...props }: DateInputProps) {
   };
 
   return (
-    <div className="relative w-full">
-      <div className="flex items-center gap-1">
-        <Label>{label}</Label>
+    <div className="flex flex-col w-full gap-2">
+      <Label>{label}</Label>
+      <div className="relative w-full ">
         <Input
           className="w-full pr-10" // Add padding-right to leave space for the icon
           ref={inputRef}
           type="date"
           {...props}
         />
-      </div>
 
-      <div
-        className="absolute inset-y-0 right-3 flex items-center"
-        onClick={handleIconClick}>
-        <Calendar className="h-4 w-4 cursor-pointer" />
+        <div
+          className="absolute inset-y-0 right-3 flex items-center"
+          onClick={handleIconClick}>
+          <Calendar className="h-4 w-4 cursor-pointer" />
+        </div>
       </div>
     </div>
   );

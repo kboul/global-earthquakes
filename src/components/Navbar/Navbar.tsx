@@ -1,4 +1,5 @@
 import { GlobeAltIcon } from "@heroicons/react/24/outline";
+
 import SettingsDialog from "./SettingsDialog";
 
 export default function Navbar() {

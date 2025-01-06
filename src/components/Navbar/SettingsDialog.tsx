@@ -90,7 +90,7 @@ export default function SettingsDialog() {
           {
             value: "days",
             content: (
-              <>
+              <div className="flex flex-col gap-2">
                 <Label>Number of days</Label>
                 <Select
                   contentProps={{ className: "z-[1000]" }}
@@ -99,7 +99,7 @@ export default function SettingsDialog() {
                   placeholder="Days"
                   value={numOfDays}
                 />
-              </>
+              </div>
             )
           },
           {
@@ -107,12 +107,12 @@ export default function SettingsDialog() {
             content: (
               <div className="flex gap-x-4">
                 <DateInput
-                  label="From:"
+                  label="Start time"
                   onChange={(e) => setStartTime(e.target.value)}
                   value={startTime}
                 />
                 <DateInput
-                  label="To:"
+                  label="End time"
                   type="date"
                   onChange={(e) => setEndTime(e.target.value)}
                   value={endTime}
