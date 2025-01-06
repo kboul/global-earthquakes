@@ -22,14 +22,14 @@ export default function PopupContent({
   const { time, title, mag, place, url } = properties;
   return (
     <div>
-      <h3 className="text-sm font-bold text-gray-800 mb-2">
+      <h2 className="text-sm font-bold text-gray-800 mb-2">
         <a
           href={url}
           target="_blank"
           className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
           {title}
         </a>
-      </h3>
+      </h2>
       <hr />
 
       <Table>
