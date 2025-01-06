@@ -58,6 +58,7 @@ export default function SettingsDialog() {
 
   return (
     <ResponsiveDialog
+      contentProps={{ className: "z-[1000]" }}
       open={settingsOpen}
       onOpenChange={(open) => setStore({ settingsOpen: open })}
       title={`Search by ${tabMapping[selectedTab]}`}
@@ -83,6 +84,7 @@ export default function SettingsDialog() {
               <>
                 <Label>Number of days</Label>
                 <Select
+                  contentProps={{ className: "z-[1000]" }}
                   onValueChange={handleChange}
                   options={days}
                   placeholder="Days"

@@ -140,17 +140,23 @@ SelectSeparator.displayName = SelectPrimitive.Separator.displayName;
 type Option = Record<string, string>;
 
 type SelectProps = {
+  contentProps?: React.ComponentProps<typeof SelectContent>;
   options: Option[];
   placeholder: string;
 } & SelectPrimitive.SelectProps;
 
-export function Select({ placeholder, options, ...otherProps }: SelectProps) {
+export function Select({
+  contentProps = {},
+  placeholder,
+  options,
+  ...otherProps
+}: SelectProps) {
   return (
     <SelectRoot {...otherProps}>
       <SelectTrigger className="w-full">
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
-      <SelectContent className="z-[1000]">
+      <SelectContent {...contentProps}>
         {options.map((option) => (
           <SelectItem key={option.value} value={option.value}>
             {option.label}
