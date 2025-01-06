@@ -67,3 +67,9 @@
     @apply font-sans antialiased bg-background text-foreground m-0;
   }
 }
+
+/* remove native input calendar icon */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}

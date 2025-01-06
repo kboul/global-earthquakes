@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Cog6ToothIcon } from "@heroicons/react/24/solid";
 import { useShallow } from "zustand/react/shallow";
+import { Calendar } from "lucide-react";
 
 import { ResponsiveDialog } from "../ui/ResponsiveDialog";
 import { Select } from "../ui/Select";
@@ -11,7 +12,7 @@ import { days } from "../../constants";
 import { Label } from "../ui/Label";
 import { useStore } from "../../hooks";
 import { convertDaysDropdownValue } from "../../utils";
-import { initialNumOfDays, initialStartTime } from "../../constants";
+import DateInput from "../ui/DateInput";
 
 // types
 type SelectedTab = "days" | "timePeriod";
@@ -56,6 +57,14 @@ export default function SettingsDialog() {
     setSelectedTab(value as SelectedTab);
   };
 
+  const inputRef = useRef<any>(null);
+
+  const handleIconClick = () => {
+    if (inputRef.current) {
+      inputRef.current.showPicker(); // Opens the native date picker
+    }
+  };
+
   return (
     <ResponsiveDialog
       contentProps={{ className: "z-[1000]" }}
@@ -96,21 +105,19 @@ export default function SettingsDialog() {
           {
             value: "timePeriod",
             content: (
-              <>
-                <Label>Time period</Label>
-                <div className="flex gap-x-4">
-                  <Input
-                    type="date"
-                    onChange={(e) => setStartTime(e.target.value)}
-                    value={startTime}
-                  />
-                  <Input
-                    type="date"
-                    onChange={(e) => setEndTime(e.target.value)}
-                    value={endTime}
-                  />
-                </div>
-              </>
+              <div className="flex gap-x-4">
+                <DateInput
+                  label="From:"
+                  onChange={(e) => setStartTime(e.target.value)}
+                  value={startTime}
+                />
+                <DateInput
+                  label="To:"
+                  type="date"
+                  onChange={(e) => setEndTime(e.target.value)}
+                  value={endTime}
+                />
+              </div>
             )
           }
         ]}
