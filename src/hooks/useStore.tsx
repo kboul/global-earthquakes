@@ -3,6 +3,9 @@ import { devtools, persist } from "zustand/middleware";
 import { CheckedState } from "@radix-ui/react-checkbox";
 
 import { initialNumOfDays, initialStartTime, tileLayers } from "../constants";
+import { getLocalStorageState } from "../utils";
+
+export type SelectedTab = "days" | "timePeriod";
 
 interface Store {
   selectedTileLayer: string;
@@ -11,8 +14,12 @@ interface Store {
   startTime: string;
   endTime: string;
   numOfDays: string;
+  selectedTab: SelectedTab;
   setStore: (newPair: Partial<Store>) => void;
 }
+
+const localStorageName = "global-earthquakes-store";
+const localStorageState = getLocalStorageState(localStorageName)?.state;
 
 const useStore = create<Store>()(
   devtools(
@@ -20,18 +27,23 @@ const useStore = create<Store>()(
       (set) => ({
         selectedTileLayer: tileLayers[1].name,
         settingsOpen: false,
-        startTime: initialStartTime,
+        startTime: localStorageState?.startTime ?? initialStartTime,
         tectonicPlatesOn: false,
-        endTime: "",
-        numOfDays: initialNumOfDays,
+        endTime: localStorageState?.endTime ?? "",
+        numOfDays: localStorageState?.numOfDays ?? initialNumOfDays,
+        selectedTab: "days",
         setStore: (newPair) => set((state) => ({ ...state, ...newPair }))
       }),
       {
-        name: "global-earthquakes-store",
+        name: localStorageName,
         partialize: (state) => ({
           selectedTileLayer: state.selectedTileLayer,
           settingsOpen: state.settingsOpen,
-          tectonicPlatesOn: state.tectonicPlatesOn
+          tectonicPlatesOn: state.tectonicPlatesOn,
+          numOfDays: state.numOfDays,
+          startTime: state.startTime,
+          endTime: state.endTime,
+          selectedTab: state.selectedTab
         })
       }
     )

@@ -25,4 +25,10 @@ const convertDaysDropdownValue = (dropdownValue: string): string => {
   }
 };
 
-export { convertDaysDropdownValue, cn };
+const getLocalStorageState = (localStorageName: string) => {
+  const savedState = localStorage.getItem(localStorageName);
+  if (savedState) return JSON.parse(savedState);
+  return null;
+};
+
+export { convertDaysDropdownValue, cn, getLocalStorageState };

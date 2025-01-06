@@ -8,7 +8,7 @@ type DateInputProps = {
   label?: string;
 } & React.ComponentPropsWithoutRef<"input">;
 
-export default function DateInput({ label = "", ...props }: DateInputProps) {
+export function DateInput({ label = "", ...props }: DateInputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleIconClick = () => {

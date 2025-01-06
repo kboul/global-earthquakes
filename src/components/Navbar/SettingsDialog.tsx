@@ -1,19 +1,16 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { Cog6ToothIcon } from "@heroicons/react/24/solid";
 import { useShallow } from "zustand/react/shallow";
 
 import { ResponsiveDialog } from "../ui/ResponsiveDialog";
 import { Select } from "../ui/Select";
 import { Tabs } from "../ui/Tabs";
-import { cn } from "../../utils";
-import { days } from "../../constants";
+import { DateInput } from "../ui/DateInput";
 import { Label } from "../ui/Label";
 import { useStore } from "../../hooks";
-import { convertDaysDropdownValue } from "../../utils";
-import DateInput from "../ui/DateInput";
-
-// types
-type SelectedTab = "days" | "timePeriod";
+import { SelectedTab } from "../../hooks/useStore";
+import { cn, convertDaysDropdownValue } from "../../utils";
+import { days } from "../../constants";
 
 // constants
 const tabMapping: Record<SelectedTab, string> = {
@@ -22,24 +19,24 @@ const tabMapping: Record<SelectedTab, string> = {
 };
 
 export default function SettingsDialog() {
-  const [selectedTab, setSelectedTab] = useState<SelectedTab>("days");
-
-  const { settingsOpen, numOfDays, startTime, endTime, setStore } = useStore(
-    useShallow((state) => ({
-      settingsOpen: state.settingsOpen,
-      numOfDays: state.numOfDays,
-      startTime: state.startTime,
-      endTime: state.endTime,
-      setStore: state.setStore
-    }))
-  );
+  const { settingsOpen, numOfDays, startTime, endTime, selectedTab, setStore } =
+    useStore(
+      useShallow((state) => ({
+        settingsOpen: state.settingsOpen,
+        numOfDays: state.numOfDays,
+        startTime: state.startTime,
+        endTime: state.endTime,
+        selectedTab: state.selectedTab,
+        setStore: state.setStore
+      }))
+    );
 
   const handleChange = (value: string) => {
     setStore({ numOfDays: value, startTime: convertDaysDropdownValue(value) });
   };
 
   const handleDateSelectionsChange = (value: string) => {
-    setSelectedTab(value as SelectedTab);
+    setStore({ selectedTab: value as SelectedTab });
   };
 
   const inputRef = useRef<any>(null);
