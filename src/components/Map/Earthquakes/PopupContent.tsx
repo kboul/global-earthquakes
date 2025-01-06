@@ -22,7 +22,14 @@ export default function PopupContent({
   const { time, title, mag, place, url } = properties;
   return (
     <div>
-      <h3 className="text-sm font-bold text-gray-800 mb-2">{title}</h3>
+      <h3 className="text-sm font-bold text-gray-800 mb-2">
+        <a
+          href={url}
+          target="_blank"
+          className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+          {title}
+        </a>
+      </h3>
       <hr />
 
       <Table>
@@ -55,16 +62,6 @@ export default function PopupContent({
                 style={{ backgroundColor: circleMarkerColor(mag) }}>
                 {mag} Richter
               </span>
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Details</TableCell>
-            <TableCell className="py-2 px-2">
-              <a
-                href={url}
-                className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                Read more
-              </a>
             </TableCell>
           </TableRow>
         </TableBody>
