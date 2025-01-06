@@ -1,11 +1,9 @@
 import { useRef, useState } from "react";
 import { Cog6ToothIcon } from "@heroicons/react/24/solid";
 import { useShallow } from "zustand/react/shallow";
-import { Calendar } from "lucide-react";
 
 import { ResponsiveDialog } from "../ui/ResponsiveDialog";
 import { Select } from "../ui/Select";
-import { Input } from "../ui/Input";
 import { Tabs } from "../ui/Tabs";
 import { cn } from "../../utils";
 import { days } from "../../constants";
@@ -26,31 +24,18 @@ const tabMapping: Record<SelectedTab, string> = {
 export default function SettingsDialog() {
   const [selectedTab, setSelectedTab] = useState<SelectedTab>("days");
 
-  const {
-    settingsOpen,
-    numOfDays,
-    setNumOfDays,
-    startTime,
-    setStartTime,
-    endTime,
-    setEndTime,
-    setStore
-  } = useStore(
+  const { settingsOpen, numOfDays, startTime, endTime, setStore } = useStore(
     useShallow((state) => ({
       settingsOpen: state.settingsOpen,
       numOfDays: state.numOfDays,
-      setNumOfDays: state.setNumOfDays,
       startTime: state.startTime,
-      setStartTime: state.setStartTime,
       endTime: state.endTime,
-      setEndTime: state.setEndTime,
       setStore: state.setStore
     }))
   );
 
   const handleChange = (value: string) => {
-    setNumOfDays(value);
-    setStartTime(convertDaysDropdownValue(value));
+    setStore({ numOfDays: value, startTime: convertDaysDropdownValue(value) });
   };
 
   const handleDateSelectionsChange = (value: string) => {
@@ -108,13 +93,13 @@ export default function SettingsDialog() {
               <div className="flex gap-x-4">
                 <DateInput
                   label="Start time"
-                  onChange={(e) => setStartTime(e.target.value)}
+                  onChange={(e) => setStore({ startTime: e.target.value })}
                   value={startTime}
                 />
                 <DateInput
                   label="End time"
                   type="date"
-                  onChange={(e) => setEndTime(e.target.value)}
+                  onChange={(e) => setStore({ endTime: e.target.value })}
                   value={endTime}
                 />
               </div>

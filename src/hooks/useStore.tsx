@@ -11,9 +11,6 @@ interface Store {
   startTime: string;
   endTime: string;
   numOfDays: string;
-  setStartTime: (startTime: string) => void;
-  setEndTime: (endTime: string) => void;
-  setNumOfDays: (numOfDays: string) => void;
   setStore: (newPair: Partial<Store>) => void;
 }
 
@@ -27,10 +24,7 @@ const useStore = create<Store>()(
         tectonicPlatesOn: false,
         endTime: "",
         numOfDays: initialNumOfDays,
-        setStore: (newPair) => set((state) => ({ ...state, ...newPair })),
-        setStartTime: (startTime) => set((state) => ({ ...state, startTime })),
-        setEndTime: (endTime) => set((state) => ({ ...state, endTime })),
-        setNumOfDays: (numOfDays) => set((state) => ({ ...state, numOfDays }))
+        setStore: (newPair) => set((state) => ({ ...state, ...newPair }))
       }),
       {
         name: "global-earthquakes-store",
