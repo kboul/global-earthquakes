@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import L, { LatLng, GeoJSON, Layer } from "leaflet";
 import { useMap } from "react-leaflet";
 import { useQuery } from "@tanstack/react-query";
+import { useShallow } from "zustand/react/shallow";
 
 import PopupContent from "./PopupContent";
 import { Spinner } from "../../../components/ui/Spinner";
@@ -16,12 +17,19 @@ let geojson: GeoJSON;
 export default function Earthquakes() {
   const map = useMap();
 
-  const startTime = useStore((state) => state.startTime);
-  const endTime = useStore((state) => state.endTime);
+  const { numOfDays, startTime, endTime, selectedTab } = useStore(
+    useShallow((state) => ({
+      numOfDays: state.numOfDays,
+      startTime: state.startTime,
+      endTime: state.endTime,
+      selectedTab: state.selectedTab
+    }))
+  );
 
   const { data: earthquakes, isLoading } = useQuery({
-    queryKey: ["earthquakes", startTime, endTime],
-    queryFn: () => getEarthquakes(startTime, endTime),
+    queryKey: ["earthquakes", selectedTab, numOfDays, startTime, endTime],
+    queryFn: () =>
+      getEarthquakes({ selectedTab, numOfDays, startTime, endTime }),
     staleTime: 120000 // 2min
   });
 

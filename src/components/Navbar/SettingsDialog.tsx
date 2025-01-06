@@ -9,7 +9,7 @@ import { DateInput } from "../ui/DateInput";
 import { Label } from "../ui/Label";
 import { useStore } from "../../hooks";
 import { SelectedTab } from "../../hooks/useStore";
-import { cn, convertDaysDropdownValue } from "../../utils";
+import { cn } from "../../utils";
 import { days } from "../../constants";
 
 // constants
@@ -31,9 +31,7 @@ export default function SettingsDialog() {
       }))
     );
 
-  const handleChange = (value: string) => {
-    setStore({ numOfDays: value, startTime: convertDaysDropdownValue(value) });
-  };
+  const handleChange = (value: string) => setStore({ numOfDays: value });
 
   const handleDateSelectionsChange = (value: string) => {
     setStore({ selectedTab: value as SelectedTab });

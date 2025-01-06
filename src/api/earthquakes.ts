@@ -1,12 +1,26 @@
 import httpService from "./httpService";
 
-const getEarthquakes = async (startTime: string, endTime: string) => {
+const getEarthquakes = async (params: {
+  selectedTab: string;
+  numOfDays: string;
+  startTime: string;
+  endTime: string;
+}) => {
+  const { selectedTab, numOfDays, startTime, endTime } = params;
   try {
     let queryParams = "format=geojson";
-    if (startTime && endTime)
-      queryParams += `&starttime=${startTime}&endtime=${endTime}`;
-    if (startTime) queryParams += `&starttime=${startTime}`;
-    if (endTime) queryParams += `&endtime=${endTime}`;
+
+    if (selectedTab === "days" && numOfDays) {
+      queryParams += `&starttime=NOW - ${numOfDays}`;
+    }
+    if (selectedTab === "timePeriod") {
+      if (!startTime && !endTime) return;
+
+      if (startTime && endTime)
+        queryParams += `&starttime=${startTime}&endtime=${endTime}`;
+      else if (startTime) queryParams += `&starttime=${startTime}`;
+      else if (endTime) queryParams += `&endtime=${endTime}`;
+    }
 
     const response = await httpService.get(
       `/fdsnws/event/1/query?${queryParams}`

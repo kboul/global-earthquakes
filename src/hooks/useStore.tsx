@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import { CheckedState } from "@radix-ui/react-checkbox";
 
-import { initialNumOfDays, initialStartTime, tileLayers } from "../constants";
+import { initialNumOfDays, tileLayers } from "../constants";
 import { getLocalStorageState } from "../utils";
 
 export type SelectedTab = "days" | "timePeriod";
@@ -27,7 +27,7 @@ const useStore = create<Store>()(
       (set) => ({
         selectedTileLayer: tileLayers[1].name,
         settingsOpen: false,
-        startTime: localStorageState?.startTime ?? initialStartTime,
+        startTime: localStorageState?.startTime ?? "",
         tectonicPlatesOn: false,
         endTime: localStorageState?.endTime ?? "",
         numOfDays: localStorageState?.numOfDays ?? initialNumOfDays,
