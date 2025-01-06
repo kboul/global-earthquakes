@@ -13,8 +13,17 @@ import { useStore } from "../../hooks";
 import { convertDaysDropdownValue } from "../../utils";
 import { initialNumOfDays, initialStartTime } from "../../constants";
 
+// types
+type SelectedTab = "days" | "timePeriod";
+
+// constants
+const tabMapping: Record<SelectedTab, string> = {
+  days: "number of days",
+  timePeriod: "time period"
+};
+
 export default function SettingsDialog() {
-  const [selectedTab, setSelectedTab] = useState("days");
+  const [selectedTab, setSelectedTab] = useState<SelectedTab>("days");
 
   const {
     settingsOpen,
@@ -44,23 +53,14 @@ export default function SettingsDialog() {
   };
 
   const handleDateSelectionsChange = (value: string) => {
-    setSelectedTab(value);
-    if (value === "days") {
-      setNumOfDays(initialNumOfDays);
-      setStartTime(initialStartTime);
-      setEndTime("");
-    }
-    if (value === "timePeriod") {
-      setNumOfDays(initialNumOfDays);
-      setStartTime(convertDaysDropdownValue(initialNumOfDays));
-    }
+    setSelectedTab(value as SelectedTab);
   };
 
   return (
     <ResponsiveDialog
       open={settingsOpen}
       onOpenChange={(open) => setStore({ settingsOpen: open })}
-      title="Search by date"
+      title={`Search by ${tabMapping[selectedTab]}`}
       Trigger={
         <div title="Settings">
           <Cog6ToothIcon
