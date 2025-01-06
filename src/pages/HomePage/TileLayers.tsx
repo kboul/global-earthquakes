@@ -2,14 +2,10 @@ import { useState } from "react";
 import { Layers } from "lucide-react";
 import { useShallow } from "zustand/react/shallow";
 
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger
-} from "../../components/ui/popover";
-import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group";
-import { Checkbox } from "../../components/ui/checkbox";
-import { Label } from "../../components/ui/label";
+import { Popover } from "../../components/ui/Popover";
+import { RadioGroup } from "../../components/ui/RadioGroup";
+import { Checkbox } from "../../components/ui/Checkbox";
+import { Label } from "../../components/ui/Label";
 import { useStore } from "../../hooks";
 import { tileLayers } from "../../constants";
 
@@ -25,40 +21,37 @@ export default function TileLayers() {
   );
 
   return (
-    <Popover open={isOpen} onOpenChange={setIsOpen}>
-      <PopoverTrigger
-        className="absolute top-14 right-3 z-[1000] bg-white dark:bg-gray-800 p-2 rounded-full shadow-md cursor-pointer focus:outline-none"
-        onMouseEnter={() => setIsOpen(true)}
-        onMouseLeave={() => setIsOpen(false)}>
-        <Layers />
-      </PopoverTrigger>
-      <PopoverContent
-        className="z-[1000]"
-        onMouseEnter={() => setIsOpen(true)}
-        onMouseLeave={() => setIsOpen(false)}>
-        <RadioGroup
-          defaultValue={selectedTileLayer}
-          onValueChange={(value) => setStore({ selectedTileLayer: value })}>
-          {tileLayers.map(({ id, name }) => (
-            <div className="flex items-center space-x-2" key={id}>
-              <RadioGroupItem value={name} id={name} />
-              <Label htmlFor={name}>{name}</Label>
-            </div>
-          ))}
-        </RadioGroup>
+    <Popover
+      open={isOpen}
+      contentProps={{
+        className: "z-[1000]",
+        onMouseEnter: () => setIsOpen(true),
+        onMouseLeave: () => setIsOpen(false)
+      }}
+      triggerProps={{
+        className:
+          "absolute top-14 right-2 z-[1000] bg-white dark:bg-gray-800 p-2 rounded-full shadow-md cursor-pointer focus:outline-none",
+        onMouseEnter: () => setIsOpen(true),
+        onMouseLeave: () => setIsOpen(false)
+      }}
+      Trigger={<Layers />}>
+      <RadioGroup
+        value={selectedTileLayer}
+        onValueChange={(value) => setStore({ selectedTileLayer: value })}
+        options={tileLayers.map((layer) => ({
+          value: layer.name,
+          label: layer.name
+        }))}
+      />
+      <hr className="my-4" />
 
-        <hr className="my-4" />
-
-        <div className="flex items-center space-x-2">
-          <Checkbox
-            checked={tectonicPlatesOn}
-            onCheckedChange={(checked) =>
-              setStore({ tectonicPlatesOn: checked })
-            }
-          />
-          <Label>Tectonic Plates</Label>
-        </div>
-      </PopoverContent>
+      <div className="flex items-center space-x-2">
+        <Checkbox
+          checked={tectonicPlatesOn}
+          onCheckedChange={(checked) => setStore({ tectonicPlatesOn: checked })}
+        />
+        <Label>Tectonic Plates</Label>
+      </div>
     </Popover>
   );
 }

@@ -1,10 +1,11 @@
 import * as React from "react";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import { Circle } from "lucide-react";
+import { Label } from "@radix-ui/react-label";
 
 import { cn } from "../../utils";
 
-const RadioGroup = React.forwardRef<
+const RadioGroupRoot = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>
 >(({ className, ...props }, ref) => {
@@ -16,7 +17,7 @@ const RadioGroup = React.forwardRef<
     />
   );
 });
-RadioGroup.displayName = RadioGroupPrimitive.Root.displayName;
+RadioGroupRoot.displayName = RadioGroupPrimitive.Root.displayName;
 
 const RadioGroupItem = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Item>,
@@ -38,4 +39,21 @@ const RadioGroupItem = React.forwardRef<
 });
 RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName;
 
-export { RadioGroup, RadioGroupItem };
+type Option = { value: string; label: string };
+
+type RadioGroupProps = { options: Option[] } & React.ComponentProps<
+  typeof RadioGroupPrimitive.Root
+>;
+
+export function RadioGroup({ options, ...otherProps }: RadioGroupProps) {
+  return (
+    <RadioGroupRoot {...otherProps}>
+      {options.map(({ value, label }) => (
+        <div className="flex items-center space-x-2" key={value}>
+          <RadioGroupItem value={value} id={value} />
+          <Label htmlFor={value}>{label}</Label>
+        </div>
+      ))}
+    </RadioGroupRoot>
+  );
+}

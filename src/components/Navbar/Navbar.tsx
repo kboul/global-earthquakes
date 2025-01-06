@@ -1,9 +1,8 @@
-import { Cog6ToothIcon } from "@heroicons/react/24/solid";
+import { GlobeAltIcon } from "@heroicons/react/24/outline";
 
-import { useStore } from "../hooks";
+import SettingsDialog from "./SettingsDialog";
 
 export default function Navbar() {
-  const setStore = useStore((state) => state.setStore);
   return (
     <nav className="bg-[#3d5e80] border-gray-200">
       <div className="flex flex-wrap items-center justify-between p-2">
@@ -11,10 +10,10 @@ export default function Navbar() {
           Global Earthquakes
         </span>
 
-        <Cog6ToothIcon
-          className="w-7 h-7 cursor-pointer text-white"
-          onClick={() => setStore({ settingsOpen: true })}
-        />
+        <div className="flex gap-2 cursor-pointer">
+          <GlobeAltIcon className="w-7 h-7 text-[#0ff]" title="Map" />
+          <SettingsDialog />
+        </div>
       </div>
     </nav>
   );

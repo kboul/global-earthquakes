@@ -1,3 +1,5 @@
+import { Badge } from "../../ui/Badge";
+import { Table, TableBody, TableRow, TableCell } from "../../ui/Table";
 import { circleMarkerColor } from "../utils";
 import { FeatureProps } from "./models";
 
@@ -21,57 +23,50 @@ export default function PopupContent({
   const { time, title, mag, place, url } = properties;
   return (
     <div>
-      <h3 className="text-sm font-bold text-gray-800 mb-2">{title}</h3>
+      <h2 className="text-sm font-bold text-gray-800 mb-2">
+        <a
+          href={url}
+          target="_blank"
+          className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+          {title}
+        </a>
+      </h2>
       <hr />
 
-      <table className="w-full table-fixed border-collapse">
-        <tbody>
-          <tr className="border-b border-gray-200">
-            <td className="py-2 px-2 font-semibold text-gray-700">Place</td>
-            <td className="py-2 px-2 text-gray-700">{place ?? "Unknown"}</td>
-          </tr>
-          <tr className="border-b border-gray-200">
-            <td className="py-2 px-2 font-semibold text-gray-700">
-              Time (GMC+3)
-            </td>
-            <td className="py-2 px-2 text-gray-700">
-              {timeConverter(time, 3)}
-            </td>
-          </tr>
-          <tr className="border-b border-gray-200">
-            <td className="py-2 px-2 font-semibold text-gray-700">Latitude</td>
-            <td className="py-2 px-2 text-gray-700">{coordinates[1]}</td>
-          </tr>
-          <tr className="border-b border-gray-200">
-            <td className="py-2 px-2 font-semibold text-gray-700">Longitude</td>
-            <td className="py-2 px-2 text-gray-700">{coordinates[0]}</td>
-          </tr>
-          <tr className="border-b border-gray-200">
-            <td className="py-2 px-2 font-semibold text-gray-700">Depth</td>
-            <td className="py-2 px-2 text-gray-700">{coordinates[2]} km</td>
-          </tr>
-          <tr className="border-b border-gray-200">
-            <td className="py-2 px-2 font-semibold text-gray-700">Magnitude</td>
-            <td className="py-2 px-2 text-gray-700">
-              <span
-                className="text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded"
+      <Table>
+        <TableBody>
+          <TableRow>
+            <TableCell>Place</TableCell>
+            <TableCell>{place ?? "Unknown"}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Time (GMC+3)</TableCell>
+            <TableCell>{timeConverter(time, 3)}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Latitude</TableCell>
+            <TableCell>{coordinates[1]}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Longitude</TableCell>
+            <TableCell>{coordinates[0]}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Depth</TableCell>
+            <TableCell>{coordinates[2]} km</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Magnitude</TableCell>
+            <TableCell>
+              <Badge
+                className="text-blue-800"
                 style={{ backgroundColor: circleMarkerColor(mag) }}>
                 {mag} Richter
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td className="py-2 px-2 font-semibold text-gray-700">Details</td>
-            <td className="py-2 px-2">
-              <a
-                href={url}
-                className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                Read more
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+              </Badge>
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     </div>
   );
 }
