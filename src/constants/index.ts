@@ -1,4 +1,4 @@
-const initialNumOfDays = "3days";
+const initialNumOfDays = "3 days";
 
 const initialStartTime = "NOW - 3days";
 
