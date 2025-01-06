@@ -7,7 +7,7 @@ function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-const convertDropdownValue = (dropdownValue: string): string => {
+const convertDaysDropdownValue = (dropdownValue: string): string => {
   const now = "NOW - ";
   switch (dropdownValue) {
     case "1 day":
@@ -25,4 +25,4 @@ const convertDropdownValue = (dropdownValue: string): string => {
   }
 };
 
-export { convertDropdownValue, cn };
+export { convertDaysDropdownValue, cn };

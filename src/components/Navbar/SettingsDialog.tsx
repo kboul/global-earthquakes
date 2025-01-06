@@ -10,7 +10,7 @@ import { cn } from "../../utils";
 import { days } from "../../constants";
 import { Label } from "../ui/Label";
 import { useStore } from "../../hooks";
-import { convertDropdownValue } from "../../utils";
+import { convertDaysDropdownValue } from "../../utils";
 import { initialNumOfDays, initialStartTime } from "../../constants";
 
 export default function SettingsDialog() {
@@ -40,7 +40,7 @@ export default function SettingsDialog() {
 
   const handleChange = (value: string) => {
     setNumOfDays(value);
-    setStartTime(convertDropdownValue(value));
+    setStartTime(convertDaysDropdownValue(value));
   };
 
   const handleDateSelectionsChange = (value: string) => {
@@ -52,7 +52,7 @@ export default function SettingsDialog() {
     }
     if (value === "timePeriod") {
       setNumOfDays(initialNumOfDays);
-      setStartTime(convertDropdownValue(initialNumOfDays));
+      setStartTime(convertDaysDropdownValue(initialNumOfDays));
     }
   };
 
