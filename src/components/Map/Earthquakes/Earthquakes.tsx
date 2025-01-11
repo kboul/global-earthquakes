@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useShallow } from "zustand/react/shallow";
 
 import PopupContent from "./PopupContent";
-import { Spinner } from "../../../components/ui/Spinner";
+import { AppSpinner } from "../../ui/AppSpinner";
 import { geojsonMarkerOptions } from "../utils";
 import { getEarthquakes } from "../../../api/earthquakes";
 import { FeatureProps } from "./models";
@@ -62,7 +62,7 @@ export default function Earthquakes() {
     if (map) geojson.addTo(map);
   }, [earthquakes, map]);
 
-  if (isLoading) return <Spinner size="large" />;
+  if (isLoading) return <AppSpinner size="large" />;
 
   return null;
 }

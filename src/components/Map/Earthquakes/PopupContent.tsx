@@ -1,5 +1,6 @@
-import { Badge } from "../../ui/Badge";
-import { Table, TableBody, TableRow, TableCell } from "../../ui/Table";
+import { useMemo } from "react";
+import { AppBadge } from "../../ui/AppBadge";
+import { AppTwoColumnTable } from "../../ui/Table";
 import { circleMarkerColor } from "../utils";
 import { FeatureProps } from "./models";
 
@@ -21,6 +22,41 @@ export default function PopupContent({
   coordinates
 }: PopupContentProps) {
   const { time, title, mag, place, url } = properties;
+
+  const data = useMemo(
+    () => [
+      {
+        id: "place",
+        firstColumn: "Place",
+        secondColumn: place ?? "Unknown"
+      },
+      {
+        id: "time",
+        firstColumn: "Time (GMC+3)",
+        secondColumn: timeConverter(time, 3)
+      },
+      { id: "lat", firstColumn: "Latitude", secondColumn: coordinates[1] },
+      { id: "lon", firstColumn: "Longitude", secondColumn: coordinates[0] },
+      {
+        id: "depth",
+        firstColumn: "Depth",
+        secondColumn: `${coordinates[2]} km`
+      },
+      {
+        id: "magnitude",
+        firstColumn: "Magnitude",
+        secondColumn: (
+          <AppBadge
+            className="text-blue-800"
+            style={{ backgroundColor: circleMarkerColor(mag) }}>
+            {mag} Richter
+          </AppBadge>
+        )
+      }
+    ],
+    [place, time, coordinates, mag]
+  );
+
   return (
     <div>
       <h2 className="text-sm font-bold text-gray-800 mb-2">
@@ -33,40 +69,7 @@ export default function PopupContent({
       </h2>
       <hr />
 
-      <Table>
-        <TableBody>
-          <TableRow>
-            <TableCell>Place</TableCell>
-            <TableCell>{place ?? "Unknown"}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Time (GMC+3)</TableCell>
-            <TableCell>{timeConverter(time, 3)}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Latitude</TableCell>
-            <TableCell>{coordinates[1]}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Longitude</TableCell>
-            <TableCell>{coordinates[0]}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Depth</TableCell>
-            <TableCell>{coordinates[2]} km</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Magnitude</TableCell>
-            <TableCell>
-              <Badge
-                className="text-blue-800"
-                style={{ backgroundColor: circleMarkerColor(mag) }}>
-                {mag} Richter
-              </Badge>
-            </TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
+      <AppTwoColumnTable data={data} />
     </div>
   );
 }

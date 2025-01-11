@@ -4,7 +4,7 @@ import { Check, ChevronDown, ChevronUp } from "lucide-react";
 
 import { cn } from "../../utils";
 
-const SelectRoot = SelectPrimitive.Root;
+const Select = SelectPrimitive.Root;
 
 const SelectGroup = SelectPrimitive.Group;
 
@@ -139,20 +139,20 @@ SelectSeparator.displayName = SelectPrimitive.Separator.displayName;
 
 type Option = Record<string, string>;
 
-type SelectProps = {
+type AppSelectProps = {
   contentProps?: React.ComponentProps<typeof SelectContent>;
   options: Option[];
   placeholder: string;
 } & SelectPrimitive.SelectProps;
 
-export function Select({
+export function AppSelect({
   contentProps = {},
   placeholder,
   options,
   ...otherProps
-}: SelectProps) {
+}: AppSelectProps) {
   return (
-    <SelectRoot {...otherProps}>
+    <Select {...otherProps}>
       <SelectTrigger className="w-full">
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
@@ -163,6 +163,6 @@ export function Select({
           </SelectItem>
         ))}
       </SelectContent>
-    </SelectRoot>
+    </Select>
   );
 }

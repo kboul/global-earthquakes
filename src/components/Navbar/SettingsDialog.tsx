@@ -1,12 +1,11 @@
-import { useRef } from "react";
 import { Cog6ToothIcon } from "@heroicons/react/24/solid";
 import { useShallow } from "zustand/react/shallow";
 
-import { ResponsiveDialog } from "../ui/ResponsiveDialog";
-import { Select } from "../ui/Select";
-import { Tabs } from "../ui/Tabs";
-import { DateInput } from "../ui/DateInput";
-import { Label } from "../ui/Label";
+import { AppResponsiveDialog } from "../ui/AppResponsiveDialog";
+import { AppSelect } from "../ui/AppSelect";
+import { AppTabs } from "../ui/AppTabs";
+import { AppDateInput } from "../ui/AppDateInput";
+import { AppLabel } from "../ui/AppLabel";
 import { useStore } from "../../hooks";
 import { SelectedTab } from "../../hooks/useStore";
 import { cn } from "../../utils";
@@ -37,16 +36,8 @@ export default function SettingsDialog() {
     setStore({ selectedTab: value as SelectedTab });
   };
 
-  const inputRef = useRef<any>(null);
-
-  const handleIconClick = () => {
-    if (inputRef.current) {
-      inputRef.current.showPicker(); // Opens the native date picker
-    }
-  };
-
   return (
-    <ResponsiveDialog
+    <AppResponsiveDialog
       contentProps={{ className: "z-[1000]" }}
       open={settingsOpen}
       onOpenChange={(open) => setStore({ settingsOpen: open })}
@@ -59,7 +50,7 @@ export default function SettingsDialog() {
           />
         </div>
       }>
-      <Tabs
+      <AppTabs
         value={selectedTab}
         onValueChange={handleDateSelectionsChange}
         triggers={[
@@ -71,8 +62,8 @@ export default function SettingsDialog() {
             value: "days",
             content: (
               <div className="flex flex-col gap-2">
-                <Label>Number of days</Label>
-                <Select
+                <AppLabel>Number of days</AppLabel>
+                <AppSelect
                   contentProps={{ className: "z-[1000]" }}
                   onValueChange={handleChange}
                   options={days}
@@ -86,12 +77,12 @@ export default function SettingsDialog() {
             value: "timePeriod",
             content: (
               <div className="flex gap-x-4">
-                <DateInput
+                <AppDateInput
                   label="Start time"
                   onChange={(e) => setStore({ startTime: e.target.value })}
                   value={startTime}
                 />
-                <DateInput
+                <AppDateInput
                   label="End time"
                   type="date"
                   onChange={(e) => setStore({ endTime: e.target.value })}
@@ -102,6 +93,6 @@ export default function SettingsDialog() {
           }
         ]}
       />
-    </ResponsiveDialog>
+    </AppResponsiveDialog>
   );
 }

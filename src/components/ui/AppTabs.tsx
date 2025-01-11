@@ -3,7 +3,7 @@ import * as TabsPrimitive from "@radix-ui/react-tabs";
 
 import { cn } from "../../utils";
 
-const TabsRoot = TabsPrimitive.Root;
+const Tabs = TabsPrimitive.Root;
 
 const TabsList = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.List>,
@@ -50,15 +50,15 @@ const TabsContent = React.forwardRef<
 ));
 TabsContent.displayName = TabsPrimitive.Content.displayName;
 
-type TabsProps = {
+type AppTabsProps = {
   triggers: { value: string; content: React.ReactNode }[];
   contents: { value: string; content: React.ReactNode }[];
 } & TabsPrimitive.TabsProps &
   React.RefAttributes<HTMLDivElement>;
 
-export function Tabs({ triggers, contents, ...otherProps }: TabsProps) {
+export function AppTabs({ triggers, contents, ...otherProps }: AppTabsProps) {
   return (
-    <TabsRoot {...otherProps}>
+    <Tabs {...otherProps}>
       <TabsList>
         {triggers.map(({ value, content }) => (
           <TabsTrigger key={value} value={value}>
@@ -71,6 +71,6 @@ export function Tabs({ triggers, contents, ...otherProps }: TabsProps) {
           {content}
         </TabsContent>
       ))}
-    </TabsRoot>
+    </Tabs>
   );
 }

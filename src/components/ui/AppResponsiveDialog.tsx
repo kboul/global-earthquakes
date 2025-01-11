@@ -126,7 +126,7 @@ ResponsiveModalDescription.displayName =
 
 type Side = "top" | "bottom" | "left" | "right";
 
-type ResponsiveDialogProps = {
+type AppResponsiveDialogProps = {
   children: React.ReactNode;
   contentProps?: React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>;
   side?: Side;
@@ -134,14 +134,14 @@ type ResponsiveDialogProps = {
   Trigger: React.ReactNode;
 } & DialogPrimitive.DialogProps;
 
-export function ResponsiveDialog({
+export function AppResponsiveDialog({
   children,
   contentProps = {},
   side = "bottom",
   title,
   Trigger,
   ...otherProps
-}: ResponsiveDialogProps) {
+}: AppResponsiveDialogProps) {
   return (
     <ResponsiveModal {...otherProps}>
       <ResponsiveModalTrigger asChild>{Trigger}</ResponsiveModalTrigger>

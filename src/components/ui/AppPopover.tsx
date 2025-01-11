@@ -28,20 +28,20 @@ const PopoverContent = React.forwardRef<
 ));
 PopoverContent.displayName = PopoverPrimitive.Content.displayName;
 
-type PopoverProps = {
+type AppPopoverProps = {
   children: React.ReactNode;
   contentProps?: React.ComponentPropsWithoutRef<typeof PopoverContent>;
   triggerProps?: React.ComponentPropsWithoutRef<typeof PopoverTrigger>;
   Trigger: React.ReactNode;
 } & PopoverPrimitive.PopoverProps;
 
-export function Popover({
+export function AppPopover({
   children,
   contentProps = {},
   triggerProps = {},
   Trigger,
   ...otherProps
-}: PopoverProps) {
+}: AppPopoverProps) {
   return (
     <PopoverRoot {...otherProps}>
       <PopoverTrigger {...triggerProps}>{Trigger}</PopoverTrigger>
