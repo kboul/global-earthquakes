@@ -1,6 +1,7 @@
 import { useMemo } from "react";
+
 import { AppBadge } from "../../ui/AppBadge";
-import { AppTwoColumnTable } from "../../ui/Table";
+import { AppTwoColumnTable } from "../../ui/AppTable";
 import { circleMarkerColor } from "../utils";
 import { FeatureProps } from "./models";
 
