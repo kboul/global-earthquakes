@@ -1,5 +1,5 @@
 import { QueryClient } from "@tanstack/react-query";
 
-export default new QueryClient({
+export const queryClient = new QueryClient({
   defaultOptions: { queries: { refetchOnWindowFocus: false } }
 });

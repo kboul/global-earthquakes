@@ -25,8 +25,7 @@ const getEarthquakes = async (params: {
     const response = await httpService.get(
       `/fdsnws/event/1/query?${queryParams}`
     );
-    const { data } = response;
-    return data;
+    return response.data;
   } catch (error) {
     console.log("There was an error while getting the earthquakes", error);
     return false;

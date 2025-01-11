@@ -1,14 +1,14 @@
 import { useRef } from "react";
 import { Calendar } from "lucide-react";
 
-import { Input } from "./Input";
-import { Label } from "./Label";
+import { AppInput } from "./AppInput";
+import { AppLabel } from "./AppLabel";
 
-type DateInputProps = {
+type AppDateInputProps = {
   label?: string;
 } & React.ComponentPropsWithoutRef<"input">;
 
-export function DateInput({ label = "", ...props }: DateInputProps) {
+export function AppDateInput({ label = "", ...props }: AppDateInputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleIconClick = () => {
@@ -19,9 +19,9 @@ export function DateInput({ label = "", ...props }: DateInputProps) {
 
   return (
     <div className="flex flex-col w-full gap-2">
-      <Label>{label}</Label>
+      <AppLabel>{label}</AppLabel>
       <div className="relative w-full ">
-        <Input
+        <AppInput
           className="w-full pr-10" // Add padding-right to leave space for the icon
           ref={inputRef}
           type="date"

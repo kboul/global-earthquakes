@@ -2,27 +2,7 @@
 
 A react app to visualize global earthquakes on a map in different time periods, using filtering capabilities, and provide metadata for each earthquake.
 
-## Run the project
-
-clone the project
-
-select master branch
-
-Navigate to the root folder:
-
-```
-pnpm install
-```
-
-```
-pnpm start
-```
-
-browser listens to [http://localhost:3000](http://localhost:3000) as default port
-
-### The engine "node" is incompatible with this module
-
-## Run the dockerized app
+## Run the app via docker
 
 Without app refreshing on dev changes
 

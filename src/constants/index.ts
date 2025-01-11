@@ -9,4 +9,5 @@ const days = [
 ];
 
 export { initialNumOfDays, days };
+export * from "./queryClient";
 export * from "./tileLayers";

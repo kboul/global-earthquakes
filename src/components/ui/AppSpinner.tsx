@@ -35,17 +35,14 @@ interface SpinnerContentProps
   children?: React.ReactNode;
 }
 
-export function Spinner({
-  size,
-  show,
-  children,
-  className
-}: SpinnerContentProps) {
-  return (
-    <span
-      className={`${spinnerVariants({ show })} absolute top-[50%] left-[50%] z-[999999]`}>
-      <Loader2 className={cn(loaderVariants({ size }), className)} />
-      {children}
-    </span>
-  );
-}
+export const AppSpinner = React.memo(
+  ({ size, show, children, className }: SpinnerContentProps) => {
+    return (
+      <span
+        className={`${spinnerVariants({ show })} absolute top-[50%] left-[50%] z-[999999]`}>
+        <Loader2 className={cn(loaderVariants({ size }), className)} />
+        {children}
+      </span>
+    );
+  }
+);

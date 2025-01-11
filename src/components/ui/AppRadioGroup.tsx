@@ -5,7 +5,7 @@ import { Label } from "@radix-ui/react-label";
 
 import { cn } from "../../utils";
 
-const RadioGroupRoot = React.forwardRef<
+const RadioGroup = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>
 >(({ className, ...props }, ref) => {
@@ -17,7 +17,7 @@ const RadioGroupRoot = React.forwardRef<
     />
   );
 });
-RadioGroupRoot.displayName = RadioGroupPrimitive.Root.displayName;
+RadioGroup.displayName = RadioGroupPrimitive.Root.displayName;
 
 const RadioGroupItem = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Item>,
@@ -41,19 +41,19 @@ RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName;
 
 type Option = { value: string; label: string };
 
-type RadioGroupProps = { options: Option[] } & React.ComponentProps<
+type AppRadioGroupProps = { options: Option[] } & React.ComponentProps<
   typeof RadioGroupPrimitive.Root
 >;
 
-export function RadioGroup({ options, ...otherProps }: RadioGroupProps) {
+export function AppRadioGroup({ options, ...otherProps }: AppRadioGroupProps) {
   return (
-    <RadioGroupRoot {...otherProps}>
+    <RadioGroup {...otherProps}>
       {options.map(({ value, label }) => (
         <div className="flex items-center space-x-2" key={value}>
           <RadioGroupItem value={value} id={value} />
           <Label htmlFor={value}>{label}</Label>
         </div>
       ))}
-    </RadioGroupRoot>
+    </RadioGroup>
   );
 }

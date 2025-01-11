@@ -118,3 +118,28 @@ export {
   TableCell,
   TableCaption
 };
+
+type AppTwoColumnTableProps = {
+  data: {
+    id: string;
+    firstColumn: string;
+    secondColumn: string | React.ReactNode;
+  }[];
+};
+
+export const AppTwoColumnTable = React.memo(function AppTwoColumnTable({
+  data
+}: AppTwoColumnTableProps) {
+  return (
+    <Table>
+      <TableBody>
+        {data.map(({ id, firstColumn, secondColumn }) => (
+          <TableRow key={id}>
+            <TableCell>{firstColumn}</TableCell>
+            <TableCell>{secondColumn}</TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  );
+});

@@ -3,7 +3,7 @@ import * as PopoverPrimitive from "@radix-ui/react-popover";
 
 import { cn } from "../../utils";
 
-const PopoverRoot = PopoverPrimitive.Root;
+const Popover = PopoverPrimitive.Root;
 
 const PopoverTrigger = PopoverPrimitive.Trigger;
 
@@ -26,26 +26,27 @@ const PopoverContent = React.forwardRef<
     />
   </PopoverPrimitive.Portal>
 ));
+
 PopoverContent.displayName = PopoverPrimitive.Content.displayName;
 
-type PopoverProps = {
+type AppPopoverProps = {
   children: React.ReactNode;
   contentProps?: React.ComponentPropsWithoutRef<typeof PopoverContent>;
   triggerProps?: React.ComponentPropsWithoutRef<typeof PopoverTrigger>;
   Trigger: React.ReactNode;
 } & PopoverPrimitive.PopoverProps;
 
-export function Popover({
+export function AppPopover({
   children,
   contentProps = {},
   triggerProps = {},
   Trigger,
   ...otherProps
-}: PopoverProps) {
+}: AppPopoverProps) {
   return (
-    <PopoverRoot {...otherProps}>
+    <Popover {...otherProps}>
       <PopoverTrigger {...triggerProps}>{Trigger}</PopoverTrigger>
       <PopoverContent {...contentProps}>{children}</PopoverContent>
-    </PopoverRoot>
+    </Popover>
   );
 }
