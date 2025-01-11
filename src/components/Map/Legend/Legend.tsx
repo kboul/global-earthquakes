@@ -3,6 +3,7 @@ import { Control, DomUtil } from "leaflet";
 import { useMap } from "react-leaflet";
 
 import { circleMarkerColor } from "../utils";
+import { cn } from "../../../utils";
 import "./index.css";
 
 export default function Legend() {
@@ -15,21 +16,32 @@ export default function Legend() {
 
     legend.onAdd = () => {
       const div = DomUtil.create("div", "info legend");
+      div.className = cn(
+        "p-4",
+        "bg-white",
+        "rounded-lg",
+        "shadow-md",
+        "space-y-2",
+        "text-sm",
+        "text-gray-700"
+      );
+
       const grades = [0, 1, 2, 3, 5, 7];
-      const labels = [];
-
-      labels.push("<h4>Magnitude</h4>");
-
-      grades.forEach((from, index) => {
+      const labels = grades.map((from, index) => {
         const to = grades[index + 1];
-        labels.push(
-          `<i style="background:${circleMarkerColor(from + 1)}"></i>${from}${
-            to ? `&ndash;${to}` : "+"
-          }`
-        );
+        return `
+          <div class="flex items-center space-x-2">
+            <i style="background: ${circleMarkerColor(from + 1)}; width: 20px; height: 20px; display: inline-block; border-radius: 4px;"></i>
+            <span>${from}${to ? `&ndash;${to}` : "+"}</span>
+          </div>
+        `;
       });
 
-      div.innerHTML = labels.join("<br>");
+      div.innerHTML = `
+        <h4 class="font-bold">Magnitude</h4>
+        ${labels.join("")}
+      `;
+
       return div;
     };
 
