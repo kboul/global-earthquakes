@@ -18,6 +18,7 @@ const AppInput = React.forwardRef<
     />
   );
 });
+
 AppInput.displayName = "Input";
 
 export { AppInput };

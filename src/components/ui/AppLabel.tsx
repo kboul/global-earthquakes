@@ -19,6 +19,7 @@ const AppLabel = React.forwardRef<
     {...props}
   />
 ));
+
 AppLabel.displayName = LabelPrimitive.Root.displayName;
 
 export { AppLabel };

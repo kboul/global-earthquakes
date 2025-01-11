@@ -21,6 +21,7 @@ const AppCheckbox = React.forwardRef<
     </CheckboxPrimitive.Indicator>
   </CheckboxPrimitive.Root>
 ));
+
 AppCheckbox.displayName = CheckboxPrimitive.Root.displayName;
 
 export { AppCheckbox };

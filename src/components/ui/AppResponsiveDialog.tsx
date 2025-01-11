@@ -121,6 +121,7 @@ const ResponsiveModalDescription = React.forwardRef<
     {...props}
   />
 ));
+
 ResponsiveModalDescription.displayName =
   DialogPrimitive.Description.displayName;
 
