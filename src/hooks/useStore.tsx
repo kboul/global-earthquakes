@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import { CheckedState } from "@radix-ui/react-checkbox";
 
-import { initialNumOfDays, tileLayers } from "../constants";
+import { colorPalettes, initialNumOfDays, tileLayers } from "../constants";
 import { getLocalStorageState } from "../utils";
 
 export type SelectedTab = "days" | "timePeriod";
@@ -16,7 +16,7 @@ interface Store {
   numOfDays: string;
   selectedTab: SelectedTab;
   magnitudePaletteOpen: boolean;
-  selectedPalette: string;
+  magnitudePalette: string;
   setStore: (newPair: Partial<Store>) => void;
 }
 
@@ -28,9 +28,9 @@ const useStore = create<Store>()(
     persist(
       (set) => ({
         endTime: localStorageState?.endTime ?? "",
+        magnitudePalette: Object.keys(colorPalettes)[0],
         magnitudePaletteOpen: false,
         numOfDays: localStorageState?.numOfDays ?? initialNumOfDays,
-        selectedPalette: "default",
         selectedTab: "days",
         selectedTileLayer: tileLayers[1].name,
         settingsOpen: false,
@@ -42,9 +42,9 @@ const useStore = create<Store>()(
         name: localStorageName,
         partialize: (state) => ({
           endTime: state.endTime,
+          magnitudePalette: state.magnitudePalette,
           magnitudePaletteOpen: state.magnitudePaletteOpen,
           numOfDays: state.numOfDays,
-          selectedPalette: state.selectedPalette,
           selectedTab: state.selectedTab,
           selectedTileLayer: state.selectedTileLayer,
           settingsOpen: state.settingsOpen,

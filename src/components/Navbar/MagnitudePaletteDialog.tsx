@@ -1,19 +1,18 @@
 import { SwatchIcon } from "@heroicons/react/24/outline";
 import { useShallow } from "zustand/react/shallow";
 
+import { AppLabel } from "../ui/AppLabel";
 import { AppResponsiveDialog } from "../ui/AppResponsiveDialog";
 import { AppRadioGroup } from "../ui/AppRadioGroup";
 import { useStore } from "../../hooks";
 import { cn } from "../../utils";
-import { colorPalette } from "../../constants";
-import { AppLabel } from "../ui/AppLabel";
-import { Label } from "@radix-ui/react-label";
+import { colorPalettes } from "../../constants";
 
 export default function MagnitudePaletteDialog() {
-  const { magnitudePaletteOpen, selectedPalette, setStore } = useStore(
+  const { magnitudePaletteOpen, magnitudePalette, setStore } = useStore(
     useShallow((state) => ({
       magnitudePaletteOpen: state.magnitudePaletteOpen,
-      selectedPalette: state.selectedPalette,
+      magnitudePalette: state.magnitudePalette,
       setStore: state.setStore
     }))
   );
@@ -23,7 +22,7 @@ export default function MagnitudePaletteDialog() {
       contentProps={{ className: "z-[1000]" }}
       open={magnitudePaletteOpen}
       onOpenChange={(open) => setStore({ magnitudePaletteOpen: open })}
-      title="Magnitude palette"
+      title="Magnitude palette picker"
       Trigger={
         <SwatchIcon
           className={cn(
@@ -35,14 +34,16 @@ export default function MagnitudePaletteDialog() {
       }>
       <div className="rounded-lg p-4 bg-white shadow-md">
         <p className="text-sm text-muted-foreground">
-          Choose a color palette for the magnitude circles.
+          Choose a color palette for the magnitude circles display.
+          <br />
+          From left to right min to max magnitude is depicted.
         </p>
         <hr className="my-2" />
 
         <AppRadioGroup
-          value={selectedPalette}
-          onValueChange={(value) => setStore({ selectedPalette: value })}
-          options={Object.entries(colorPalette).map(([name, colors]) => ({
+          value={magnitudePalette}
+          onValueChange={(value) => setStore({ magnitudePalette: value })}
+          options={Object.entries(colorPalettes).map(([name, colors]) => ({
             value: name,
             label: (
               <div className="flex gap-1 items-center">

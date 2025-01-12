@@ -17,14 +17,16 @@ let geojson: GeoJSON;
 export default function Earthquakes() {
   const map = useMap();
 
-  const { numOfDays, startTime, endTime, selectedTab } = useStore(
-    useShallow((state) => ({
-      numOfDays: state.numOfDays,
-      startTime: state.startTime,
-      endTime: state.endTime,
-      selectedTab: state.selectedTab
-    }))
-  );
+  const { magnitudePalette, numOfDays, startTime, endTime, selectedTab } =
+    useStore(
+      useShallow((state) => ({
+        magnitudePalette: state.magnitudePalette,
+        numOfDays: state.numOfDays,
+        startTime: state.startTime,
+        endTime: state.endTime,
+        selectedTab: state.selectedTab
+      }))
+    );
 
   const { data: earthquakes, isLoading } = useQuery({
     queryKey: ["earthquakes", selectedTab, numOfDays, startTime, endTime],
@@ -55,12 +57,15 @@ export default function Earthquakes() {
       },
       pointToLayer: (feature: FeatureProps, latlng: LatLng) => {
         const magnitude = feature.properties.mag;
-        return L.circleMarker(latlng, geojsonMarkerOptions(magnitude));
+        return L.circleMarker(
+          latlng,
+          geojsonMarkerOptions(magnitude, magnitudePalette)
+        );
       }
     });
 
     if (map) geojson.addTo(map);
-  }, [earthquakes, map]);
+  }, [earthquakes, map, magnitudePalette]);
 
   if (isLoading) return <AppSpinner size="large" />;
 

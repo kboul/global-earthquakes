@@ -1,4 +1,4 @@
-const defaultMagnitudePalette = {
+const defaultPalette = {
   xs: "#00b800",
   sm: "#b6fe00",
   md: "#f6ff00",
@@ -7,8 +7,8 @@ const defaultMagnitudePalette = {
   xxl: "#ff0000"
 };
 
-const colorPalette = {
-  default: defaultMagnitudePalette,
+const colorPalettes = {
+  default: defaultPalette,
   pastel: {
     xs: "#D4E157", // Light Lime
     sm: "#AED581", // Light Green
@@ -83,4 +83,4 @@ const colorPalette = {
   }
 };
 
-export { colorPalette, defaultMagnitudePalette };
+export { colorPalettes, defaultPalette };

@@ -2,7 +2,8 @@ import { useMemo } from "react";
 
 import { AppBadge } from "../../ui/AppBadge";
 import { AppTwoColumnTable } from "../../ui/AppTable";
-import { circleMarkerColor } from "../utils";
+import { getCircleMarkerColor } from "../utils";
+import { useStore } from "../../../hooks";
 import { FeatureProps } from "./models";
 
 // Convert Epoch time to human readable with specific timezone
@@ -22,6 +23,8 @@ export default function PopupContent({
   properties,
   coordinates
 }: PopupContentProps) {
+  const magnitudePalette = useStore((state) => state.magnitudePalette);
+
   const { time, title, mag, place, url } = properties;
 
   const data = useMemo(
@@ -49,7 +52,9 @@ export default function PopupContent({
         secondColumn: (
           <AppBadge
             className="text-blue-800"
-            style={{ backgroundColor: circleMarkerColor(mag) }}>
+            style={{
+              backgroundColor: getCircleMarkerColor(mag, magnitudePalette)
+            }}>
             {mag} Richter
           </AppBadge>
         )

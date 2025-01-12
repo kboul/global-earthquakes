@@ -9,6 +9,6 @@ const days = [
 ];
 
 export { initialNumOfDays, days };
-export * from "./colorPalette";
+export * from "./colorPalettes";
 export * from "./queryClient";
 export * from "./tileLayers";

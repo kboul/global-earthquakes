@@ -2,12 +2,14 @@ import { useEffect } from "react";
 import { Control, DomUtil } from "leaflet";
 import { useMap } from "react-leaflet";
 
-import { circleMarkerColor } from "../utils";
+import { useStore } from "../../../hooks";
+import { getCircleMarkerColor } from "../utils";
 import { cn } from "../../../utils";
 import "./index.css";
 
 export default function Legend() {
   const map = useMap();
+  const magnitudePalette = useStore((state) => state.magnitudePalette);
 
   useEffect(() => {
     if (!map) return;
@@ -31,7 +33,7 @@ export default function Legend() {
         const to = grades[index + 1];
         return `
           <div class="flex items-center space-x-2">
-            <i class="w-5 h-5 inline-block rounded" style="background: ${circleMarkerColor(from + 1)};"></i>
+            <i class="w-5 h-5 inline-block rounded" style="background: ${getCircleMarkerColor(from + 1, magnitudePalette)};"></i>
             <span>${from}${to ? `&ndash;${to}` : "+"}</span>
           </div>
         `;
@@ -49,7 +51,7 @@ export default function Legend() {
     return () => {
       map.removeControl(legend);
     };
-  }, [map]);
+  }, [map, magnitudePalette]);
 
   return null;
 }
