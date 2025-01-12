@@ -7,25 +7,25 @@ import { AppTabs } from "../ui/AppTabs";
 import { AppDateInput } from "../ui/AppDateInput";
 import { AppLabel } from "../ui/AppLabel";
 import { useStore } from "../../hooks";
-import { SelectedTab } from "../../hooks/useStore";
+import { SearchByTab } from "../../types";
 import { cn } from "../../utils";
-import { days } from "../../constants";
+import { days, searchBy } from "../../constants";
 
 // constants
-const tabMapping: Record<SelectedTab, string> = {
+const tabMapping: Record<SearchByTab, string> = {
   days: "number of days",
   timePeriod: "time period"
 };
 
 export default function SettingsDialog() {
-  const { settingsOpen, numOfDays, startTime, endTime, selectedTab, setStore } =
+  const { settingsOpen, numOfDays, startTime, endTime, searchByTab, setStore } =
     useStore(
       useShallow((state) => ({
         settingsOpen: state.settingsOpen,
         numOfDays: state.numOfDays,
         startTime: state.startTime,
         endTime: state.endTime,
-        selectedTab: state.selectedTab,
+        searchByTab: state.searchByTab,
         setStore: state.setStore
       }))
     );
@@ -33,7 +33,7 @@ export default function SettingsDialog() {
   const handleChange = (value: string) => setStore({ numOfDays: value });
 
   const handleDateSelectionsChange = (value: string) => {
-    setStore({ selectedTab: value as SelectedTab });
+    setStore({ searchByTab: value as SearchByTab });
   };
 
   return (
@@ -41,7 +41,7 @@ export default function SettingsDialog() {
       contentProps={{ className: "z-[1000]" }}
       open={settingsOpen}
       onOpenChange={(open) => setStore({ settingsOpen: open })}
-      title={`Search by ${tabMapping[selectedTab]}`}
+      title={`Search by ${tabMapping[searchByTab]}`}
       Trigger={
         <div title="Settings">
           <Cog6ToothIcon
@@ -51,7 +51,7 @@ export default function SettingsDialog() {
         </div>
       }>
       <AppTabs
-        value={selectedTab}
+        value={searchByTab}
         onValueChange={handleDateSelectionsChange}
         triggers={[
           { value: "days", content: "Days" },
@@ -59,7 +59,7 @@ export default function SettingsDialog() {
         ]}
         contents={[
           {
-            value: "days",
+            value: searchBy.days,
             content: (
               <div className="flex flex-col gap-2">
                 <AppLabel>Number of days</AppLabel>
@@ -74,7 +74,7 @@ export default function SettingsDialog() {
             )
           },
           {
-            value: "timePeriod",
+            value: searchBy.timePeriod,
             content: (
               <div className="flex gap-x-4">
                 <AppDateInput

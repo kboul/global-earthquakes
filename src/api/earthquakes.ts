@@ -1,19 +1,20 @@
 import httpService from "./httpService";
+import { searchBy } from "../constants";
 
 const getEarthquakes = async (params: {
-  selectedTab: string;
+  searchByTab: string;
   numOfDays: string;
   startTime: string;
   endTime: string;
 }) => {
-  const { selectedTab, numOfDays, startTime, endTime } = params;
+  const { searchByTab, numOfDays, startTime, endTime } = params;
   try {
     let queryParams = "format=geojson";
 
-    if (selectedTab === "days" && numOfDays) {
+    if (searchByTab === searchBy.days && numOfDays) {
       queryParams += `&starttime=NOW - ${numOfDays}`;
     }
-    if (selectedTab === "timePeriod") {
+    if (searchByTab === searchBy.timePeriod) {
       if (!startTime && !endTime) return;
 
       if (startTime && endTime)

@@ -2,17 +2,21 @@ import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import { CheckedState } from "@radix-ui/react-checkbox";
 
-import { colorPalettes, initialNumOfDays, tileLayers } from "../constants";
+import {
+  colorPalettes,
+  initialNumOfDays,
+  searchBy,
+  tileLayers
+} from "../constants";
 import { getLocalStorageState } from "../utils";
-
-export type SelectedTab = "days" | "timePeriod";
+import { SearchByTab } from "../types";
 
 interface Store {
   endTime: string;
   magnitudePaletteOpen: boolean;
   magnitudePalette: string;
   numOfDays: string;
-  selectedTab: SelectedTab;
+  searchByTab: SearchByTab;
   settingsOpen: boolean;
   startTime: string;
   tectonicPlatesOn: CheckedState;
@@ -31,7 +35,7 @@ const useStore = create<Store>()(
         magnitudePalette: Object.keys(colorPalettes)[0],
         magnitudePaletteOpen: false,
         numOfDays: localStorageState?.numOfDays ?? initialNumOfDays,
-        selectedTab: "days",
+        searchByTab: searchBy.days,
         settingsOpen: false,
         startTime: localStorageState?.startTime ?? "",
         tectonicPlatesOn: false,
@@ -45,7 +49,7 @@ const useStore = create<Store>()(
           magnitudePalette: state.magnitudePalette,
           magnitudePaletteOpen: state.magnitudePaletteOpen,
           numOfDays: state.numOfDays,
-          selectedTab: state.selectedTab,
+          searchByTab: state.searchByTab,
           settingsOpen: state.settingsOpen,
           startTime: state.startTime,
           tectonicPlatesOn: state.tectonicPlatesOn,

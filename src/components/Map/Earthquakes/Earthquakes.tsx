@@ -17,21 +17,21 @@ let geojson: GeoJSON;
 export default function Earthquakes() {
   const map = useMap();
 
-  const { magnitudePalette, numOfDays, startTime, endTime, selectedTab } =
+  const { magnitudePalette, numOfDays, startTime, endTime, searchByTab } =
     useStore(
       useShallow((state) => ({
         magnitudePalette: state.magnitudePalette,
         numOfDays: state.numOfDays,
         startTime: state.startTime,
         endTime: state.endTime,
-        selectedTab: state.selectedTab
+        searchByTab: state.searchByTab
       }))
     );
 
   const { data: earthquakes, isLoading } = useQuery({
-    queryKey: ["earthquakes", selectedTab, numOfDays, startTime, endTime],
+    queryKey: ["earthquakes", searchByTab, numOfDays, startTime, endTime],
     queryFn: () =>
-      getEarthquakes({ selectedTab, numOfDays, startTime, endTime }),
+      getEarthquakes({ searchByTab, numOfDays, startTime, endTime }),
     staleTime: 120000 // 2min
   });
 

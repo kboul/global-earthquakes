@@ -1,3 +1,5 @@
+import { SearchByTab } from "../types";
+
 const initialNumOfDays = "3 days";
 
 const days = [
@@ -8,7 +10,12 @@ const days = [
   { value: "30 days", label: "30 days" }
 ];
 
-export { initialNumOfDays, days };
+const searchBy: Record<string, SearchByTab> = {
+  days: "days",
+  timePeriod: "timePeriod"
+};
+
+export { initialNumOfDays, days, searchBy };
 export * from "./colorPalettes";
 export * from "./queryClient";
 export * from "./tileLayers";
