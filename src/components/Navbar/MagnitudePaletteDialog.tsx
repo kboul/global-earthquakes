@@ -29,7 +29,7 @@ export default function MagnitudePaletteDialog() {
             "w-7 h-7 text-white",
             magnitudePaletteOpen && "text-aqua"
           )}
-          title="Magnitute palette"
+          title="Magnitute palette picker"
         />
       }>
       <div className="rounded-lg p-4 bg-white shadow-md">
