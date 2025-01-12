@@ -15,6 +15,8 @@ interface Store {
   endTime: string;
   numOfDays: string;
   selectedTab: SelectedTab;
+  magnitudePaletteOpen: boolean;
+  selectedPalette: string;
   setStore: (newPair: Partial<Store>) => void;
 }
 
@@ -25,25 +27,29 @@ const useStore = create<Store>()(
   devtools(
     persist(
       (set) => ({
+        endTime: localStorageState?.endTime ?? "",
+        magnitudePaletteOpen: false,
+        numOfDays: localStorageState?.numOfDays ?? initialNumOfDays,
+        selectedPalette: "default",
+        selectedTab: "days",
         selectedTileLayer: tileLayers[1].name,
         settingsOpen: false,
         startTime: localStorageState?.startTime ?? "",
         tectonicPlatesOn: false,
-        endTime: localStorageState?.endTime ?? "",
-        numOfDays: localStorageState?.numOfDays ?? initialNumOfDays,
-        selectedTab: "days",
         setStore: (newPair) => set((state) => ({ ...state, ...newPair }))
       }),
       {
         name: localStorageName,
         partialize: (state) => ({
+          endTime: state.endTime,
+          magnitudePaletteOpen: state.magnitudePaletteOpen,
+          numOfDays: state.numOfDays,
+          selectedPalette: state.selectedPalette,
+          selectedTab: state.selectedTab,
           selectedTileLayer: state.selectedTileLayer,
           settingsOpen: state.settingsOpen,
-          tectonicPlatesOn: state.tectonicPlatesOn,
-          numOfDays: state.numOfDays,
           startTime: state.startTime,
-          endTime: state.endTime,
-          selectedTab: state.selectedTab
+          tectonicPlatesOn: state.tectonicPlatesOn
         })
       }
     )

@@ -31,14 +31,13 @@ export default function Legend() {
         const to = grades[index + 1];
         return `
           <div class="flex items-center space-x-2">
-            <i style="background: ${circleMarkerColor(from + 1)}; width: 20px; height: 20px; display: inline-block; border-radius: 4px;"></i>
+            <i class="w-5 h-5 inline-block rounded" style="background: ${circleMarkerColor(from + 1)};"></i>
             <span>${from}${to ? `&ndash;${to}` : "+"}</span>
           </div>
         `;
       });
 
       div.innerHTML = `
-        <h4 class="font-bold">Magnitude</h4>
         ${labels.join("")}
       `;
 

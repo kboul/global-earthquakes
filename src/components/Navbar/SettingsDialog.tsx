@@ -45,7 +45,7 @@ export default function SettingsDialog() {
       Trigger={
         <div title="Settings">
           <Cog6ToothIcon
-            className={cn("w-7 h-7 text-white", settingsOpen && "text-[#0ff]")}
+            className={cn("w-7 h-7 text-white", settingsOpen && "text-aqua")}
             title="Settings"
           />
         </div>
