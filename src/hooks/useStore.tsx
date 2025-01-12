@@ -8,15 +8,15 @@ import { getLocalStorageState } from "../utils";
 export type SelectedTab = "days" | "timePeriod";
 
 interface Store {
-  selectedTileLayer: string;
-  settingsOpen: boolean;
-  tectonicPlatesOn: CheckedState;
-  startTime: string;
   endTime: string;
-  numOfDays: string;
-  selectedTab: SelectedTab;
   magnitudePaletteOpen: boolean;
   magnitudePalette: string;
+  numOfDays: string;
+  selectedTab: SelectedTab;
+  settingsOpen: boolean;
+  startTime: string;
+  tectonicPlatesOn: CheckedState;
+  tileLayer: string;
   setStore: (newPair: Partial<Store>) => void;
 }
 
@@ -32,10 +32,10 @@ const useStore = create<Store>()(
         magnitudePaletteOpen: false,
         numOfDays: localStorageState?.numOfDays ?? initialNumOfDays,
         selectedTab: "days",
-        selectedTileLayer: tileLayers[1].name,
         settingsOpen: false,
         startTime: localStorageState?.startTime ?? "",
         tectonicPlatesOn: false,
+        tileLayer: tileLayers[1].name,
         setStore: (newPair) => set((state) => ({ ...state, ...newPair }))
       }),
       {
@@ -46,10 +46,10 @@ const useStore = create<Store>()(
           magnitudePaletteOpen: state.magnitudePaletteOpen,
           numOfDays: state.numOfDays,
           selectedTab: state.selectedTab,
-          selectedTileLayer: state.selectedTileLayer,
           settingsOpen: state.settingsOpen,
           startTime: state.startTime,
-          tectonicPlatesOn: state.tectonicPlatesOn
+          tectonicPlatesOn: state.tectonicPlatesOn,
+          tileLayer: state.tileLayer
         })
       }
     )
