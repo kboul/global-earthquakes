@@ -1,6 +1,6 @@
 {
   "name": "global-earthquakes",
-  "version": "5.1.1",
+  "version": "5.1.2",
   "private": true,
   "homepage": "https://kboul.github.io/global-earthquakes",
   "dependencies": {

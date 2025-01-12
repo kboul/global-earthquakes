@@ -1,4 +1,4 @@
-import { Cog6ToothIcon } from "@heroicons/react/24/solid";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { useShallow } from "zustand/react/shallow";
 
 import { AppResponsiveDialog } from "../ui/AppResponsiveDialog";
@@ -17,7 +17,7 @@ const tabMapping: Record<SearchByTab, string> = {
   timePeriod: "time period"
 };
 
-export default function SettingsDialog() {
+export default function SearchByDialog() {
   const { settingsOpen, numOfDays, startTime, endTime, searchByTab, setStore } =
     useStore(
       useShallow((state) => ({
@@ -43,12 +43,10 @@ export default function SettingsDialog() {
       onOpenChange={(open) => setStore({ settingsOpen: open })}
       title={`Search by ${tabMapping[searchByTab]}`}
       Trigger={
-        <div title="Settings">
-          <Cog6ToothIcon
-            className={cn("w-7 h-7 text-white", settingsOpen && "text-aqua")}
-            title="Settings"
-          />
-        </div>
+        <MagnifyingGlassIcon
+          className={cn("w-7 h-7 text-white", settingsOpen && "text-aqua")}
+          title="Search by date or time period"
+        />
       }>
       <AppTabs
         value={searchByTab}
