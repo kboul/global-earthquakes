@@ -12,9 +12,9 @@ import { tileLayers } from "../../constants";
 export default function TileLayers() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { selectedTileLayer, tectonicPlatesOn, setStore } = useStore(
+  const { tileLayer, tectonicPlatesOn, setStore } = useStore(
     useShallow((state) => ({
-      selectedTileLayer: state.selectedTileLayer,
+      tileLayer: state.tileLayer,
       tectonicPlatesOn: state.tectonicPlatesOn,
       setStore: state.setStore
     }))
@@ -36,8 +36,8 @@ export default function TileLayers() {
       }}
       Trigger={<Layers />}>
       <AppRadioGroup
-        value={selectedTileLayer}
-        onValueChange={(value) => setStore({ selectedTileLayer: value })}
+        value={tileLayer}
+        onValueChange={(value) => setStore({ tileLayer: value })}
         options={tileLayers.map((layer) => ({
           value: layer.name,
           label: layer.name

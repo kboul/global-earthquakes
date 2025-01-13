@@ -39,7 +39,7 @@ const RadioGroupItem = React.forwardRef<
 });
 RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName;
 
-type Option = { value: string; label: string };
+type Option = { value: string; label: string | React.ReactNode };
 
 type AppRadioGroupProps = { options: Option[] } & React.ComponentProps<
   typeof RadioGroupPrimitive.Root

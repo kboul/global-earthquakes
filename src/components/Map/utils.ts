@@ -1,21 +1,26 @@
-import { magnitudeColors } from "./constants";
+import { colorPalettes, defaultPalette } from "../../constants";
 
-const circleMarkerColor = (magnitude: number): string => {
-  if (magnitude <= 1) return magnitudeColors.xs;
-  if (magnitude > 1 && magnitude <= 2) return magnitudeColors.sm;
-  if (magnitude > 2 && magnitude <= 3) return magnitudeColors.md;
-  if (magnitude > 3 && magnitude <= 5) return magnitudeColors.lg;
-  if (magnitude > 5 && magnitude <= 7) return magnitudeColors.xl;
-  return magnitudeColors.xxl;
+const getCircleMarkerColor = (
+  magnitude: number,
+  magnitudePalette: string
+): string => {
+  // @ts-ignore
+  const palette = colorPalettes[magnitudePalette] ?? defaultPalette;
+  if (magnitude <= 1) return palette.xs;
+  if (magnitude > 1 && magnitude <= 2) return palette.sm;
+  if (magnitude > 2 && magnitude <= 3) return palette.md;
+  if (magnitude > 3 && magnitude <= 5) return palette.lg;
+  if (magnitude > 5 && magnitude <= 7) return palette.xl;
+  return palette.xxl;
 };
 
-const geojsonMarkerOptions = (magnitude: number) => ({
+const geojsonMarkerOptions = (magnitude: number, magnitudePalette: string) => ({
   radius: 2.5 * magnitude,
-  fillColor: circleMarkerColor(magnitude),
+  fillColor: getCircleMarkerColor(magnitude, magnitudePalette),
   color: "grey",
   weight: 0.5,
   opacity: 1,
   fillOpacity: 0.8
 });
 
-export { circleMarkerColor, geojsonMarkerOptions };
+export { getCircleMarkerColor, geojsonMarkerOptions };

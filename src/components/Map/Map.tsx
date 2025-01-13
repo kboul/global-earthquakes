@@ -9,9 +9,9 @@ import { tileLayers } from "../../constants";
 
 export function Map() {
   const tectonicPlatesOn = useStore((state) => state.tectonicPlatesOn);
-  const selectedTileLayer = useStore((state) => state.selectedTileLayer);
+  const tileLayer = useStore((state) => state.tileLayer);
 
-  const layer = tileLayers.find((layer) => layer.name === selectedTileLayer);
+  const layer = tileLayers.find((layer) => layer.name === tileLayer);
 
   return (
     <MapContainer center={[0, 0]} zoom={3} style={mapHeight}>

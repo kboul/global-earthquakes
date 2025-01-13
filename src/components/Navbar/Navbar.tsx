@@ -1,6 +1,5 @@
-import { GlobeAltIcon } from "@heroicons/react/24/outline";
-
-import SettingsDialog from "./SettingsDialog";
+import SearchByDialog from "./SearchByDialog";
+import MagnitudePaletteDialog from "./MagnitudePaletteDialog";
 
 export default function Navbar() {
   return (
@@ -11,8 +10,10 @@ export default function Navbar() {
         </span>
 
         <div className="flex gap-2 cursor-pointer">
-          <GlobeAltIcon className="w-7 h-7 text-[#0ff]" title="Map" />
-          <SettingsDialog />
+          {/* <GlobeAltIcon className="w-7 h-7 text-aqua title="Map" /> */}
+          {/* Cog6ToothIcon */}
+          <SearchByDialog />
+          <MagnitudePaletteDialog />
         </div>
       </div>
     </nav>
