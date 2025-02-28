@@ -56,9 +56,3 @@ and then again
 docker compose up -d
 
 ```
-
-## Deploy on github pages
-
-```
-npm run deploy
-```
