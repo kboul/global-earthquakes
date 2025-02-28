@@ -11,7 +11,9 @@ import {
 import { getLocalStorageState } from "../utils";
 import { SearchByTab } from "../types";
 
-interface Store {
+type PartialStoreState = Partial<StoreState>;
+
+interface StoreState {
   endTime: string;
   magnitudePaletteOpen: boolean;
   magnitudePalette: string;
@@ -21,13 +23,13 @@ interface Store {
   startTime: string;
   tectonicPlatesOn: CheckedState;
   tileLayer: string;
-  setStore: (newPair: Partial<Store>) => void;
+  setStore: (newPair: PartialStoreState) => void;
 }
 
 const localStorageName = "global-earthquakes-store";
 const localStorageState = getLocalStorageState(localStorageName)?.state;
 
-const useStore = create<Store>()(
+const useStore = create<StoreState>()(
   devtools(
     persist(
       (set) => ({
