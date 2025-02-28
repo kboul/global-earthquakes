@@ -15,7 +15,7 @@ docker build . -t "global-earthquakes:v4.2.1"
 2. Run react using the image using the app name and the current version, f.i
 
 ```
-docker run -d -p 3000:3000 global-earthquakes:v4.2.1
+docker run -d -p 5173:5173 global-earthquakes:v4.2.1
 ```
 
 returns the id of the running container
@@ -55,10 +55,4 @@ and then again
 ```
 docker compose up -d
 
-```
-
-## Deploy on github pages
-
-```
-npm run deploy
 ```

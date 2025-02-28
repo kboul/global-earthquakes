@@ -12,6 +12,6 @@ RUN pnpm install
 # Copy the rest of the files
 COPY . .
 
-EXPOSE 3000
+EXPOSE 5173
 
-CMD ["pnpm", "start"]
+CMD ["pnpm", "dev"]
